@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yW/1svDneZOWLCbx0+yRQCnqpnxAGH5neSM0igR/RL1ZSTDYgfrvQ3Ovo00lTdg+kraiwtQWizUY0Dtw8WDuPg==",
+  "dgSpecHash": "3yZqKwHAob4PIQ+56fDlI0WFPZic3Y8zIjKx75Y9YRn+/Sq/8JkM4vaaPWjfty3x+uSre9fNAok6WOBZyaMVNw==",
   "success": true,
-  "projectFilePath": "E:\\Courses\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj",
+  "projectFilePath": "E:\\Courses\\EDI_Manager\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

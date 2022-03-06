@@ -3,6 +3,7 @@ using EDI_Manager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDI_Manager.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220306225415_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,8 +33,8 @@ namespace EDI_Manager.Migrations
 
                     b.Property<string>("ClientAdress")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("ClientAge")
                         .HasColumnType("int");
@@ -130,7 +132,7 @@ namespace EDI_Manager.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("TargetFileTypeId")
+                    b.Property<int>("TargetFileId")
                         .HasColumnType("int");
 
                     b.HasKey("FeedId");
@@ -141,7 +143,7 @@ namespace EDI_Manager.Migrations
 
                     b.HasIndex("SourceFileId");
 
-                    b.HasIndex("TargetFileTypeId");
+                    b.HasIndex("TargetFileId");
 
                     b.ToTable("Feeds");
                 });
@@ -210,9 +212,9 @@ namespace EDI_Manager.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EDI_Manager.FileType", "TargetFileType")
+                    b.HasOne("EDI_Manager.File", "TargetFile")
                         .WithMany()
-                        .HasForeignKey("TargetFileTypeId")
+                        .HasForeignKey("TargetFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -222,7 +224,7 @@ namespace EDI_Manager.Migrations
 
                     b.Navigation("SourceFile");
 
-                    b.Navigation("TargetFileType");
+                    b.Navigation("TargetFile");
                 });
 
             modelBuilder.Entity("EDI_Manager.File", b =>

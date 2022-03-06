@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Courses\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj": {}
+    "E:\\Courses\\EDI_Manager\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj": {}
   },
   "projects": {
-    "E:\\Courses\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj": {
+    "E:\\Courses\\EDI_Manager\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Courses\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj",
+        "projectUniqueName": "E:\\Courses\\EDI_Manager\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj",
         "projectName": "EDI_Manager",
-        "projectPath": "E:\\Courses\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj",
+        "projectPath": "E:\\Courses\\EDI_Manager\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "E:\\Courses\\EDI_ManagerApp\\EDI_Manager\\obj\\",
+        "outputPath": "E:\\Courses\\EDI_Manager\\EDI_ManagerApp\\EDI_Manager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

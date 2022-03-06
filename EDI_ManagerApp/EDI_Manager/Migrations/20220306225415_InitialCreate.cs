@@ -34,7 +34,7 @@ namespace EDI_Manager.Migrations
                     DeveloperName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     DeveloperSurName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     DeveloperAge = table.Column<int>(type: "int", nullable: false),
-                    DeveloperAdress = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    DeveloperAdress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     HireDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
@@ -99,25 +99,25 @@ namespace EDI_Manager.Migrations
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "ClientId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Feeds_Developers_DeveloperId",
                         column: x => x.DeveloperId,
                         principalTable: "Developers",
                         principalColumn: "DeveloperId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Feeds_Files_SourceFileId",
                         column: x => x.SourceFileId,
                         principalTable: "Files",
                         principalColumn: "FileId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Feeds_Files_TargetFileId",
                         column: x => x.TargetFileId,
                         principalTable: "Files",
                         principalColumn: "FileId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

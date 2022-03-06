@@ -13,7 +13,7 @@ namespace EDI_Manager
         public string ClientSurName { get; set; }
         public int ClientAge { get; set; }
 
-        [StringLength(30)]
+        [StringLength(200)]
         public string ClientAdress { get; set; }
 
         [StringLength(10)]

@@ -13,7 +13,7 @@ namespace EDI_Manager
         public string DeveloperSurName { get; set; }
         public int DeveloperAge { get; set; }
 
-        [StringLength(30)]
+        [StringLength(200)]
         public string DeveloperAdress { get; set; }
 
         [StringLength(10)]
