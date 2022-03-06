@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace EDI_Manager
+namespace EDI_Manager.TableDefinitions
 {
     public class Feed
     {
