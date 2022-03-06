@@ -1,2 +1,3 @@
 # EDI_Manager
-Feed-application
+Feed Web-application 
+Built with ASP.Net Core 6.0 and Angular 13
