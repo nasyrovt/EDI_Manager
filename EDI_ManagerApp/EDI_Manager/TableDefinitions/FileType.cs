@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EDI_Manager.TableDefinitions
+namespace EDI_Manager
 {
     public class FileType
     {
