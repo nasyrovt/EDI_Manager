@@ -1,1 +1,22 @@
-<p>add-edit-feed works!</p>
+<form>
+    
+    <div class="mg-3">
+        <label for="sourceFileId" class="form-label">Source File</label>
+        <select class="form-control" name="sourceFile" id="sourceFile"
+        [(ngModel)] = "sourceFileId">
+        <option *ngFor="let file of filesList$|async" [value]="file.fileId">{{file.fileName+"."+"filesMap.get(file.fileTypeId)"}}</option>
+    </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="fileTypeId" class="form-label">Target File Type</label>
+        <!--<input type="text" class="form-control" name="fileTypeId"
+        [(ngModel)] ="fileTypeId" *ngIf="feed.id!=0" disabled>-->
+        <select class="form-control" name="fieTypeId" id="fileTypeId"
+        [(ngModel)] = "targetFileTypeId" *ngIf="feed.id==0">
+            <option *ngFor="let type of fileTypesList$|async" 
+            [value]="type.id">{{type.fileTypeName}}</option>
+        </select>
+    </div>
+
+</form>

@@ -1,10 +1,16 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<!-- Button feed trigger modal -->
+<button type="button" class="btn btn-primary float-end m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+(click) =modalAdd()>
+  Add New Feed
+</button>
+
+<!-- Button fili types trigger modal -->
+<button type="button" class="btn btn-secondary float-end m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Show File Types
 </button>
 
   
-  <!-- Modal -->
+  <!-- Show File Types Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -13,7 +19,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p *ngFor="let type of fileTypesList$|async">
+          <p *ngFor="let type of fileTypesService.fileTypesList$|async">
             {{type.fileTypeId}} - {{type.fileTypeName}}
           </p>
         </div>
@@ -38,13 +44,28 @@
         <tr *ngFor="let feed of feedsList$|async">
             <td>{{feed.feedId}}</td>
             <td>{{feed.feedName}}</td>
-            <td>{{clientsMap.get(feed.clientId)}}</td>
-            <td>{{filesMap.get(feed.sourceFileId)}}</td>
-            <td>{{fileTypesMap.get(feed.targetFileTypeId)}}</td>
+            <td>{{clientsService.clientsMap.get(feed.clientId)}}</td>
+            <td>{{filesService.filesMap.get(feed.sourceFileId)}}</td>
+            <td>{{fileTypesService.fileTypesMap.get(feed.targetFileTypeId)}}</td>
             <td>{{feed.targetEmails}}</td>
-            <td>{{developerMap.get(feed.developerId)}}</td>
+            <td>{{developersService.developerMap.get(feed.developerId)}}</td>
             <td>{{feed.ftpServerName}}</td>
             <td>{{feed.ftpUserName}}</td>
         </tr>
     </tbody>
 </table>
+
+<!-- Add New Feed Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-add-edit-feed [feed] ="feed" *ngIf="activateAddEditFeedComponent"></app-add-edit-feed>
+      </div>
+    </div>
+  </div>
+</div>
