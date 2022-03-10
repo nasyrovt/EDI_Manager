@@ -1,0 +1,50 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Show File Types
+</button>
+
+  
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">File Types</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p *ngFor="let type of fileTypesList$|async">
+            {{type.fileTypeId}} - {{type.fileTypeName}}
+          </p>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead >
+        <th>Id</th>
+        <th>Feed Name</th>
+        <th>Client</th>
+        <th>Source File</th>
+        <th>Target File Type</th>
+        <th>Target E-mails</th>
+        <th>Developer</th>
+        <th>FTP-Server Name</th>
+        <th>FTP-User Name</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let feed of feedsList$|async">
+            <td>{{feed.feedId}}</td>
+            <td>{{feed.feedName}}</td>
+            <td>{{clientsMap.get(feed.clientId)}}</td>
+            <td>{{filesMap.get(feed.sourceFileId)}}</td>
+            <td>{{fileTypesMap.get(feed.targetFileTypeId)}}</td>
+            <td>{{feed.targetEmails}}</td>
+            <td>{{developerMap.get(feed.developerId)}}</td>
+            <td>{{feed.ftpServerName}}</td>
+            <td>{{feed.ftpUserName}}</td>
+        </tr>
+    </tbody>
+</table>
