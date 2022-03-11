@@ -1,17 +1,39 @@
+<script src="./multipleMails/js/lib/utils.js"></script>
+<script src="./multipleMails/js/lib/emails-input.js"></script>
+
 <form>
-    
-    <div class="mg-3">
+    <!-- Feed name input -->
+    <div class="mb-3">
+        <label for="feedName" class="form-label">Feed Name</label>
+        <input type="text" class="form-control" [(ngModel)]="feedName" name="feedName">
+    </div>
+
+    <!-- Client input -->
+    <div class="mb-3">
+        <label for="clientId" class="form-label">Client</label>
+        <select class="form-control" name="clientId" id="clientId"
+        [(ngModel)] = "clientId">
+            <option *ngFor="let client of clientsList$|async" 
+            [value]="client.id">{{client.clientSurName.toUpperCase() + " " + client.clientName}}</option>
+        </select>
+    </div>
+
+    <!-- Source file input -->
+    <div class="mb-3">
         <label for="sourceFileId" class="form-label">Source File</label>
         <select class="form-control" name="sourceFile" id="sourceFile"
         [(ngModel)] = "sourceFileId">
-        <option *ngFor="let file of filesList$|async" [value]="file.fileId">{{file.fileName+"."+"filesMap.get(file.fileTypeId)"}}</option>
-    </select>
+            <option *ngFor="let file of fileService.filesList$|async" [value]="file.fileId">
+                {{file.fileName +"."+ fileTypesService.fileTypesMap.get(file.fileTypeId)}}
+            </option>
+        </select>
     </div>
 
+    
+
+    <!-- Target file type input -->
     <div class="mb-3">
         <label for="fileTypeId" class="form-label">Target File Type</label>
-        <!--<input type="text" class="form-control" name="fileTypeId"
-        [(ngModel)] ="fileTypeId" *ngIf="feed.id!=0" disabled>-->
         <select class="form-control" name="fieTypeId" id="fileTypeId"
         [(ngModel)] = "targetFileTypeId" *ngIf="feed.id==0">
             <option *ngFor="let type of fileTypesList$|async" 
@@ -19,4 +41,5 @@
         </select>
     </div>
 
+    
 </form>

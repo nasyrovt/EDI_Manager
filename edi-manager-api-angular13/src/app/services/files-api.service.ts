@@ -12,10 +12,11 @@ export class FilesService {
   filesList: any = [];
   filesMap: Map<number, string> = new Map();
 
-  readonly feedsAPIUrl = "https://localhost:7255/api";
+  readonly APIUrl = "https://localhost:7255/api";
 
-  constructor( private http: HttpClient, private fileTypesService: FileTypesApiService) { 
+  constructor(private http: HttpClient, private fileTypesService: FileTypesApiService) {
     this.filesList$ = this.getFilesList();
+    this.refreshFilesMap();
   }
 
   refreshFilesMap() {
@@ -23,6 +24,7 @@ export class FilesService {
       this.filesList = data;
 
       for (let i = 0; i < data.length; i++) {
+        console.log(`This is ${this.filesList[i].fileId} times easier!`);
         this.filesMap.set(this.filesList[i].fileId, this.filesList[i].fileName
           + "." + this.fileTypesService.fileTypesMap.get(this.filesList[i].fileTypeId));
       }
@@ -31,18 +33,18 @@ export class FilesService {
 
   //CRUD
   getFilesList(): Observable<any[]> {
-    return this.http.get<any>(this.feedsAPIUrl + "/files");
+    return this.http.get<any>(this.APIUrl + "/files");
   }
 
   addFile(data: any) {
-    return this.http.post(this.feedsAPIUrl + "/files", data);
+    return this.http.post(this.APIUrl + "/files", data);
   }
 
   updateFile(id: number | string, data: any) {
-    return this.http.put(this.feedsAPIUrl + "/files/$(id)", data);
+    return this.http.put(this.APIUrl + "/files/$(id)", data);
   }
 
   deleteFile(id: number | string) {
-    return this.http.delete(this.feedsAPIUrl + "/files/$(id)");
+    return this.http.delete(this.APIUrl + "/files/$(id)");
   }
 }

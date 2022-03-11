@@ -20,10 +20,9 @@ export class AddEditFeedComponent implements OnInit {
   developersList$!: Observable<any[]>;
   clientsList$!: Observable<any[]>;
 
-  //filesMap: Map<number, string> = ShowFeedComponent.filesMap;
 
-  constructor(private feedsService: FeedsApiService, private fileTypesService: FileTypesApiService, private fileService: FilesService,
-    private clientsService: ClientsApiService, private developersService: DevelopersApiService) { }
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
+    public clientsService: ClientsApiService, public developersService: DevelopersApiService) { }
 
 
   @Input() feed: any;
@@ -47,6 +46,7 @@ export class AddEditFeedComponent implements OnInit {
     this.developerId = this.feed.developerId;
     this.ftpServerName = this.feed.ftpServerName;
     this.ftpUserName = this.feed.ftpUserName;
+
     this.fileTypesList$ = this.fileTypesService.getFileTypesList();
     this.filesList$ = this.fileService.getFilesList();
     this.feedsList$ = this.feedsService.getFeedsList();

@@ -41,7 +41,7 @@
         <th>FTP-User Name</th>
     </thead>
     <tbody>
-        <tr *ngFor="let feed of feedsList$|async">
+        <tr *ngFor="let feed of feedsService.feedsList$|async">
             <td>{{feed.feedId}}</td>
             <td>{{feed.feedName}}</td>
             <td>{{clientsService.clientsMap.get(feed.clientId)}}</td>

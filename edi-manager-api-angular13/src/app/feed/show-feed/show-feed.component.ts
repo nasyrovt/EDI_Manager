@@ -14,11 +14,6 @@ import { FilesService } from 'src/app/services/files-api.service';
 })
 export class ShowFeedComponent implements OnInit {
 
-  //Observables
-  feedsList$!: Observable<any[]>; //! is for definitly assign
-  filesList$!: Observable<any[]>;
-  filesList: any = [];
-
   modalTitle: string = "";
   activateAddEditFeedComponent: boolean = false;
   feed: any;

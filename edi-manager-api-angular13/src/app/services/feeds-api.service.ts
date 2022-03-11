@@ -17,7 +17,6 @@ export class FeedsApiService {
   }
 
   //CRUD
-  
   getFeedsList(): Observable<any[]> {
     //if (!this.isFeedFetched) {
     const response = this.http.get<any>(this.feedsAPIUrl + "/feeds");
