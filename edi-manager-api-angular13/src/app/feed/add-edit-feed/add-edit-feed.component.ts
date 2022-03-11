@@ -3,9 +3,10 @@ import { FileTypesApiService } from './../../services/file-types-api.service';
 import { Input, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
-import { ShowFeedComponent } from '../show-feed/show-feed.component';
 import { DevelopersApiService } from 'src/app/services/developers-api.service';
 import { FilesService } from 'src/app/services/files-api.service';
+import { EmailsChipComponent } from 'src/app/emails-chip/emails-chip.component';
+
 
 @Component({
   selector: 'app-add-edit-feed',
@@ -20,6 +21,8 @@ export class AddEditFeedComponent implements OnInit {
   developersList$!: Observable<any[]>;
   clientsList$!: Observable<any[]>;
 
+  emails: string[] = [];
+
 
   constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService) { }
@@ -28,11 +31,11 @@ export class AddEditFeedComponent implements OnInit {
   @Input() feed: any;
   id: number = 0;
   feedName: string = "";
-  clientId!: number;
-  sourceFileId!: number;
-  targetFileTypeId!: number;
+  clientId: number = 0;
+  sourceFileId: number = 0;
+  targetFileTypeId: number = 0;
   targetEmails: string = "";
-  developerId!: number;
+  developerId: number = 0;
   ftpServerName: string = "";
   ftpUserName: string = "";
 
@@ -52,5 +55,43 @@ export class AddEditFeedComponent implements OnInit {
     this.feedsList$ = this.feedsService.getFeedsList();
     this.clientsList$ = this.clientsService.getClientsList();
     this.developersList$ = this.developersService.getDevelopersList();
+  }
+
+  addFeed() {
+    var feed = {
+      feedName: this.feedName,
+      clientId: this.clientId,
+      sourceFileId: this.sourceFileId,
+      targetFileTypeId: this.targetFileTypeId,
+      targetEmails: this.emails.filter((value, index) => this.emails.indexOf(value) ==index).join(";"),
+      developerId: this.developerId,
+      ftpServerName: this.ftpServerName,
+      ftpUserName: this.ftpUserName
+    }
+
+    this.feedsService.addFeed(feed).subscribe(res => {
+      var closeModalBtn = document.getElementById('add-edit-modal-close');
+      if (closeModalBtn) {
+        closeModalBtn.click();
+      }
+
+      var showAddSuccess = document.getElementById('add-success-alert');
+      if (showAddSuccess) {
+        showAddSuccess.style.display = "block";
+      }
+      setTimeout(function () {
+        if (showAddSuccess) {
+          showAddSuccess.style.display = "none";
+        }
+      }, 4000);
+    })
+  }
+
+  updateFeed() {
+
+  }
+
+  addEmail(mail: string) {
+    this.emails.push(mail);
   }
 }

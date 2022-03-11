@@ -15,19 +15,30 @@ import { FileTypesApiService } from 'src/app/services/file-types-api.service';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
 import { FilesService } from 'src/app/services/files-api.service';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatChipsModule } from '@angular/material/chips';
+import { EmailsChipComponent } from './emails-chip/emails-chip.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
     FeedComponent,
     ShowFeedComponent,
-    AddEditFeedComponent
+    AddEditFeedComponent,
+    EmailsChipComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [FeedsApiService, FilesService, ClientsApiService, FileTypesApiService, DevelopersApiService],
   bootstrap: [AppComponent]

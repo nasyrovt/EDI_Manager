@@ -1,6 +1,3 @@
-<script src="./multipleMails/js/lib/utils.js"></script>
-<script src="./multipleMails/js/lib/emails-input.js"></script>
-
 <form>
     <!-- Feed name input -->
     <div class="mb-3">
@@ -29,17 +26,43 @@
         </select>
     </div>
 
-    
-
     <!-- Target file type input -->
     <div class="mb-3">
         <label for="fileTypeId" class="form-label">Target File Type</label>
         <select class="form-control" name="fieTypeId" id="fileTypeId"
-        [(ngModel)] = "targetFileTypeId" *ngIf="feed.id==0">
+        [(ngModel)] = "targetFileTypeId">
             <option *ngFor="let type of fileTypesList$|async" 
             [value]="type.id">{{type.fileTypeName}}</option>
         </select>
     </div>
 
+    <app-emails-chip (addingEventEmitter)="addEmail($event)"></app-emails-chip>
+
+    <!-- Developer input -->
+    <div class="mb-3">
+        <label for="developerId" class="form-label">Developer</label>
+        <select class="form-control" name="developerId" id="developerId"
+        [(ngModel)] = "developerId">
+            <option *ngFor="let dev of developersList$|async" 
+            [value]="dev.id">{{dev.developerSurName.toUpperCase() + " " + dev.developerName}}</option>
+        </select>
+    </div>
+
+    <!-- FTP Server input -->
+    <div class="mb-3">
+        <label for="ftpServer" class="form-label">FTP Server</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpServerName" name="ftpServerName">
+    </div>
+
+    <!-- FTP User input -->
+    <div class="mb-3">
+        <label for="ftpUser" class="form-label">FTP User</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpUserName" name="ftpUserName">
+    </div>
+
+    <button (click) ="addFeed()" *ngIf="feed.id==0" class="btn btn-primary">Add</button>
+    <button (click) ="updateFeed()" *ngIf="feed.id!=0" class="btn btn-primary">Update</button>
+
+    
     
 </form>

@@ -1,0 +1,16 @@
+<label for="eMails" class="form-label">Target E-mails</label>
+<mat-form-field class="form-control">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let mail of emails" (removed)="remove(mail)">
+        {{mail}}
+        <button matChipRemove>
+          <mat-icon svgIcon="delete" aria-hidden="false"></mat-icon>
+        </button>
+      </mat-chip>
+      <input placeholder="E-Mails..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>

@@ -55,17 +55,29 @@
     </tbody>
 </table>
 
-<!-- Add New Feed Modal -->
+<!-- Add or edit Feed Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modalClose()" id ="add-edit-modal-close"
+        ></button>
       </div>
       <div class="modal-body">
         <app-add-edit-feed [feed] ="feed" *ngIf="activateAddEditFeedComponent"></app-add-edit-feed>
       </div>
     </div>
   </div>
+</div>
+
+<div class="alert alert-success" role="alert" id="add-success-alert">
+  Feed successfully added!
+</div>
+<div class="alert alert-success" role="alert" id="update-success-alert">
+  Feed successfully updated!
+</div>
+<div class="alert alert-success" role="alert" id="delete-success-alert">
+  Feed successfully deleted!
 </div>

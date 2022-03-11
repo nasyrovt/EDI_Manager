@@ -1,6 +1,5 @@
 import { FileTypesApiService } from './../../services/file-types-api.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
 import { DevelopersApiService } from 'src/app/services/developers-api.service';
@@ -40,6 +39,11 @@ export class ShowFeedComponent implements OnInit {
     }
     this.modalTitle = "New Feed";
     this.activateAddEditFeedComponent = true;
+  }
+
+  modalClose() {
+    this.activateAddEditFeedComponent = false;
+    this.feedsService.feedsList$ = this.feedsService.getFeedsList();
   }
 
 }
