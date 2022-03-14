@@ -37,6 +37,4 @@ export class FeedsApiService {
   deleteFeed(id: number | string) {
     return this.http.delete(this.feedsAPIUrl + "/feeds/" + id);
   }
-
-
 }
