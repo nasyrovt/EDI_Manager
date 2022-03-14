@@ -31,22 +31,22 @@ export class AddEditFeedComponent implements OnInit {
   @Input() feed: any;
   id: number = 0;
   feedName: string = "";
-  clientId: number = 0;
-  sourceFileId: number = 0;
-  targetFileTypeId: number = 0;
+  clientId!: number;
+  sourceFileId!: number;
+  target!: number;
   targetEmails: string = "";
-  developerId: number = 0;
+  developer!: number;
   ftpServerName: string = "";
   ftpUserName: string = "";
 
   ngOnInit(): void {
-    this.id = this.feed.id;
+    this.id = this.feed.feedId;
     this.feedName = this.feed.feedName;
     this.clientId = this.feed.clientId;
     this.sourceFileId = this.feed.sourceFileId;
-    this.targetFileTypeId = this.feed.targetFileTypeId;
+    this.target = this.feed.targetFileTypeId;
     this.targetEmails = this.feed.targetEmails;
-    this.developerId = this.feed.developerId;
+    this.developer = this.feed.developerId;
     this.ftpServerName = this.feed.ftpServerName;
     this.ftpUserName = this.feed.ftpUserName;
 
@@ -62,12 +62,13 @@ export class AddEditFeedComponent implements OnInit {
       feedName: this.feedName,
       clientId: this.clientId,
       sourceFileId: this.sourceFileId,
-      targetFileTypeId: this.targetFileTypeId,
-      targetEmails: this.emails.filter((value, index) => this.emails.indexOf(value) ==index).join(";"),
-      developerId: this.developerId,
+      targetFileTypeId: this.target,
+      targetEmails: this.emails.filter((value, index) => this.emails.indexOf(value) == index).join("; "),
+      developerId: this.developer,
       ftpServerName: this.ftpServerName,
       ftpUserName: this.ftpUserName
     }
+    this.emails = [];
 
     this.feedsService.addFeed(feed).subscribe(res => {
       var closeModalBtn = document.getElementById('add-edit-modal-close');
@@ -88,7 +89,36 @@ export class AddEditFeedComponent implements OnInit {
   }
 
   updateFeed() {
+    var feed = {
+      feedId: this.id,
+      feedName: this.feedName,
+      clientId: this.clientId,
+      sourceFileId: this.sourceFileId,
+      targetFileTypeId: this.target,
+      targetEmails: this.emails.filter((value, index) => this.emails.indexOf(value) == index).join("; "),
+      developerId: this.developer,
+      ftpServerName: this.ftpServerName,
+      ftpUserName: this.ftpUserName
+    }
+    var id: number = this.id;
+    this.emails = [];
 
+    this.feedsService.updateFeed(id, feed).subscribe(res => {
+      var closeModalBtn = document.getElementById('add-edit-modal-close');
+      if (closeModalBtn) {
+        closeModalBtn.click();
+      }
+
+      var showUpdateSuccess = document.getElementById('update-success-alert');
+      if (showUpdateSuccess) {
+        showUpdateSuccess.style.display = "block";
+      }
+      setTimeout(function () {
+        if (showUpdateSuccess) {
+          showUpdateSuccess.style.display = "none";
+        }
+      }, 4000);
+    })
   }
 
   addEmail(mail: string) {

@@ -8,10 +8,8 @@
     <!-- Client input -->
     <div class="mb-3">
         <label for="clientId" class="form-label">Client</label>
-        <select class="form-control" name="clientId" id="clientId"
-        [(ngModel)] = "clientId">
-            <option *ngFor="let client of clientsList$|async" 
-            [value]="client.id">{{client.clientSurName.toUpperCase() + " " + client.clientName}}</option>
+        <select class="form-control" [(ngModel)] = "clientId" name="clientId" id="clientId">
+            <option *ngFor="let client of clientsList$|async" [value]="client.clientId">{{client.clientSurName + " " + client.clientName}}</option>
         </select>
     </div>
 
@@ -20,7 +18,7 @@
         <label for="sourceFileId" class="form-label">Source File</label>
         <select class="form-control" name="sourceFile" id="sourceFile"
         [(ngModel)] = "sourceFileId">
-            <option *ngFor="let file of fileService.filesList$|async" [value]="file.fileId">
+            <option *ngFor="let file of filesList$|async" [value]="file.fileId">
                 {{file.fileName +"."+ fileTypesService.fileTypesMap.get(file.fileTypeId)}}
             </option>
         </select>
@@ -28,11 +26,12 @@
 
     <!-- Target file type input -->
     <div class="mb-3">
-        <label for="fileTypeId" class="form-label">Target File Type</label>
-        <select class="form-control" name="fieTypeId" id="fileTypeId"
-        [(ngModel)] = "targetFileTypeId">
-            <option *ngFor="let type of fileTypesList$|async" 
-            [value]="type.id">{{type.fileTypeName}}</option>
+        <label for="targetFileTypeId" class="form-label">Target File Type</label>
+        <select class="form-control" name="targetFileTypeId" id="targetFileTypeId"
+        [(ngModel)] = "target">
+            <option *ngFor="let type of fileTypesList$|async" [value]="type.fileTypeId">
+                {{type.fileTypeName}}
+            </option>
         </select>
     </div>
 
@@ -42,9 +41,9 @@
     <div class="mb-3">
         <label for="developerId" class="form-label">Developer</label>
         <select class="form-control" name="developerId" id="developerId"
-        [(ngModel)] = "developerId">
+        [(ngModel)] = "developer">
             <option *ngFor="let dev of developersList$|async" 
-            [value]="dev.id">{{dev.developerSurName.toUpperCase() + " " + dev.developerName}}</option>
+            [value]="dev.developerId">{{dev.developerSurName + " " + dev.developerName}}</option>
         </select>
     </div>
 

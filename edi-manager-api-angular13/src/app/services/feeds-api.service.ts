@@ -31,11 +31,11 @@ export class FeedsApiService {
   }
 
   updateFeed(id: number | string, data: any) {
-    return this.http.put(this.feedsAPIUrl + "/feeds/$(id)", data);
+    return this.http.put(this.feedsAPIUrl + "/feeds/" + id, data);
   }
 
   deleteFeed(id: number | string) {
-    return this.http.delete(this.feedsAPIUrl + "/feeds/$(id)");
+    return this.http.delete(this.feedsAPIUrl + "/feeds/" + id);
   }
 
 
