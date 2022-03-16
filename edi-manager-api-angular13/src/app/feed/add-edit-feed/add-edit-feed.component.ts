@@ -1,3 +1,4 @@
+import { FtpserverApiService } from './../../services/ftpserver-api.service';
 import { ClientsApiService } from './../../services/clients-api.service';
 import { FileTypesApiService } from './../../services/file-types-api.service';
 import { Input, Component, OnInit } from '@angular/core';
@@ -20,12 +21,13 @@ export class AddEditFeedComponent implements OnInit {
   filesList$!: Observable<any[]>;
   developersList$!: Observable<any[]>;
   clientsList$!: Observable<any[]>;
+  serversList$!: Observable<any[]>;
 
   emails: string[] = [];
 
 
   constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
-    public clientsService: ClientsApiService, public developersService: DevelopersApiService) { }
+    public clientsService: ClientsApiService, public developersService: DevelopersApiService, public serversService: FtpserverApiService) { }
 
 
   @Input() feed: any;
@@ -36,8 +38,7 @@ export class AddEditFeedComponent implements OnInit {
   target!: number;
   targetEmails: string = "";
   developer!: number;
-  ftpServerName: string = "";
-  ftpUserName: string = "";
+  ftpAccountId!: number;
 
   ngOnInit(): void {
     this.id = this.feed.feedId;
@@ -47,14 +48,14 @@ export class AddEditFeedComponent implements OnInit {
     this.target = this.feed.targetFileTypeId;
     this.targetEmails = this.feed.targetEmails;
     this.developer = this.feed.developerId;
-    this.ftpServerName = this.feed.ftpServerName;
-    this.ftpUserName = this.feed.ftpUserName;
+    this.ftpAccountId = this.feed.ftpServerId;
 
     this.fileTypesList$ = this.fileTypesService.getFileTypesList();
     this.filesList$ = this.fileService.getFilesList();
     this.feedsList$ = this.feedsService.getFeedsList();
     this.clientsList$ = this.clientsService.getClientsList();
     this.developersList$ = this.developersService.getDevelopersList();
+    this.serversList$ = this.serversService.getServersList();
   }
 
   addFeed() {
@@ -65,8 +66,7 @@ export class AddEditFeedComponent implements OnInit {
       targetFileTypeId: this.target,
       targetEmails: this.emails.filter((value, index) => this.emails.indexOf(value) == index).join("; "),
       developerId: this.developer,
-      ftpServerName: this.ftpServerName,
-      ftpUserName: this.ftpUserName
+      ftpAccountId: this.ftpAccountId,
     }
     this.emails = [];
 
@@ -97,8 +97,7 @@ export class AddEditFeedComponent implements OnInit {
       targetFileTypeId: this.target,
       targetEmails: this.emails.filter((value, index) => this.emails.indexOf(value) == index).join("; "),
       developerId: this.developer,
-      ftpServerName: this.ftpServerName,
-      ftpUserName: this.ftpUserName
+      ftpAccountId: this.ftpAccountId,
     }
     var id: number = this.id;
     this.emails = [];

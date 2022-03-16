@@ -20,6 +20,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { EmailsChipComponent } from './emails-chip/emails-chip.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { ClientComponent } from './client/client.component';
+import { AddEditClientComponent } from './client/add-edit-client/add-edit-client.component';
+import { ShowClientComponent } from './client/show-client/show-client.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { MatIconModule } from '@angular/material/icon';
     FeedComponent,
     ShowFeedComponent,
     AddEditFeedComponent,
-    EmailsChipComponent
+    EmailsChipComponent,
+    ClientComponent,
+    AddEditClientComponent,
+    ShowClientComponent
   ],
   imports: [
     BrowserModule,

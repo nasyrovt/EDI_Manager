@@ -49,14 +49,13 @@
 
     <!-- FTP Server input -->
     <div class="mb-3">
-        <label for="ftpServer" class="form-label">FTP Server</label>
-        <input type="text" class="form-control" [(ngModel)]="ftpServerName" name="ftpServerName">
-    </div>
-
-    <!-- FTP User input -->
-    <div class="mb-3">
-        <label for="ftpUser" class="form-label">FTP User</label>
-        <input type="text" class="form-control" [(ngModel)]="ftpUserName" name="ftpUserName">
+        <label for="ftpAccountId" class="form-label">FTP Account</label>
+        <select class="form-control" name="ftpAccountId" id="ftpAccountId"
+        [(ngModel)] = "target">
+            <option *ngFor="let server of serversList$|async" [value]="server.ftpAccountId">
+                {{server.ftpHost}}
+            </option>
+        </select>
     </div>
 
     <button (click) ="addFeed()" *ngIf="feed.id==0" class="btn btn-primary">Add</button>

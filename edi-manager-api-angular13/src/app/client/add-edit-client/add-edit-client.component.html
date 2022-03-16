@@ -1,0 +1,36 @@
+<form>
+    <!-- Client name input -->
+    <div class="mb-3">
+        <label for="clientName" class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="clientName" name="clientName">
+    </div>
+
+    <!-- Client surname input -->
+    <div class="mb-3">
+        <label for="clientSurName" class="form-label">Surame</label>
+        <input type="text" class="form-control" [(ngModel)]="clientSurName" name="clientSurName">
+    </div>
+
+    <!-- Client age input -->
+    <div class="mb-3">
+        <label for="clientAge" class="form-label">Age</label>
+        <input type="text" class="form-control" [(ngModel)]="clientAge" name="clientAge">
+    </div>
+
+    <!-- Client adress input -->
+    <div class="mb-3">
+        <label for="clientAdress" class="form-label">Adress</label>
+        <input type="text" class="form-control" [(ngModel)]="clientAdress" name="clientAdress">
+    </div>
+
+    <!-- Client adress input -->
+    <div class="mb-3">
+        <label for="profileCreationDate" class="form-label">Profile Creation Date</label>
+        <input type="text" class="form-control" [(ngModel)]="profileCreationDate" name="profileCreationDate" disabled>
+    </div>
+
+
+    <button (click) ="addClient()" *ngIf="client.clientId==0" class="btn btn-primary">Add</button>
+    <button (click) ="updateClient()" *ngIf="client.clientId!=0" class="btn btn-primary">Update</button>
+
+</form>

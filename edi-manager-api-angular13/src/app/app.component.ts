@@ -9,26 +9,28 @@ import { SwitchTables } from './SwitchTables';
 export class AppComponent {
   title = 'edi-manager-api-angular13';
 
-  activateFeeds: boolean = SwitchTables.activateFeeds;
-  activateClients: boolean = SwitchTables.activateClients;
-  activateDevelopers: boolean = SwitchTables.activateDevelopers;
-  activateCarriers: boolean = SwitchTables.activateCarriers;
-  activateFTPAccounts: boolean = SwitchTables.activateFTPAccounts;
-  activateSSHKeys: boolean = SwitchTables.activateSSHKeys;
-
-  activators: boolean[] = [this.activateFeeds, this.activateClients, this.activateCarriers, this.activateFTPAccounts, this.activateSSHKeys, this.activateDevelopers];
+  activators: Map<number, boolean> = new Map([
+    [1, false], //activateFeeds
+    [2, false], //activateClients
+    [3, false], //activateDevelopers
+    [4, false], //activateCarriers
+    [5, false], //activateFTPAccounts
+    [6, false]  //activateSSHKeys
+  ]);
 
   public setAllFalse() {
-    for (let i = 0; i < this.activators.length; i++) {
-      this.activators[i] = false;
-    }
+    this.activators.forEach(
+      (value: boolean, key: number) => {
+        this.activators.set(key, false)
+      }
+    );
   }
 
   public setBool(activator: number, value: boolean) {
-    this.activators[activator] = value;
+    this.activators.set(activator, true);
   }
 
-  public getFeedsActivator(activator: number): boolean {
-    return this.activators[activator];
+  public getFeedsActivator(activator: number): boolean | undefined {
+    return this.activators.get(activator);
   }
 }

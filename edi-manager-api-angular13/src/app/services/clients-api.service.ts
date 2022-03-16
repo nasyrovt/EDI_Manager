@@ -38,10 +38,10 @@ export class ClientsApiService {
   }
 
   updateClient(id: number | string, data: any) {
-    return this.http.put(this.APIUrl + "/clients/$(id)", data);
+    return this.http.put(this.APIUrl + "/clients/" + id, data);
   }
 
   deleteClient(id: number | string) {
-    return this.http.delete(this.APIUrl + "/clients/$(id)");
+    return this.http.delete(this.APIUrl + "/clients/" + id);
   }
 }

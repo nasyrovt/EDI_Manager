@@ -1,3 +1,4 @@
+import { FtpserverApiService } from './../../services/ftpserver-api.service';
 import { FileTypesApiService } from './../../services/file-types-api.service';
 import { Component, OnInit } from '@angular/core';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
@@ -20,7 +21,7 @@ export class ShowFeedComponent implements OnInit {
 
   constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService,
-    public filesService: FilesService) { }
+    public filesService: FilesService, public serversService: FtpserverApiService) { }
 
   ngOnInit(): void {
   }
@@ -34,8 +35,7 @@ export class ShowFeedComponent implements OnInit {
       targetFileTypeId: null,
       targetEmails: null,
       developerId: null,
-      ftpServerName: null,
-      ftpUserName: null
+      ftpAccountId: null
     }
     this.modalTitle = "New Feed";
     this.activateAddEditFeedComponent = true;

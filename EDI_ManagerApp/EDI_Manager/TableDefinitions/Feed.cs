@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EDI_Manager.TableDefinitions;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace EDI_Manager
@@ -28,10 +29,7 @@ namespace EDI_Manager
         public int DeveloperId { get; set; }
         public Developer? Developer { get; set; }
 
-        [StringLength(20)]
-        public string FTPServerName { get; set; } = string.Empty;
-
-        [StringLength(20)]
-        public string FTPUserName { get; set; } = string.Empty;
+        public int? FTPAccountId { get; set; }
+        public FTPAccount? FTPAccount { get; set; }
     }
 }

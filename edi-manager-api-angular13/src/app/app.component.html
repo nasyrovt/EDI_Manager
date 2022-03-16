@@ -7,12 +7,12 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <button class="nav-link align-middle px-0" (click) ="setAllFalse(); setBool(0, true)">
+                        <button class="nav-link align-middle px-0" (click) ="setAllFalse(); setBool(1, true)">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Feeds</span>
                         </button>
                     </li>
                     <li>
-                        <button (click)="setAllFalse();" class="nav-link px-0 align-middle">
+                        <button (click)="setAllFalse(); setBool(2, true)" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Clients</span>
                         </button>
                     </li>
@@ -31,14 +31,10 @@
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">FTP Accounts</span>
                         </button>
                     </li>
-                    <li>
-                        <button (click)="setAllFalse();" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">SSH Keys</span>
-                        </button>
-                    </li>
                 </ul>
             </div>
         </div>
-        <app-feed *ngIf="getFeedsActivator(0)"></app-feed>
+        <app-feed *ngIf="getFeedsActivator(1)"></app-feed>
+        <app-client *ngIf="getFeedsActivator(2)"></app-client>
     </div>
 </div>
