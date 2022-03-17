@@ -9,14 +9,16 @@ import { Observable } from 'rxjs';
 export class FeedsApiService {
 
   feedsList$!: Observable<any[]>;
+  carriersList$!: Observable<any[]>;
 
   readonly feedsAPIUrl = "https://localhost:7255/api";
 
   constructor(private http: HttpClient, private fileTypesService: FileTypesApiService) {
     this.feedsList$ = this.getFeedsList();
+    this.carriersList$ = this.getCarriersList();
   }
 
-  //CRUD
+  //CRUD Feeds
   getFeedsList(): Observable<any[]> {
     //if (!this.isFeedFetched) {
     const response = this.http.get<any>(this.feedsAPIUrl + "/feeds");
@@ -36,5 +38,22 @@ export class FeedsApiService {
 
   deleteFeed(id: number | string) {
     return this.http.delete(this.feedsAPIUrl + "/feeds/" + id);
+  }
+
+  //CRUD Carriers
+  getCarriersList(): Observable<any[]> {
+    return this.http.get<any>(this.feedsAPIUrl + "/carriers");
+  }
+
+  addCarrier(data: any) {
+    return this.http.post(this.feedsAPIUrl + "/carriers", data);
+  }
+
+  updateCarrier(id: number | string, data: any) {
+    return this.http.put(this.feedsAPIUrl + "/carriers/" + id, data);
+  }
+
+  deleteCarrier(id: number | string) {
+    return this.http.delete(this.feedsAPIUrl + "/carriers/" + id);
   }
 }

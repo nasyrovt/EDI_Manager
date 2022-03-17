@@ -27,15 +27,20 @@
     </div>
 </div>
 
-
 <table class="table">
     <thead >
         <th>Id</th>
         <th>Feed Name</th>
+        <th>Feed Status</th>
+        <th>Business Day Of Month</th>
+        <th>Frequency</th>
+        <th>Frequency Times</th>
+        <th>Weekly Recur Day</th>
+        <th>Feed Security Type</th>
         <th>Client</th>
         <th>Source File</th>
         <th>Target File Type</th>
-        <th>Target E-mails</th>
+        <th>Carrier</th>
         <th>Developer</th>
         <th>FTP Account</th>
         <th>Options</th>
@@ -44,10 +49,16 @@
         <tr *ngFor="let feed of feedsService.feedsList$|async">
             <td>{{feed.feedId}}</td>
             <td>{{feed.feedName}}</td>
+            <td>{{feed.feedStatus}}</td>
+            <td>{{feed.businessDayOfMonth}}</td>
+            <td>{{feed.frequency}}</td>
+            <td>{{feed.frequencyTimes}}</td>
+            <td>{{feed.weeklyRecurDay}}</td>
+            <td>{{feed.feedSecurityType}}</td>
             <td>{{clientsService.clientsMap.get(feed.clientId)}}</td>
             <td>{{filesService.filesMap.get(feed.sourceFileId)}}</td>
             <td>{{fileTypesService.fileTypesMap.get(feed.targetFileTypeId)}}</td>
-            <td>{{feed.targetEmails}}</td>
+            <td>{{feed.carrierId}}</td>
             <td>{{developersService.developerMap.get(feed.developerId)}}</td>
             <td>{{serversService.serversMap.get(feed.ftpServerId)}}</td>
             <td>

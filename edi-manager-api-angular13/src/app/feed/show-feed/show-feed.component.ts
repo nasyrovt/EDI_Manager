@@ -30,10 +30,18 @@ export class ShowFeedComponent implements OnInit {
     this.feed = {
       id: 0,
       feedName: null,
+      feedStatus: null,
+      businessDayOfMonth: null,
+      frequency: null,
+      frequencyTimes: null,
+      weeklyRecurDay: null,
+      feedSecurityType: null,
+      zipPassword: null,
+      pgpPassword: null,
       clientId: null,
       sourceFileId: null,
       targetFileTypeId: null,
-      targetEmails: null,
+      carrierId: null,
       developerId: null,
       ftpAccountId: null
     }

@@ -14,6 +14,13 @@ namespace EDI_Manager.Data
         public DbSet<FileType> FileTypes { get; set; }
         public DbSet<SSHKey> SSHKeys { get; set; }
         public DbSet<FTPAccount> FTPAccounts { get; set; }
+        public DbSet<Carrier> Carriers { get; set; }
+        public DbSet<CarrierType> CarrierTypes { get; set; }
+        public DbSet<Platform> Platforms { get; set; }
+        public DbSet<FeedFileChanges> FeedFileChanges { get; set; }
+        public DbSet<FeedFrequency> FeedFrequency { get; set; }
+        public DbSet<FeedSecurityType> FeedSecurityType { get; set; }
+        public DbSet<FeedStatus> FeedStatus { get; set; }
 
     }
 }

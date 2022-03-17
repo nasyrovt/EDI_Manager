@@ -5,6 +5,81 @@
         <input type="text" class="form-control" [(ngModel)]="feedName" name="feedName">
     </div>
 
+    <!-- Feed status input -->
+    <div class="mb-3">
+        <label for="feedStatus" class="form-label">Feed Status</label>
+        <select class="form-control" [(ngModel)] = "feedStatus" name="feedStatus" id="feedStatus">
+            <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+        </select>
+    </div>
+
+    <!-- BusinessDayOfMonth input -->
+    <div class="mb-3">
+        <label for="businessDayOfMonth" class="form-label">Business Day Of Month</label>
+        <select class="form-control" [(ngModel)] = "businessDayOfMonth" name="businessDayOfMonth" id="businessDayOfMonth">
+            <option *ngFor="let day of days" [value]="day">{{day}}</option>
+        </select>
+    </div>
+
+    <!-- Frequency input -->
+    <div class="mb-3">
+        <label for="frequency" class="form-label">Frequency</label>
+        <select class="form-control" [(ngModel)] = "frequency" name="frequency" id="frequency">
+            <option *ngFor="let freq of frequencies" [value]="freq">{{freq}}</option>
+        </select>
+    </div>
+
+    <!-- FrequencyTimes input -->
+    <div class="mb-3">
+        <label for="frequencyTimes" class="form-label">Frequency Times</label>
+        <select class="form-control" [(ngModel)] = "frequencyTimes" name="frequencyTimes" id="frequencyTimes">
+            <option *ngFor="let time of freqTimes" [value]="time">{{time}}</option>
+        </select>
+    </div>
+
+    <!-- WeeklyRecurDay input -->
+    <div class="mb-3">
+        <label for="weeklyRecurDay" class="form-label">Weekly Recur Day</label>
+        <select class="form-control" [(ngModel)] = "weeklyRecurDay" name="weeklyRecurDay" id="weeklyRecurDay">
+            <option *ngFor="let day of recurDays" [value]="day">{{day}}</option>
+        </select>
+    </div>
+    
+    <!-- FeedSecurityType input -->
+    <div class="mb-3">
+        <label for="feedSecurityType" class="form-label">Feed Security Type</label>
+        <select class="form-control" [(ngModel)] = "feedSecurityType" name="feedSecurityType" id="feedSecurityType">
+            <option [value]=""></option>
+            <option *ngFor="let type of securTypes" [value]="type">{{type}}</option>
+        </select>
+    </div>
+
+    <!-- ZipPassword input -->
+    <div class="mb-3">
+        <label for="zipPassword" class="form-label">Zip Password</label>
+        <input [type]="showZipPass? 'text':'password'" class="form-control" [(ngModel)]="zipPassword" name="zipPassword" >
+        <button (click)="toggleZipPassword()" style="border: none; background: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- PGPPassword input -->
+    <div class="mb-3">
+        <label for="pgpPassword" class="form-label">PGP Password</label>
+        <form>
+            <input [type]="showPGPPass? 'text':'password'" class="form-control" [(ngModel)]="pgpPassword" name="pgpPassword">
+            <button (click)="togglePgpPassword()" style="border: none; background: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+
     <!-- Client input -->
     <div class="mb-3">
         <label for="clientId" class="form-label">Client</label>
@@ -35,7 +110,15 @@
         </select>
     </div>
 
-    <app-emails-chip (addingEventEmitter)="addEmail($event)"></app-emails-chip>
+    <!-- Carrier input -->
+    <div class="mb-3">
+        <label for="carrierId" class="form-label">Carrier</label>
+        <select class="form-control" name="carrierId" id="carrierId"
+        [(ngModel)] = "carrierId">
+            <option *ngFor="let carrier of carriersList$|async" 
+            [value]="carrier.carrierId">{{carrier.carrierName}}</option>
+        </select>
+    </div>
 
     <!-- Developer input -->
     <div class="mb-3">
@@ -47,7 +130,7 @@
         </select>
     </div>
 
-    <!-- FTP Server input -->
+    <!-- FTP Account input -->
     <div class="mb-3">
         <label for="ftpAccountId" class="form-label">FTP Account</label>
         <select class="form-control" name="ftpAccountId" id="ftpAccountId"

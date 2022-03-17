@@ -4,6 +4,7 @@ using EDI_Manager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDI_Manager.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220317115143_DatabaseChanges")]
+    partial class DatabaseChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,18 +119,18 @@ namespace EDI_Manager.Migrations
                     b.Property<int?>("FTPAccountId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FeedFrequencyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FeedName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("FeedSecurityTypeId")
+                    b.Property<int>("FeedSecurityType")
                         .HasColumnType("int");
 
-                    b.Property<int>("FeedStatusId")
+                    b.Property<int>("FeedStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Frequency")
                         .HasColumnType("int");
 
                     b.Property<int>("FrequencyTimes")
@@ -160,12 +162,6 @@ namespace EDI_Manager.Migrations
                     b.HasIndex("DeveloperId");
 
                     b.HasIndex("FTPAccountId");
-
-                    b.HasIndex("FeedFrequencyId");
-
-                    b.HasIndex("FeedSecurityTypeId");
-
-                    b.HasIndex("FeedStatusId");
 
                     b.HasIndex("SourceFileId");
 
@@ -286,7 +282,7 @@ namespace EDI_Manager.Migrations
 
                     b.HasIndex("CarrierTypeId");
 
-                    b.ToTable("Carriers");
+                    b.ToTable("Carrier");
                 });
 
             modelBuilder.Entity("EDI_Manager.TableDefinitions.CarrierType", b =>
@@ -303,75 +299,7 @@ namespace EDI_Manager.Migrations
 
                     b.HasKey("CarrierTypeId");
 
-                    b.ToTable("CarrierTypes");
-                });
-
-            modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedFileChanges", b =>
-                {
-                    b.Property<int>("FeedFileChangesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedFileChangesId"), 1L, 1);
-
-                    b.Property<string>("FeedFileChangesName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FeedFileChangesId");
-
-                    b.ToTable("FeedFileChanges");
-                });
-
-            modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedFrequency", b =>
-                {
-                    b.Property<int>("FeedFrequencyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedFrequencyId"), 1L, 1);
-
-                    b.Property<string>("FeedFrequencyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FeedFrequencyId");
-
-                    b.ToTable("FeedFrequency");
-                });
-
-            modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedSecurityType", b =>
-                {
-                    b.Property<int>("FeedSecurityTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedSecurityTypeId"), 1L, 1);
-
-                    b.Property<string>("FeedSecurityTypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FeedSecurityTypeId");
-
-                    b.ToTable("FeedSecurityType");
-                });
-
-            modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedStatus", b =>
-                {
-                    b.Property<int>("FeedStatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedStatusId"), 1L, 1);
-
-                    b.Property<string>("FeedStatusName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FeedStatusId");
-
-                    b.ToTable("FeedStatus");
+                    b.ToTable("CarrierType");
                 });
 
             modelBuilder.Entity("EDI_Manager.TableDefinitions.FTPAccount", b =>
@@ -410,22 +338,6 @@ namespace EDI_Manager.Migrations
                     b.ToTable("FTPAccounts");
                 });
 
-            modelBuilder.Entity("EDI_Manager.TableDefinitions.Platform", b =>
-                {
-                    b.Property<int>("PlatformId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlatformId"), 1L, 1);
-
-                    b.Property<int>("PlatformName")
-                        .HasColumnType("int");
-
-                    b.HasKey("PlatformId");
-
-                    b.ToTable("Platforms");
-                });
-
             modelBuilder.Entity("EDI_Manager.Feed", b =>
                 {
                     b.HasOne("EDI_Manager.TableDefinitions.Carrier", "Carrier")
@@ -450,24 +362,6 @@ namespace EDI_Manager.Migrations
                         .WithMany()
                         .HasForeignKey("FTPAccountId");
 
-                    b.HasOne("EDI_Manager.TableDefinitions.FeedFrequency", "FeedFrequency")
-                        .WithMany()
-                        .HasForeignKey("FeedFrequencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EDI_Manager.TableDefinitions.FeedSecurityType", "FeedSecurityType")
-                        .WithMany()
-                        .HasForeignKey("FeedSecurityTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EDI_Manager.TableDefinitions.FeedStatus", "FeedStatus")
-                        .WithMany()
-                        .HasForeignKey("FeedStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("EDI_Manager.File", "SourceFile")
                         .WithMany()
                         .HasForeignKey("SourceFileId")
@@ -487,12 +381,6 @@ namespace EDI_Manager.Migrations
                     b.Navigation("Developer");
 
                     b.Navigation("FTPAccount");
-
-                    b.Navigation("FeedFrequency");
-
-                    b.Navigation("FeedSecurityType");
-
-                    b.Navigation("FeedStatus");
 
                     b.Navigation("SourceFile");
 

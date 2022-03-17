@@ -1,5 +1,6 @@
 ﻿namespace EDI_Manager.TableDefinitions
 {
+
     public class Carrier
     {
         public int CarrierId{ get; set; }
