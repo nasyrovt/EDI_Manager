@@ -1,1 +1,41 @@
-<p>add-edit-accounts works!</p>
+<form>
+    <!-- ftpHost input -->
+    <div class="mb-3">
+        <label for="ftpHost" class="form-label">Host</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpHost" name="ftpHost">
+    </div>
+
+    <!-- ftpUser input -->
+    <div class="mb-3">
+        <label for="ftpUser" class="form-label">User</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpUser" name="ftpUser">
+    </div>
+
+    <!-- ftpPassword input -->
+    <div class="mb-3">
+        <label for="ftpPassword" class="form-label">Password</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpPassword" name="ftpPassword">
+    </div>
+
+    <!-- ftpDirectory input -->
+    <div class="mb-3">
+        <label for="ftpDirectory" class="form-label">Directory</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpDirectory" name="ftpDirectory">
+    </div>
+
+    <!-- ftpType input -->
+    <div class="mb-3">
+        <label for="ftpType" class="form-label">Type</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpType" name="ftpType">
+    </div>
+
+    <!-- ftpPort input -->
+    <div class="mb-3">
+        <label for="ftpPort" class="form-label">Port</label>
+        <input type="number" class="form-control" [(ngModel)]="ftpPort" name="ftpPort">
+    </div>
+
+    <button (click) ="addAccount()" *ngIf="account.ftpAccountId==0" class="btn btn-primary">Add</button>
+    <button (click) ="updateAccount()" *ngIf="account.ftpAccountId!=0" class="btn btn-primary">Update</button>
+
+</form>

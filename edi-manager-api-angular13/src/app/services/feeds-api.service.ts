@@ -10,6 +10,7 @@ export class FeedsApiService {
 
   feedsList$!: Observable<any[]>;
   carriersList$!: Observable<any[]>;
+  carrierTypesList$!: Observable<any[]>;
   fileChangesList$!: Observable<any[]>;
   frequenciesList$!: Observable<any[]>;
   securityTypesList$!: Observable<any[]>;
@@ -17,6 +18,8 @@ export class FeedsApiService {
 
   carriersList: any = [];
   carriersMap: Map<number, string> = new Map();
+  carrierTypesList: any = [];
+  carrierTypesMap: Map<number, string> = new Map();
   fileChangesList: any = [];
   fileChangesMap: Map<number, string> = new Map();
   frequenciesList: any = [];
@@ -35,6 +38,7 @@ export class FeedsApiService {
     this.frequenciesList$ = this.getFrequenciesList();
     this.securityTypesList$ = this.getSecurityTypesList();
     this.statusesList$ = this.getStatusesList();
+    this.carrierTypesList$ = this.getCarrierTypesList();
     this.refreshAllMaps();
   }
 
@@ -44,6 +48,7 @@ export class FeedsApiService {
     this.refreshFrequenciesMap();
     this.refreshSecurTypesMap();
     this.refreshStatusesMap();
+    this.refreshCarrierTypesMap();
   }
 
   refreshStatusesMap() {
@@ -96,6 +101,16 @@ export class FeedsApiService {
     });
   }
 
+  refreshCarrierTypesMap() {
+    this.getCarrierTypesList().subscribe(data => {
+      this.carrierTypesList = data;
+
+      for (let i = 0; i < data.length; i++) {
+        this.carrierTypesMap.set(this.carrierTypesList[i].carrierTypeId, this.carrierTypesList[i].carrierTypeName);
+      }
+    });
+  }
+
   //CRUD Feeds
   getFeedsList(): Observable<any[]> {
     //if (!this.isFeedFetched) {
@@ -118,13 +133,32 @@ export class FeedsApiService {
     return this.http.delete(this.feedsAPIUrl + "/feeds/" + id);
   }
 
-  //Additional carriers/fileChange/frequencies/securityTypes/statuses CRUD-getters
+  //Carrier CRUD
   getCarriersList(): Observable<any[]> {
     return this.http.get<any>(this.feedsAPIUrl + "/carriers");
   }
 
+  addCarrier(data: any) {
+    const addObservable = this.http.post(this.feedsAPIUrl + "/carriers", data);
+    // Add addObservable result to this.feeds
+    return addObservable
+  }
+
+  updateCarrier(id: number | string, data: any) {
+    return this.http.put(this.feedsAPIUrl + "/carriers/" + id, data);
+  }
+
+  deleteCarrier(id: number | string) {
+    return this.http.delete(this.feedsAPIUrl + "/carriers/" + id);
+  }
+
+  //Additional fileChange/frequencies/securityTypes/statuses CRUD-getters
   getFileChangesList(): Observable<any[]> {
     return this.http.get<any>(this.feedsAPIUrl + "/feedfilechanges");
+  }
+
+  getCarrierTypesList(): Observable<any[]> {
+    return this.http.get<any>(this.feedsAPIUrl + "/carriertypes");
   }
 
   getFrequenciesList(): Observable<any[]> {

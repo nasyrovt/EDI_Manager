@@ -1,1 +1,79 @@
-<p>show-carrier works!</p>
+<!-- Button feed trigger modal -->
+<button type="button" class="btn btn-primary float-end m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+(click) =modalAdd()>
+  Add Carrier
+</button>
+
+
+<table class="table">
+    <thead >
+        <th>Id</th>
+        <th>Name</th>
+        <th>Carrier Type</th>
+        <th>Tax Id</th>
+        <th>Groups Id</th>
+        <th>Master Policy Number</th>
+        <th>Adresses</th>
+        <th>Website</th>
+        <th>Phones</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let carrier of feedsService.carriersList$|async">
+            <td>{{carrier.carrierId}}</td>
+            <td>{{carrier.carrierName}}</td>
+            <td>{{feedsService.carrierTypesMap.get(carrier.carrierTypeId)}}</td>
+            <td>{{carrier.carrierTaxId}}</td>
+            <td>{{"Main:" + carrier.groupId + "\n" + "Sub:" + carrier.subGroupId}}</td>
+            <td>{{carrier.masterPolicyNumber}}</td>
+            <td>{{carrier.adress1 + ";\n" + carrier.adress2}}</td>
+            <td>{{carrier.website}}</td>
+            <td>{{carrier.phones}}</td>
+            <td>
+              <!-- Edit Button -->
+              <button class="btn btn-outline-primary me-2 mb-1"
+              (click) = "modalEdit(carrier)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+              </button>
+              <!-- Delete Button -->
+              <button class="btn btn-outline-danger me-2 mb-1"
+              (click) = "deleteCarrier(carrier)"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                </svg>
+              </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Add or edit carrier modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modalClose()" id ="add-edit-modal-close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-add-edit-carrier [carrier] ="carrier" *ngIf="activateAddEditCarrierComponent"></app-add-edit-carrier>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-success" role="alert" id="add-carrier-success-alert">
+    Carrier successfully added!
+</div>
+<div class="alert alert-success" role="alert" id="update-carrier-success-alert">
+    Carrier successfully updated!
+</div>
+<div class="alert alert-success" role="alert" id="delete-carrier-success-alert">
+    Carrier successfully deleted!
+</div>

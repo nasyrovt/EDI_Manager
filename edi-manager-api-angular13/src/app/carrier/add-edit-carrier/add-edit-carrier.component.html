@@ -1,1 +1,73 @@
-<p>add-edit-carrier works!</p>
+<form>
+    <!-- carrier name input -->
+    <div class="mb-3">
+        <label for="carrierName" class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="carrierName" name="carrierName">
+    </div>
+
+    <!-- carrier type input -->
+    <div class="mb-3">
+        <label for="carrierTypeId" class="form-label">Type</label>
+        <select class="form-control" name="carrierTypeId" id="carrierTypeId" [(ngModel)] = "carrierTypeId">
+            <option *ngFor="let type of carrierTypesList$|async" [value]="type.carrierTypeId">
+                {{type.carrierTypeName}}
+            </option>
+        </select>
+    </div>
+
+    <!-- carrierTaxId input -->
+    <div class="mb-3">
+        <label for="carrierTaxId" class="form-label">Tax Id</label>
+        <input type="number" class="form-control" [(ngModel)]="carrierTaxId" name="carrierTaxId">
+    </div>
+
+    <!-- groupId input -->
+    <div class="mb-3">
+        <label for="groupId" class="form-label">Group Id</label>
+        <input type="number" class="form-control" [(ngModel)]="groupId" name="groupId">
+    </div>
+
+    <!-- subGroupId input -->
+    <div class="mb-3">
+        <label for="subGroupId" class="form-label">Subgroup Id</label>
+        <input type="number" class="form-control" [(ngModel)]="subGroupId" name="subGroupId">
+    </div>
+
+    <!-- masterPolicyNumber input -->
+    <div class="mb-3">
+        <label for="masterPolicyNumber" class="form-label">Master Policy Number</label>
+        <input type="number" class="form-control" [(ngModel)]="masterPolicyNumber" name="masterPolicyNumber">
+    </div>
+
+    <!-- adress1 input -->
+    <div class="mb-3">
+        <label for="adress1" class="form-label">Adress 1</label>
+        <input type="text" class="form-control" [(ngModel)]="adress1" name="adress1">
+    </div>
+
+    <!-- adress2 input -->
+    <div class="mb-3">
+        <label for="adress2" class="form-label">Adress 2</label>
+        <input type="text" class="form-control" [(ngModel)]="adress2" name="adress2">
+    </div>
+
+
+    <!-- website input -->
+    <div class="mb-3">
+        <label for="website" class="form-label">Website</label>
+        <input type="text" class="form-control" [(ngModel)]="website" name="website">
+    </div>
+
+    <!-- phones input -->
+    <div class="mb-3">
+        <label for="phones" class="form-label">Phones</label>
+        <input type="text" class="form-control" [(ngModel)]="phones" name="phones">
+    </div>
+
+    <!-- <app-emails-chip (addingEventEmitter)="addPhone($event)"></app-emails-chip> -->
+
+
+    <button (click) ="addCarrier()" *ngIf="carrier.carrierId==0" class="btn btn-primary">Add</button>
+    <button (click) ="updateCarrier()" *ngIf="carrier.carrierId!=0" class="btn btn-primary">Update</button>
+
+</form>

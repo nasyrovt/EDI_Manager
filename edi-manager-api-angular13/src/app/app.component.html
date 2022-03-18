@@ -17,7 +17,7 @@
                         </button>
                     </li>
                     <li>
-                        <button (click)="setAllFalse();" class="nav-link px-0 align-middle">
+                        <button (click)="setAllFalse(); setBool(4, true)" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Carriers</span>
                         </button>
                     </li>
@@ -27,7 +27,7 @@
                         </button>
                     </li>
                     <li>
-                        <button (click)="setAllFalse();" class="nav-link px-0 align-middle">
+                        <button (click)="setAllFalse(); setBool(5, true)" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">FTP Accounts</span>
                         </button>
                     </li>
@@ -37,5 +37,7 @@
         <app-feed *ngIf="getFeedsActivator(1)"></app-feed>
         <app-client *ngIf="getFeedsActivator(2)"></app-client>
         <app-developer *ngIf="getFeedsActivator(3)"></app-developer>
+        <app-carrier *ngIf="getFeedsActivator(4)"></app-carrier>
+        <app-accounts *ngIf="getFeedsActivator(5)"></app-accounts>
     </div>
 </div>
