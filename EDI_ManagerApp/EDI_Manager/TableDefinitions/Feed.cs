@@ -16,6 +16,8 @@ namespace EDI_Manager
 
         public int FeedStatusId { get; set; }
         public FeedStatus? FeedStatus { get; set; }
+        public int FeedFileChangesId { get; set; }
+        public FeedFileChanges? FeedFileChanges { get; set; }
 
         [Range(1, 31)]
         public int BusinessDayOfMonth { get; set; }
@@ -29,11 +31,11 @@ namespace EDI_Manager
         public int WeeklyRecurDay { get; set; }
 
         public int FeedSecurityTypeId { get; set; }
-        public FeedSecurityType FeedSecurityType { get; set; }
+        public FeedSecurityType? FeedSecurityType { get; set; }
         
-        public string ZipPassword { get; set; } = string.Empty;
+        public string? ZipPassword { get; set; } = string.Empty;
         
-        public string PGPPassword { get; set; } = string.Empty;
+        public string? PGPPassword { get; set; } = string.Empty;
 
         public int ClientId { get; set; }
 
@@ -55,7 +57,7 @@ namespace EDI_Manager
         
         public Developer? Developer { get; set; }
 
-        public int? FTPAccountId { get; set; }
+        public int FTPAccountId { get; set; }
         
         public FTPAccount? FTPAccount { get; set; }
     }

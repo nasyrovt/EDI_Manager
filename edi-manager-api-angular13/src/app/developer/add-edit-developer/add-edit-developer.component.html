@@ -1,0 +1,36 @@
+<form>
+    <!-- developer name input -->
+    <div class="mb-3">
+        <label for="developerName" class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="developerName" name="developerName">
+    </div>
+
+    <!-- developer surname input -->
+    <div class="mb-3">
+        <label for="developerSurName" class="form-label">Surame</label>
+        <input type="text" class="form-control" [(ngModel)]="developerSurName" name="developerSurName">
+    </div>
+
+    <!-- developer age input -->
+    <div class="mb-3">
+        <label for="developerAge" class="form-label">Age</label>
+        <input type="text" class="form-control" [(ngModel)]="developerAge" name="developerAge">
+    </div>
+
+    <!-- developer adress input -->
+    <div class="mb-3">
+        <label for="developerAdress" class="form-label">Adress</label>
+        <input type="text" class="form-control" [(ngModel)]="developerAdress" name="developerAdress">
+    </div>
+
+    <!-- developer hire date input -->
+    <div class="mb-3">
+        <label for="hireDate" class="form-label">Hire Date</label>
+        <input type="text" class="form-control" [(ngModel)]="hireDate" name="hireDate">
+    </div>
+
+
+    <button (click) ="addDeveloper()" *ngIf="developer.developerId==0" class="btn btn-primary">Add</button>
+    <button (click) ="updateDeveloper()" *ngIf="developer.developerId!=0" class="btn btn-primary">Update</button>
+
+</form>

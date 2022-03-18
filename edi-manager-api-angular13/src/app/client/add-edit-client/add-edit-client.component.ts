@@ -21,8 +21,6 @@ export class AddEditClientComponent implements OnInit {
   developersList$!: Observable<any[]>;
   clientsList$!: Observable<any[]>;
 
-  emails: string[] = [];
-
 
   constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService) { }

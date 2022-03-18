@@ -23,6 +23,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { ClientComponent } from './client/client.component';
 import { AddEditClientComponent } from './client/add-edit-client/add-edit-client.component';
 import { ShowClientComponent } from './client/show-client/show-client.component';
+import { CarrierComponent } from './carrier/carrier.component';
+import { DeveloperComponent } from './developer/developer.component';
+import { AddEditCarrierComponent } from './carrier/add-edit-carrier/add-edit-carrier.component';
+import { ShowCarrierComponent } from './carrier/show-carrier/show-carrier.component';
+import { ShowDeveloperComponent } from './developer/show-developer/show-developer.component';
+import { AddEditDeveloperComponent } from './developer/add-edit-developer/add-edit-developer.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { ShowAccountsComponent } from './accounts/show-accounts/show-accounts.component';
+import { AddEditAccountsComponent } from './accounts/add-edit-accounts/add-edit-accounts.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,16 @@ import { ShowClientComponent } from './client/show-client/show-client.component'
     EmailsChipComponent,
     ClientComponent,
     AddEditClientComponent,
-    ShowClientComponent
+    ShowClientComponent,
+    CarrierComponent,
+    DeveloperComponent,
+    AddEditCarrierComponent,
+    ShowCarrierComponent,
+    ShowDeveloperComponent,
+    AddEditDeveloperComponent,
+    AccountsComponent,
+    ShowAccountsComponent,
+    AddEditAccountsComponent
   ],
   imports: [
     BrowserModule,

@@ -20,11 +20,8 @@ export class AddEditFeedComponent implements OnInit {
   showZipPass = false;
 
   days: number[] = new Array(31).fill(1).map((x, i) => i + 1)
-  statuses = ["PROD", "TEST"];
-  frequencies = ["Weekly", "Monthly", "Once", "Daily"];
   recurDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   freqTimes: number[] = new Array(13).fill(1).map((x, i) => i)
-  securTypes = ["PGP", "Zip"]
 
   feedsList$!: Observable<any[]>;
   fileTypesList$!: Observable<any[]>;
@@ -33,6 +30,10 @@ export class AddEditFeedComponent implements OnInit {
   clientsList$!: Observable<any[]>;
   serversList$!: Observable<any[]>;
   carriersList$!: Observable<any[]>;
+  fileChangesList$!: Observable<any[]>;
+  frequenciesList$!: Observable<any[]>;
+  securityTypesList$!: Observable<any[]>;
+  statusesList$!: Observable<any[]>;
 
   emails: string[] = [];
 
@@ -44,12 +45,13 @@ export class AddEditFeedComponent implements OnInit {
   @Input() feed: any;
   id: number = 0;
   feedName: string = "";
-  feedStatus: string = "";
+  feedStatusId!: number;
+  feedFileChangesId!: number;
   businessDayOfMonth!: number;
-  frequency: string = "";
+  feedFrequencyId!: number;
   frequencyTimes!: number;
-  weeklyRecurDay: string = "";
-  feedSecurityType: string = "";
+  weeklyRecurDay!: number;
+  feedSecurityTypeId!: number;
   zipPassword: string = "";
   pgpPassword: string = "";
   clientId!: number;
@@ -63,12 +65,13 @@ export class AddEditFeedComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.feed.feedId;
     this.feedName = this.feed.feedName;
-    this.feedStatus = this.feed.feedStatus;
+    this.feedStatusId = this.feed.feedStatusId;
+    this.feedFileChangesId = this.feed.feedFileChangesId;
     this.businessDayOfMonth = this.feed.businessDayOfMonth;
-    this.frequency = this.feed.frequency;
+    this.feedFrequencyId = this.feed.feedFrequencyId;
     this.frequencyTimes = this.feed.frequencyTimes;
     this.weeklyRecurDay = this.feed.weeklyRecurDay;
-    this.feedSecurityType = this.feed.feedSecurityType;
+    this.feedSecurityTypeId = this.feed.feedSecurityTypeId;
     this.zipPassword = this.feed.zipPassword;
     this.pgpPassword = this.feed.pgpPassword;
     this.clientId = this.feed.clientId;
@@ -77,7 +80,7 @@ export class AddEditFeedComponent implements OnInit {
     this.targetEmails = this.feed.targetEmails;
     this.carrierId = this.feed.carrierId;
     this.developer = this.feed.developerId;
-    this.ftpAccountId = this.feed.ftpServerId;
+    this.ftpAccountId = this.feed.ftpAccountId;
 
     this.fileTypesList$ = this.fileTypesService.getFileTypesList();
     this.filesList$ = this.fileService.getFilesList();
@@ -86,17 +89,22 @@ export class AddEditFeedComponent implements OnInit {
     this.clientsList$ = this.clientsService.getClientsList();
     this.developersList$ = this.developersService.getDevelopersList();
     this.serversList$ = this.serversService.getServersList();
+    this.fileChangesList$ = this.feedsService.getFileChangesList();
+    this.frequenciesList$ = this.feedsService.getFrequenciesList();
+    this.securityTypesList$ = this.feedsService.getSecurityTypesList();
+    this.statusesList$ = this.feedsService.getStatusesList();
   }
 
   addFeed() {
     var feed = {
       feedName: this.feedName,
-      feedStatus: this.feedStatus,
+      feedStatusId: this.feedStatusId,
+      feedFileChangesId: this.feedFileChangesId,
       businessDayOfMonth: this.businessDayOfMonth,
-      frequency: this.frequency,
+      feedFrequencyId: this.feedFrequencyId,
       frequencyTimes: this.frequencyTimes,
       weeklyRecurDay: this.weeklyRecurDay,
-      feedSecurityType: this.feedSecurityType,
+      feedSecurityTypeId: this.feedSecurityTypeId,
       zipPassword: this.zipPassword,
       pgpPassword: this.pgpPassword,
       clientId: this.clientId,
@@ -104,7 +112,7 @@ export class AddEditFeedComponent implements OnInit {
       targetFileTypeId: this.target,
       carrierId: this.carrierId,
       developerId: this.developer,
-      ftpAccountId: this.ftpAccountId,
+      ftpAccountId: this.ftpAccountId
     }
     this.emails = [];
 
@@ -130,12 +138,13 @@ export class AddEditFeedComponent implements OnInit {
     var feed = {
       feedId: this.id,
       feedName: this.feedName,
-      feedStatus: this.feedStatus,
+      feedStatusId: this.feedStatusId,
+      feedFileChangesId: this.feedFileChangesId,
       businessDayOfMonth: this.businessDayOfMonth,
-      frequency: this.frequency,
+      feedFrequencyId: this.feedFrequencyId,
       frequencyTimes: this.frequencyTimes,
       weeklyRecurDay: this.weeklyRecurDay,
-      feedSecurityType: this.feedSecurityType,
+      feedSecurityTypeId: this.feedSecurityTypeId,
       zipPassword: this.zipPassword,
       pgpPassword: this.pgpPassword,
       clientId: this.clientId,
@@ -143,7 +152,7 @@ export class AddEditFeedComponent implements OnInit {
       targetFileTypeId: this.target,
       carrierId: this.carrierId,
       developerId: this.developer,
-      ftpAccountId: this.ftpAccountId,
+      ftpAccountId: this.ftpAccountId
     }
     var id: number = this.id;
     this.emails = [];

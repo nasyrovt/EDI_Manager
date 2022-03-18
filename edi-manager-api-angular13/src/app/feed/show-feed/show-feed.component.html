@@ -32,6 +32,7 @@
         <th>Id</th>
         <th>Feed Name</th>
         <th>Feed Status</th>
+        <th>File Changes</th>
         <th>Business Day Of Month</th>
         <th>Frequency</th>
         <th>Frequency Times</th>
@@ -49,18 +50,19 @@
         <tr *ngFor="let feed of feedsService.feedsList$|async">
             <td>{{feed.feedId}}</td>
             <td>{{feed.feedName}}</td>
-            <td>{{feed.feedStatus}}</td>
+            <td>{{feedsService.statusesMap.get(feed.feedStatusId)}}</td>
+            <td>{{feedsService.fileChangesMap.get(feed.feedFileChangesId)}}</td>
             <td>{{feed.businessDayOfMonth}}</td>
-            <td>{{feed.frequency}}</td>
+            <td>{{feedsService.frequenciesMap.get(feed.feedFrequencyId)}}</td>
             <td>{{feed.frequencyTimes}}</td>
             <td>{{feed.weeklyRecurDay}}</td>
-            <td>{{feed.feedSecurityType}}</td>
+            <td>{{feedsService.securityTypesMap.get(feed.feedSecurityTypeId)}}</td>
             <td>{{clientsService.clientsMap.get(feed.clientId)}}</td>
             <td>{{filesService.filesMap.get(feed.sourceFileId)}}</td>
             <td>{{fileTypesService.fileTypesMap.get(feed.targetFileTypeId)}}</td>
-            <td>{{feed.carrierId}}</td>
+            <td>{{feedsService.carriersMap.get(feed.carrierId)}}</td>
             <td>{{developersService.developerMap.get(feed.developerId)}}</td>
-            <td>{{serversService.serversMap.get(feed.ftpServerId)}}</td>
+            <td>{{serversService.serversMap.get(feed.ftpAccountId)}}</td>
             <td>
               <!-- Edit Button -->
               <button class="btn btn-outline-primary me-2 mb-1"

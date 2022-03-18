@@ -7,13 +7,21 @@
 
     <!-- Feed status input -->
     <div class="mb-3">
-        <label for="feedStatus" class="form-label">Feed Status</label>
-        <select class="form-control" [(ngModel)] = "feedStatus" name="feedStatus" id="feedStatus">
-            <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+        <label for="feedStatusId" class="form-label">Feed Status</label>
+        <select class="form-control" [(ngModel)] = "feedStatusId" name="feedStatusId" id="feedStatusId">
+            <option *ngFor="let status of statusesList$|async" [value]="status.feedStatusId">{{status.feedStatusName}}</option>
         </select>
     </div>
 
-    <!-- BusinessDayOfMonth input -->
+    <!-- File changes input -->
+    <div class="mb-3">
+        <label for="feedFileChangesId" class="form-label">File Changes</label>
+        <select class="form-control" [(ngModel)] = "feedFileChangesId" name="feedFileChangesId" id="feedFileChangesId">
+            <option *ngFor="let change of fileChangesList$|async" [value]="change.feedFileChangesId">{{change.feedFileChangesName}}</option>
+        </select>
+    </div>
+    
+    <!-- Business Day Of Month input -->
     <div class="mb-3">
         <label for="businessDayOfMonth" class="form-label">Business Day Of Month</label>
         <select class="form-control" [(ngModel)] = "businessDayOfMonth" name="businessDayOfMonth" id="businessDayOfMonth">
@@ -23,13 +31,13 @@
 
     <!-- Frequency input -->
     <div class="mb-3">
-        <label for="frequency" class="form-label">Frequency</label>
-        <select class="form-control" [(ngModel)] = "frequency" name="frequency" id="frequency">
-            <option *ngFor="let freq of frequencies" [value]="freq">{{freq}}</option>
+        <label for="feedFrequencyId" class="form-label">Frequency</label>
+        <select class="form-control" [(ngModel)] = "feedFrequencyId" name="feedFrequencyId" id="feedFrequencyId">
+            <option *ngFor="let freq of frequenciesList$|async" [value]="freq.feedFrequencyId">{{freq.feedFrequencyName}}</option>
         </select>
     </div>
 
-    <!-- FrequencyTimes input -->
+    <!-- Frequency Times input -->
     <div class="mb-3">
         <label for="frequencyTimes" class="form-label">Frequency Times</label>
         <select class="form-control" [(ngModel)] = "frequencyTimes" name="frequencyTimes" id="frequencyTimes">
@@ -37,20 +45,19 @@
         </select>
     </div>
 
-    <!-- WeeklyRecurDay input -->
+    <!-- Weekly Recur Day input -->
     <div class="mb-3">
         <label for="weeklyRecurDay" class="form-label">Weekly Recur Day</label>
         <select class="form-control" [(ngModel)] = "weeklyRecurDay" name="weeklyRecurDay" id="weeklyRecurDay">
-            <option *ngFor="let day of recurDays" [value]="day">{{day}}</option>
+            <option *ngFor="let day of recurDays; let i = index" [value]="i+1">{{day}}</option>
         </select>
     </div>
     
-    <!-- FeedSecurityType input -->
+    <!-- Feed Security Type input -->
     <div class="mb-3">
-        <label for="feedSecurityType" class="form-label">Feed Security Type</label>
-        <select class="form-control" [(ngModel)] = "feedSecurityType" name="feedSecurityType" id="feedSecurityType">
-            <option [value]=""></option>
-            <option *ngFor="let type of securTypes" [value]="type">{{type}}</option>
+        <label for="feedSecurityTypeId" class="form-label">Feed Security Type</label>
+        <select class="form-control" [(ngModel)] = "feedSecurityTypeId" name="feedSecurityTypeId" id="feedSecurityTypeId">
+            <option *ngFor="let type of securityTypesList$|async" [value]="type.feedSecurityTypeId">{{type.feedSecurityTypeName}}</option>
         </select>
     </div>
 
@@ -133,8 +140,7 @@
     <!-- FTP Account input -->
     <div class="mb-3">
         <label for="ftpAccountId" class="form-label">FTP Account</label>
-        <select class="form-control" name="ftpAccountId" id="ftpAccountId"
-        [(ngModel)] = "target">
+        <select class="form-control" name="ftpAccountId" id="ftpAccountId" [(ngModel)] = "ftpAccountId">
             <option *ngFor="let server of serversList$|async" [value]="server.ftpAccountId">
                 {{server.ftpHost}}
             </option>

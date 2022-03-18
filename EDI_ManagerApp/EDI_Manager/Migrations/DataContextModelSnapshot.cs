@@ -114,7 +114,10 @@ namespace EDI_Manager.Migrations
                     b.Property<int>("DeveloperId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FTPAccountId")
+                    b.Property<int>("FTPAccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FeedFileChangesId")
                         .HasColumnType("int");
 
                     b.Property<int>("FeedFrequencyId")
@@ -135,7 +138,6 @@ namespace EDI_Manager.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PGPPassword")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SourceFileId")
@@ -148,7 +150,6 @@ namespace EDI_Manager.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ZipPassword")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FeedId");
@@ -160,6 +161,8 @@ namespace EDI_Manager.Migrations
                     b.HasIndex("DeveloperId");
 
                     b.HasIndex("FTPAccountId");
+
+                    b.HasIndex("FeedFileChangesId");
 
                     b.HasIndex("FeedFrequencyId");
 
@@ -418,8 +421,9 @@ namespace EDI_Manager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlatformId"), 1L, 1);
 
-                    b.Property<int>("PlatformName")
-                        .HasColumnType("int");
+                    b.Property<string>("PlatformName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PlatformId");
 
@@ -448,7 +452,15 @@ namespace EDI_Manager.Migrations
 
                     b.HasOne("EDI_Manager.TableDefinitions.FTPAccount", "FTPAccount")
                         .WithMany()
-                        .HasForeignKey("FTPAccountId");
+                        .HasForeignKey("FTPAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EDI_Manager.TableDefinitions.FeedFileChanges", "FeedFileChanges")
+                        .WithMany()
+                        .HasForeignKey("FeedFileChangesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EDI_Manager.TableDefinitions.FeedFrequency", "FeedFrequency")
                         .WithMany()
@@ -487,6 +499,8 @@ namespace EDI_Manager.Migrations
                     b.Navigation("Developer");
 
                     b.Navigation("FTPAccount");
+
+                    b.Navigation("FeedFileChanges");
 
                     b.Navigation("FeedFrequency");
 
