@@ -15,7 +15,7 @@
                     <select class="form-control" name="sourceFile" id="sourceFile"
                     [(ngModel)] = "sourceFileId">
                         <option *ngFor="let file of filesList$|async" [value]="file.fileId">
-                            {{file.fileName +"."+ fileTypesService.fileMimesMap.get(file.fileTypeId)}}
+                            {{file.fileName +"."+ fileTypesService.fileMimesMap.get(file.fileMimeId)}}
                         </option>
                     </select>
                 </div>
@@ -61,7 +61,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="feedFrequencyId == 5">
                 <!-- Business Day Of Month input -->
                 <div class="mb-3">
                     <label for="businessDayOfMonth" class="form-label">Business Day Of Month</label>
@@ -70,7 +70,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="feedFrequencyId == 2">
                 <!-- Frequency Times input -->
                 <div class="mb-3">
                     <label for="frequencyTimes" class="form-label">Frequency Times</label>
@@ -79,7 +79,13 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="feedFrequencyId == 6">
+                <div class="mb-3">
+                    <label for="series" class="form-label">Series</label>
+                    <input type="text" class="form-control" [(ngModel)]="series" name="series">
+                </div>
+            </div>
+            <div class="row" *ngIf="feedFrequencyId == 1">
                 <!-- Weekly Recur Day input -->
                 <div class="mb-3">
                     <label for="weeklyRecurDay" class="form-label">Weekly Recur Day</label>
@@ -88,10 +94,18 @@
                     </select>
                 </div>
             </div>
+            <!-- Start date-->
             <div class="row">
                 <div class="mb-3">
-                    <label for="series" class="form-label">Series</label>
-                    <input type="text" class="form-control" [(ngModel)]="series" name="series">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="text" class="form-control" [(ngModel)]="startDate" name="startDate">
+                </div>
+            </div>
+            <!-- End date-->
+            <div class="row" *ngIf="feedFrequencyId != 3">
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="text" class="form-control" [(ngModel)]="endDate" name="endDate" placeholder="Optional">
                 </div>
             </div>
         </div>

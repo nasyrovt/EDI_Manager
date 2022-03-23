@@ -14,7 +14,7 @@ export class FilesService {
 
   readonly APIUrl = "https://localhost:7255/api";
 
-  constructor(private http: HttpClient, private fileTypesService: FileMimesApiService) {
+  constructor(private http: HttpClient, private fileMimesService: FileMimesApiService) {
     this.filesList$ = this.getFilesList();
     this.refreshFilesMap();
   }
@@ -25,7 +25,7 @@ export class FilesService {
 
       for (let i = 0; i < data.length; i++) {
         this.filesMap.set(this.filesList[i].fileId, this.filesList[i].fileName
-          + "." + this.fileTypesService.fileMimesMap.get(this.filesList[i].fileTypeId));
+          + "." + this.fileMimesService.fileMimesMap.get(this.filesList[i].fileMimeId));
       }
     });
   }
