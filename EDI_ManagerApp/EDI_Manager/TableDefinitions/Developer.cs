@@ -6,17 +6,16 @@ namespace EDI_Manager
     {
         public int DeveloperId { get; set; }
 
-        [StringLength(20)]
-        public string DeveloperName { get; set; }
+        [StringLength(30)]
+        public string DeveloperFirstName { get; set; } = string.Empty;
 
-        [StringLength(20)]
-        public string DeveloperSurName { get; set; }
-        public int DeveloperAge { get; set; }
+        [StringLength(30)]
+        public string DeveloperLastName { get; set; } = string.Empty;
 
         [StringLength(200)]
-        public string DeveloperAdress { get; set; }
+        public string DeveloperMail{ get; set; } = string.Empty;
 
-        [StringLength(10)]
-        public string HireDate { get; set; }
+        [StringLength(30)]
+        public string DeveloperRole { get; set; } = string.Empty;
     }
 }

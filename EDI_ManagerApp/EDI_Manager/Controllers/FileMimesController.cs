@@ -6,54 +6,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using EDI_Manager;
 using EDI_Manager.Data;
-using EDI_Manager.TableDefinitions;
 
 namespace EDI_Manager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FeedStatusController : ControllerBase
+    public class FileMimesController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public FeedStatusController(DataContext context)
+        public FileMimesController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/FeedStatus
+        // GET: api/FileMimes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FeedStatus>>> GetFeedStatus()
+        public async Task<ActionResult<IEnumerable<FileMime>>> GetFileMimes()
         {
-            return await _context.FeedStatus.ToListAsync();
+            return await _context.FileMimes.ToListAsync();
         }
 
-        // GET: api/FeedStatus/5
+        // GET: api/FileMimes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<FeedStatus>> GetFeedStatus(int id)
+        public async Task<ActionResult<FileMime>> GetFileMime(int id)
         {
-            var feedStatus = await _context.FeedStatus.FindAsync(id);
+            var fileMime = await _context.FileMimes.FindAsync(id);
 
-            if (feedStatus == null)
+            if (fileMime == null)
             {
                 return NotFound();
             }
 
-            return feedStatus;
+            return fileMime;
         }
 
-        // PUT: api/FeedStatus/5
+        // PUT: api/FileMimes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFeedStatus(int id, FeedStatus feedStatus)
+        public async Task<IActionResult> PutFileMime(int id, FileMime fileMime)
         {
-            if (id != feedStatus.FeedStatusId)
+            if (id != fileMime.FileMimeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(feedStatus).State = EntityState.Modified;
+            _context.Entry(fileMime).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace EDI_Manager.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FeedStatusExists(id))
+                if (!FileMimeExists(id))
                 {
                     return NotFound();
                 }
@@ -74,36 +74,36 @@ namespace EDI_Manager.Controllers
             return NoContent();
         }
 
-        // POST: api/FeedStatus
+        // POST: api/FileMimes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<FeedStatus>> PostFeedStatus(FeedStatus feedStatus)
+        public async Task<ActionResult<FileMime>> PostFileMime(FileMime fileMime)
         {
-            _context.FeedStatus.Add(feedStatus);
+            _context.FileMimes.Add(fileMime);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFeedStatus", new { id = feedStatus.FeedStatusId }, feedStatus);
+            return CreatedAtAction("GetFileMime", new { id = fileMime.FileMimeId }, fileMime);
         }
 
-        // DELETE: api/FeedStatus/5
+        // DELETE: api/FileMimes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFeedStatus(int id)
+        public async Task<IActionResult> DeleteFileMime(int id)
         {
-            var feedStatus = await _context.FeedStatus.FindAsync(id);
-            if (feedStatus == null)
+            var fileMime = await _context.FileMimes.FindAsync(id);
+            if (fileMime == null)
             {
                 return NotFound();
             }
 
-            _context.FeedStatus.Remove(feedStatus);
+            _context.FileMimes.Remove(fileMime);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool FeedStatusExists(int id)
+        private bool FileMimeExists(int id)
         {
-            return _context.FeedStatus.Any(e => e.FeedStatusId == id);
+            return _context.FileMimes.Any(e => e.FileMimeId == id);
         }
     }
 }

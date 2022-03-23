@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FileTypesApiService } from './file-types-api.service';
+import { FileMimesApiService } from './file-mimes-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class FilesService {
 
   readonly APIUrl = "https://localhost:7255/api";
 
-  constructor(private http: HttpClient, private fileTypesService: FileTypesApiService) {
+  constructor(private http: HttpClient, private fileTypesService: FileMimesApiService) {
     this.filesList$ = this.getFilesList();
     this.refreshFilesMap();
   }
@@ -24,9 +24,8 @@ export class FilesService {
       this.filesList = data;
 
       for (let i = 0; i < data.length; i++) {
-        console.log(`This is ${this.filesList[i].fileId} times easier!`);
         this.filesMap.set(this.filesList[i].fileId, this.filesList[i].fileName
-          + "." + this.fileTypesService.fileTypesMap.get(this.filesList[i].fileTypeId));
+          + "." + this.fileTypesService.fileMimesMap.get(this.filesList[i].fileTypeId));
       }
     });
   }
@@ -41,10 +40,10 @@ export class FilesService {
   }
 
   updateFile(id: number | string, data: any) {
-    return this.http.put(this.APIUrl + "/files/$(id)", data);
+    return this.http.put(this.APIUrl + "/files/" + id, data);
   }
 
   deleteFile(id: number | string) {
-    return this.http.delete(this.APIUrl + "/files/$(id)");
+    return this.http.delete(this.APIUrl + "/files/" + id);
   }
 }

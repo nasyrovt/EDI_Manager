@@ -11,9 +11,11 @@
         <th>Name</th>
         <th>Carrier Type</th>
         <th>Tax Id</th>
-        <th>Groups Id</th>
+        <th>Group Id</th>
+        <th>Subgroup Id</th>
         <th>Master Policy Number</th>
-        <th>Adresses</th>
+        <th>Adresse 1</th>
+        <th>Adresse 2</th>
         <th>Website</th>
         <th>Phones</th>
     </thead>
@@ -23,10 +25,12 @@
             <td>{{carrier.carrierName}}</td>
             <td>{{feedsService.carrierTypesMap.get(carrier.carrierTypeId)}}</td>
             <td>{{carrier.carrierTaxId}}</td>
-            <td>{{"Main:" + carrier.groupId + "\n" + "Sub:" + carrier.subGroupId}}</td>
+            <td>{{carrier.groupId}}</td>
+            <td>{{carrier.subGroupId}}</td>
             <td>{{carrier.masterPolicyNumber}}</td>
-            <td>{{carrier.adress1 + ";\n" + carrier.adress2}}</td>
-            <td>{{carrier.website}}</td>
+            <td>{{carrier.adress1}}</td>
+            <td>{{carrier.adress2}}</td>
+            <td>{{carrier.webSite}}</td>
             <td>{{carrier.phones}}</td>
             <td>
               <!-- Edit Button -->

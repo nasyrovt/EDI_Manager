@@ -6,7 +6,7 @@
 
 <!-- Button fili types trigger modal -->
 <button type="button" class="btn btn-secondary float-end m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Show File Types
+    Show File Mimes
 </button>
 
   
@@ -15,12 +15,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">File Types</h5>
+          <h5 class="modal-title" id="exampleModalLabel">File Mimes</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p *ngFor="let type of fileTypesService.fileTypesList$|async">
-            {{type.fileTypeId}} - {{type.fileTypeName}}
+          <p *ngFor="let type of fileMimesService.fileMimesList$|async">
+            {{type.fileMimeId}} - {{type.fileMimeName}}
           </p>
         </div>
       </div>
@@ -31,38 +31,34 @@
     <thead >
         <th>Id</th>
         <th>Feed Name</th>
-        <th>Feed Status</th>
-        <th>File Changes</th>
-        <th>Business Day Of Month</th>
+        <th>Source File</th>
+        <th>Target File Mime</th>
+        <th>Test/Production</th>
+        <th>Changes Records</th>
         <th>Frequency</th>
-        <th>Frequency Times</th>
-        <th>Weekly Recur Day</th>
+        <th>Start Date</th>
         <th>Feed Security Type</th>
         <th>Client</th>
-        <th>Source File</th>
-        <th>Target File Type</th>
         <th>Carrier</th>
-        <th>Developer</th>
         <th>FTP Account</th>
+        <th>Developer</th>        
         <th>Options</th>
     </thead>
     <tbody>
         <tr *ngFor="let feed of feedsService.feedsList$|async">
             <td>{{feed.feedId}}</td>
             <td>{{feed.feedName}}</td>
-            <td>{{feedsService.statusesMap.get(feed.feedStatusId)}}</td>
-            <td>{{feedsService.fileChangesMap.get(feed.feedFileChangesId)}}</td>
-            <td>{{feed.businessDayOfMonth}}</td>
+            <td>{{filesService.filesMap.get(feed.sourceFileId)}}</td>
+            <td>{{fileMimesService.fileMimesMap.get(feed.targetFileMimeId)}}</td>
+            <td>{{feed.inProduction? "PROD" : "TEST"}}</td>
+            <td>{{feed.isChangesOnly? "ChangesOnly" : "Full"}}</td>
             <td>{{feedsService.frequenciesMap.get(feed.feedFrequencyId)}}</td>
-            <td>{{feed.frequencyTimes}}</td>
-            <td>{{feed.weeklyRecurDay}}</td>
+            <td>{{feed.startDate}}</td>
             <td>{{feedsService.securityTypesMap.get(feed.feedSecurityTypeId)}}</td>
             <td>{{clientsService.clientsMap.get(feed.clientId)}}</td>
-            <td>{{filesService.filesMap.get(feed.sourceFileId)}}</td>
-            <td>{{fileTypesService.fileTypesMap.get(feed.targetFileTypeId)}}</td>
             <td>{{feedsService.carriersMap.get(feed.carrierId)}}</td>
-            <td>{{developersService.developerMap.get(feed.developerId)}}</td>
             <td>{{serversService.serversMap.get(feed.ftpAccountId)}}</td>
+            <td>{{developersService.developerMap.get(feed.developerId)}}</td>            
             <td>
               <!-- Edit Button -->
               <button class="btn btn-outline-primary me-2 mb-1"
@@ -88,7 +84,7 @@
 
 <!-- Add or edit Feed Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>

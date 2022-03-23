@@ -8,21 +8,19 @@
 <table class="table">
     <thead >
         <th>Id</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Age</th>
-        <th>Adress</th>
-        <th>Hire Date</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>E-Mail</th>
+        <th>Role</th>
         <th>Options</th>
     </thead>
     <tbody>
         <tr *ngFor="let developer of developersService.devsList$|async">
             <td>{{developer.developerId}}</td>
-            <td>{{developer.developerName}}</td>
-            <td>{{developer.developerSurName}}</td>
-            <td>{{developer.developerAge}}</td>
-            <td>{{developer.developerAdress}}</td>
-            <td>{{developer.hireDate}}</td>
+            <td>{{developer.developerFirstName}}</td>
+            <td>{{developer.developerLastName}}</td>
+            <td>{{developer.developerMail}}</td>
+            <td>{{developer.developerRole}}</td>
             <td>
               <!-- Edit Button -->
               <button class="btn btn-outline-primary me-2 mb-1"

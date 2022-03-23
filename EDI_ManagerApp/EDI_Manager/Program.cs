@@ -1,5 +1,7 @@
 using EDI_Manager.Data;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -29,6 +31,13 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.Configure<FormOptions>(option =>
+{
+    option.ValueLengthLimit = int.MaxValue;
+    option.MultipartBodyLengthLimit = int.MaxValue;
+    option.MemoryBufferThreshold = int.MaxValue;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,6 +50,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(myAllowSpecificOrigins);
+
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Ressources")),
+    RequestPath = new PathString("/Ressources")
+});
 
 app.UseAuthorization();
 

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FileTypesApiService } from './file-types-api.service';
+import { FileMimesApiService } from './file-mimes-api.service';
 
 describe('FileTypesApiServiceService', () => {
-  let service: FileTypesApiService;
+  let service: FileMimesApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FileTypesApiService);
+    service = TestBed.inject(FileMimesApiService);
   });
 
   it('should be created', () => {

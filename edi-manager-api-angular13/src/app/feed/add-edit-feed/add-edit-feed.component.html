@@ -1,155 +1,187 @@
-<form>
-    <!-- Feed name input -->
-    <div class="mb-3">
-        <label for="feedName" class="form-label">Feed Name</label>
-        <input type="text" class="form-control" [(ngModel)]="feedName" name="feedName">
-    </div>
+<form>    
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col border-right">
+            <div calss ="row">
+                <!-- Feed name input -->
+                <div class="mb-3">
+                    <label for="feedName" class="form-label">Feed Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="feedName" name="feedName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="sourceFileId" class="form-label">Source File</label>
+                    <select class="form-control" name="sourceFile" id="sourceFile"
+                    [(ngModel)] = "sourceFileId">
+                        <option *ngFor="let file of filesList$|async" [value]="file.fileId">
+                            {{file.fileName +"."+ fileTypesService.fileMimesMap.get(file.fileTypeId)}}
+                        </option>
+                    </select>
+                </div>
+                <app-upload-file></app-upload-file>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="targetFileMimeId" class="form-label">Target File Type</label>
+                    <select class="form-control" name="targetFileMimeId" id="targetFileMimeId"
+                    [(ngModel)] = "targetFileMimeId">
+                        <option *ngFor="let type of fileTypesList$|async" [value]="type.fileMimeId">
+                            {{type.fileMimeName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="inProduction" class="form-label">Test/Production</label>
+                    <select class="form-control" [(ngModel)] = "inProduction" name="inProduction" id="inProduction">
+                        <option [value]="true">{{"PROD"}}</option>
+                        <option [value]="false">{{"TEST"}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="isChangesOnly" class="form-label">Changes Records</label>
+                    <select class="form-control" [(ngModel)] = "isChangesOnly" name="isChangesOnly" id="isChangesOnly">
+                        <option [value]="true">{{"ChangesOnly"}}</option>
+                        <option [value]="false">{{"Full"}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <!-- Frequency input -->
+                <div class="mb-3" >
+                    <label for="feedFrequencyId" class="form-label">Frequency</label>
+                    <select class="form-control" [(ngModel)] = "feedFrequencyId" name="feedFrequencyId" id="feedFrequencyId">
+                        <option *ngFor="let freq of frequenciesList$|async" [value]="freq.feedFrequencyId">{{freq.feedFrequencyName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Business Day Of Month input -->
+                <div class="mb-3">
+                    <label for="businessDayOfMonth" class="form-label">Business Day Of Month</label>
+                    <select class="form-control" [(ngModel)] = "businessDayOfMonth" name="businessDayOfMonth" id="businessDayOfMonth">
+                        <option *ngFor="let day of days" [value]="day">{{day}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Frequency Times input -->
+                <div class="mb-3">
+                    <label for="frequencyTimes" class="form-label">Frequency Times</label>
+                    <select class="form-control" [(ngModel)] = "frequencyTimes" name="frequencyTimes" id="frequencyTimes">
+                        <option *ngFor="let time of freqTimes" [value]="time">{{time}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Weekly Recur Day input -->
+                <div class="mb-3">
+                    <label for="weeklyRecurDay" class="form-label">Weekly Recur Day</label>
+                    <select class="form-control" [(ngModel)] = "weeklyRecurDay" name="weeklyRecurDay" id="weeklyRecurDay">
+                        <option *ngFor="let day of recurDays; let i = index" [value]="i+1">{{day}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="series" class="form-label">Series</label>
+                    <input type="text" class="form-control" [(ngModel)]="series" name="series">
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <!-- Client input -->
+                <div class="mb-3">
+                    <label for="clientId" class="form-label">Client</label>
+                    <select class="form-control" [(ngModel)] = "clientId" name="clientId" id="clientId">
+                        <option *ngFor="let client of clientsList$|async" [value]="client.clientId">{{client.clientSurName + " " + client.clientName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Carrier input -->
+                <div class="mb-3">
+                    <label for="carrierId" class="form-label">Carrier</label>
+                    <select class="form-control" name="carrierId" id="carrierId"
+                    [(ngModel)] = "carrierId">
+                        <option *ngFor="let carrier of carriersList$|async" 
+                        [value]="carrier.carrierId">{{carrier.carrierName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- FTP Account input -->
+                <div class="mb-3">
+                    <label for="ftpAccountId" class="form-label">FTP Account</label>
+                    <select class="form-control" name="ftpAccountId" id="ftpAccountId" [(ngModel)] = "ftpAccountId">
+                        <option *ngFor="let server of serversList$|async" [value]="server.ftpAccountId">
+                            {{server.ftpHost}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Developer input -->
+                <div class="mb-3">
+                    <label for="developerId" class="form-label">Developer</label>
+                    <select class="form-control" name="developerId" id="developerId"
+                    [(ngModel)] = "developer">
+                        <option *ngFor="let dev of developersList$|async" 
+                        [value]="dev.developerId">{{dev.developerSurName + " " + dev.developerName}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Feed Security Type input -->
+            <div class="mb-3">
+                <label for="feedSecurityTypeId" class="form-label">Feed Security Type</label>
+                <select class="form-control" [(ngModel)] = "feedSecurityTypeId" name="feedSecurityTypeId" id="feedSecurityTypeId">
+                    <option *ngFor="let type of securityTypesList$|async" [value]="type.feedSecurityTypeId">{{type.feedSecurityTypeName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!-- ZipPassword input -->
+            <div class="mb-3" *ngIf="feedSecurityTypeId==2">
+                <label for="zipPassword" class="form-label">Zip Password</label>
+                <input [type]="showZipPass? 'password':'text'" class="form-control" [(ngModel)]="zipPassword" name="zipPassword" >
+                <button (click)="toggleZipPassword()" style="border: none; background: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <!-- PGPPassword input -->
+            <div class="mb-3" *ngIf="feedSecurityTypeId==1">
+                <label for="pgpPassword" class="form-label">PGP Password</label>
+                <form>
+                    <input [type]="showPGPPass? 'password':'text'" class="form-control" [(ngModel)]="pgpPassword" name="pgpPassword">
+                    <button (click)="togglePgpPassword()" style="border: none; background: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div></div>
+        </div>
+      </div>
 
-    <!-- Feed status input -->
-    <div class="mb-3">
-        <label for="feedStatusId" class="form-label">Feed Status</label>
-        <select class="form-control" [(ngModel)] = "feedStatusId" name="feedStatusId" id="feedStatusId">
-            <option *ngFor="let status of statusesList$|async" [value]="status.feedStatusId">{{status.feedStatusName}}</option>
-        </select>
-    </div>
-
-    <!-- File changes input -->
-    <div class="mb-3">
-        <label for="feedFileChangesId" class="form-label">File Changes</label>
-        <select class="form-control" [(ngModel)] = "feedFileChangesId" name="feedFileChangesId" id="feedFileChangesId">
-            <option *ngFor="let change of fileChangesList$|async" [value]="change.feedFileChangesId">{{change.feedFileChangesName}}</option>
-        </select>
-    </div>
-    
-    <!-- Business Day Of Month input -->
-    <div class="mb-3">
-        <label for="businessDayOfMonth" class="form-label">Business Day Of Month</label>
-        <select class="form-control" [(ngModel)] = "businessDayOfMonth" name="businessDayOfMonth" id="businessDayOfMonth">
-            <option *ngFor="let day of days" [value]="day">{{day}}</option>
-        </select>
-    </div>
-
-    <!-- Frequency input -->
-    <div class="mb-3">
-        <label for="feedFrequencyId" class="form-label">Frequency</label>
-        <select class="form-control" [(ngModel)] = "feedFrequencyId" name="feedFrequencyId" id="feedFrequencyId">
-            <option *ngFor="let freq of frequenciesList$|async" [value]="freq.feedFrequencyId">{{freq.feedFrequencyName}}</option>
-        </select>
-    </div>
-
-    <!-- Frequency Times input -->
-    <div class="mb-3">
-        <label for="frequencyTimes" class="form-label">Frequency Times</label>
-        <select class="form-control" [(ngModel)] = "frequencyTimes" name="frequencyTimes" id="frequencyTimes">
-            <option *ngFor="let time of freqTimes" [value]="time">{{time}}</option>
-        </select>
-    </div>
-
-    <!-- Weekly Recur Day input -->
-    <div class="mb-3">
-        <label for="weeklyRecurDay" class="form-label">Weekly Recur Day</label>
-        <select class="form-control" [(ngModel)] = "weeklyRecurDay" name="weeklyRecurDay" id="weeklyRecurDay">
-            <option *ngFor="let day of recurDays; let i = index" [value]="i+1">{{day}}</option>
-        </select>
-    </div>
-    
-    <!-- Feed Security Type input -->
-    <div class="mb-3">
-        <label for="feedSecurityTypeId" class="form-label">Feed Security Type</label>
-        <select class="form-control" [(ngModel)] = "feedSecurityTypeId" name="feedSecurityTypeId" id="feedSecurityTypeId">
-            <option *ngFor="let type of securityTypesList$|async" [value]="type.feedSecurityTypeId">{{type.feedSecurityTypeName}}</option>
-        </select>
-    </div>
-
-    <!-- ZipPassword input -->
-    <div class="mb-3">
-        <label for="zipPassword" class="form-label">Zip Password</label>
-        <input [type]="showZipPass? 'text':'password'" class="form-control" [(ngModel)]="zipPassword" name="zipPassword" >
-        <button (click)="toggleZipPassword()" style="border: none; background: none;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-            </svg>
-        </button>
-    </div>
-
-    <!-- PGPPassword input -->
-    <div class="mb-3">
-        <label for="pgpPassword" class="form-label">PGP Password</label>
-        <form>
-            <input [type]="showPGPPass? 'text':'password'" class="form-control" [(ngModel)]="pgpPassword" name="pgpPassword">
-            <button (click)="togglePgpPassword()" style="border: none; background: none;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                </svg>
-            </button>
-        </form>
-    </div>
-
-    <!-- Client input -->
-    <div class="mb-3">
-        <label for="clientId" class="form-label">Client</label>
-        <select class="form-control" [(ngModel)] = "clientId" name="clientId" id="clientId">
-            <option *ngFor="let client of clientsList$|async" [value]="client.clientId">{{client.clientSurName + " " + client.clientName}}</option>
-        </select>
-    </div>
-
-    <!-- Source file input -->
-    <div class="mb-3">
-        <label for="sourceFileId" class="form-label">Source File</label>
-        <select class="form-control" name="sourceFile" id="sourceFile"
-        [(ngModel)] = "sourceFileId">
-            <option *ngFor="let file of filesList$|async" [value]="file.fileId">
-                {{file.fileName +"."+ fileTypesService.fileTypesMap.get(file.fileTypeId)}}
-            </option>
-        </select>
-    </div>
-
-    <!-- Target file type input -->
-    <div class="mb-3">
-        <label for="targetFileTypeId" class="form-label">Target File Type</label>
-        <select class="form-control" name="targetFileTypeId" id="targetFileTypeId"
-        [(ngModel)] = "target">
-            <option *ngFor="let type of fileTypesList$|async" [value]="type.fileTypeId">
-                {{type.fileTypeName}}
-            </option>
-        </select>
-    </div>
-
-    <!-- Carrier input -->
-    <div class="mb-3">
-        <label for="carrierId" class="form-label">Carrier</label>
-        <select class="form-control" name="carrierId" id="carrierId"
-        [(ngModel)] = "carrierId">
-            <option *ngFor="let carrier of carriersList$|async" 
-            [value]="carrier.carrierId">{{carrier.carrierName}}</option>
-        </select>
-    </div>
-
-    <!-- Developer input -->
-    <div class="mb-3">
-        <label for="developerId" class="form-label">Developer</label>
-        <select class="form-control" name="developerId" id="developerId"
-        [(ngModel)] = "developer">
-            <option *ngFor="let dev of developersList$|async" 
-            [value]="dev.developerId">{{dev.developerSurName + " " + dev.developerName}}</option>
-        </select>
-    </div>
-
-    <!-- FTP Account input -->
-    <div class="mb-3">
-        <label for="ftpAccountId" class="form-label">FTP Account</label>
-        <select class="form-control" name="ftpAccountId" id="ftpAccountId" [(ngModel)] = "ftpAccountId">
-            <option *ngFor="let server of serversList$|async" [value]="server.ftpAccountId">
-                {{server.ftpHost}}
-            </option>
-        </select>
-    </div>
+      
 
     <button (click) ="addFeed()" *ngIf="feed.id==0" class="btn btn-primary">Add</button>
     <button (click) ="updateFeed()" *ngIf="feed.id!=0" class="btn btn-primary">Update</button>
 
-    
-    
 </form>
+

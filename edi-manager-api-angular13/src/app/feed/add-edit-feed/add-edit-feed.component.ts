@@ -1,6 +1,6 @@
 import { FtpserverApiService } from './../../services/ftpserver-api.service';
 import { ClientsApiService } from './../../services/clients-api.service';
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Input, Component, OnInit } from '@angular/core';
 import { Observable, range } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
@@ -21,7 +21,7 @@ export class AddEditFeedComponent implements OnInit {
 
   days: number[] = new Array(31).fill(1).map((x, i) => i + 1)
   recurDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  freqTimes: number[] = new Array(13).fill(1).map((x, i) => i)
+  freqTimes: number[] = new Array(12).fill(1).map((x, i) => i + 1)
 
   feedsList$!: Observable<any[]>;
   fileTypesList$!: Observable<any[]>;
@@ -30,89 +30,113 @@ export class AddEditFeedComponent implements OnInit {
   clientsList$!: Observable<any[]>;
   serversList$!: Observable<any[]>;
   carriersList$!: Observable<any[]>;
-  fileChangesList$!: Observable<any[]>;
+  // fileChangesList$!: Observable<any[]>;
   frequenciesList$!: Observable<any[]>;
   securityTypesList$!: Observable<any[]>;
-  statusesList$!: Observable<any[]>;
+  // statusesList$!: Observable<any[]>;
 
   emails: string[] = [];
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService, public fileService: FilesService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService, public serversService: FtpserverApiService) { }
 
-
+  // id: 0,
+  // feedName: null,
+  // sourceFileId: null,
+  // targetFileMimeId: null,
+  // inProduction: null,
+  // isChangesOnly: null,
+  // feedFrequencyId: null,
+  // businessDayOfMonth: null,
+  // frequencyTimes: null,
+  // series: null,
+  // weeklyRecurDay: null,
+  // startDate: null,
+  // endDate: null,
+  // feedSecurityTypeId: null,
+  // zipPassword: null,
+  // pgpPassword: null,
+  // clientId: null,
+  // carrierId: null,
+  // ftpAccountId: null,
+  // developerId: null
   @Input() feed: any;
   id: number = 0;
   feedName: string = "";
-  feedStatusId!: number;
-  feedFileChangesId!: number;
-  businessDayOfMonth!: number;
+  sourceFileId!: number;
+  targetFileMimeId!: number;
+  inProduction!: boolean;
+  isChangesOnly!: boolean;
   feedFrequencyId!: number;
+  businessDayOfMonth!: number;
   frequencyTimes!: number;
+  series: string = "";//++
   weeklyRecurDay!: number;
+  startDate: string = "";//++
+  endDate: string = "";//++
   feedSecurityTypeId!: number;
   zipPassword: string = "";
   pgpPassword: string = "";
   clientId!: number;
-  sourceFileId!: number;
-  target!: number;
-  targetEmails: string = "";
   carrierId!: number;
-  developer!: number;
   ftpAccountId!: number;
+  developer!: number;
 
   ngOnInit(): void {
     this.id = this.feed.feedId;
     this.feedName = this.feed.feedName;
-    this.feedStatusId = this.feed.feedStatusId;
-    this.feedFileChangesId = this.feed.feedFileChangesId;
-    this.businessDayOfMonth = this.feed.businessDayOfMonth;
+    this.sourceFileId = this.feed.sourceFileId;
+    this.targetFileMimeId = this.feed.targetFileMimeId;
+    this.inProduction = this.feed.inProduction;
+    this.isChangesOnly = this.feed.isChangesOnly;
     this.feedFrequencyId = this.feed.feedFrequencyId;
+    this.businessDayOfMonth = this.feed.businessDayOfMonth;
     this.frequencyTimes = this.feed.frequencyTimes;
+    this.series = this.feed.series;
     this.weeklyRecurDay = this.feed.weeklyRecurDay;
+    this.startDate = this.feed.startDate;
+    this.endDate = this.feed.endDate;
     this.feedSecurityTypeId = this.feed.feedSecurityTypeId;
     this.zipPassword = this.feed.zipPassword;
     this.pgpPassword = this.feed.pgpPassword;
     this.clientId = this.feed.clientId;
-    this.sourceFileId = this.feed.sourceFileId;
-    this.target = this.feed.targetFileTypeId;
-    this.targetEmails = this.feed.targetEmails;
     this.carrierId = this.feed.carrierId;
-    this.developer = this.feed.developerId;
     this.ftpAccountId = this.feed.ftpAccountId;
+    this.developer = this.feed.developerId;
 
-    this.fileTypesList$ = this.fileTypesService.getFileTypesList();
+    this.fileTypesList$ = this.fileTypesService.getFileMimesList();
     this.filesList$ = this.fileService.getFilesList();
     this.feedsList$ = this.feedsService.getFeedsList();
     this.carriersList$ = this.feedsService.getCarriersList();
     this.clientsList$ = this.clientsService.getClientsList();
     this.developersList$ = this.developersService.getDevelopersList();
     this.serversList$ = this.serversService.getServersList();
-    this.fileChangesList$ = this.feedsService.getFileChangesList();
     this.frequenciesList$ = this.feedsService.getFrequenciesList();
     this.securityTypesList$ = this.feedsService.getSecurityTypesList();
-    this.statusesList$ = this.feedsService.getStatusesList();
   }
 
   addFeed() {
     var feed = {
       feedName: this.feedName,
-      feedStatusId: this.feedStatusId,
-      feedFileChangesId: this.feedFileChangesId,
-      businessDayOfMonth: this.businessDayOfMonth,
+      sourceFileId: this.sourceFileId,
+      targetFileMimeId: this.targetFileMimeId,
+      inProduction: this.inProduction,
+      isChangesOnly: this.isChangesOnly,
       feedFrequencyId: this.feedFrequencyId,
+      businessDayOfMonth: this.businessDayOfMonth,
       frequencyTimes: this.frequencyTimes,
+      series: this.series,
       weeklyRecurDay: this.weeklyRecurDay,
+      startDate: this.startDate,
+      endDate: this.endDate,
       feedSecurityTypeId: this.feedSecurityTypeId,
       zipPassword: this.zipPassword,
       pgpPassword: this.pgpPassword,
       clientId: this.clientId,
-      sourceFileId: this.sourceFileId,
-      targetFileTypeId: this.target,
       carrierId: this.carrierId,
-      developerId: this.developer,
-      ftpAccountId: this.ftpAccountId
+      ftpAccountId: this.ftpAccountId,
+      developerId: this.developer
     }
     this.emails = [];
 
@@ -138,21 +162,24 @@ export class AddEditFeedComponent implements OnInit {
     var feed = {
       feedId: this.id,
       feedName: this.feedName,
-      feedStatusId: this.feedStatusId,
-      feedFileChangesId: this.feedFileChangesId,
-      businessDayOfMonth: this.businessDayOfMonth,
+      sourceFileId: this.sourceFileId,
+      targetFileMimeId: this.targetFileMimeId,
+      inProduction: this.inProduction,
+      isChangesOnly: this.isChangesOnly,
       feedFrequencyId: this.feedFrequencyId,
+      businessDayOfMonth: this.businessDayOfMonth,
       frequencyTimes: this.frequencyTimes,
+      series: this.series,
       weeklyRecurDay: this.weeklyRecurDay,
+      startDate: this.startDate,
+      endDate: this.endDate,
       feedSecurityTypeId: this.feedSecurityTypeId,
       zipPassword: this.zipPassword,
       pgpPassword: this.pgpPassword,
       clientId: this.clientId,
-      sourceFileId: this.sourceFileId,
-      targetFileTypeId: this.target,
       carrierId: this.carrierId,
-      developerId: this.developer,
-      ftpAccountId: this.ftpAccountId
+      ftpAccountId: this.ftpAccountId,
+      developerId: this.developer
     }
     var id: number = this.id;
     this.emails = [];

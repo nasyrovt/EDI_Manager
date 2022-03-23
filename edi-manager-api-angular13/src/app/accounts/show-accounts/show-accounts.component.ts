@@ -1,5 +1,5 @@
 import { FtpserverApiService } from './../../services/ftpserver-api.service';
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Component, OnInit } from '@angular/core';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
@@ -18,7 +18,7 @@ export class ShowAccountsComponent implements OnInit {
   account: any;
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService,
     public filesService: FilesService, public accountsService: FtpserverApiService) { }
 

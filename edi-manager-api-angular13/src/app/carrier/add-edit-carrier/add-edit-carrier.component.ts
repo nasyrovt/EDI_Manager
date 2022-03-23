@@ -1,5 +1,5 @@
 import { ClientsApiService } from './../../services/clients-api.service';
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Input, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
@@ -22,7 +22,7 @@ export class AddEditCarrierComponent implements OnInit {
   carrierTypesList$!: Observable<any[]>;
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService, public fileService: FilesService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService) { }
 
 
@@ -36,7 +36,7 @@ export class AddEditCarrierComponent implements OnInit {
   masterPolicyNumber!: number;
   adress1: string = "";
   adress2: string = "";
-  website: string = "";
+  webSite: string = "";
   phones: string = "";
 
   ngOnInit(): void {
@@ -49,10 +49,10 @@ export class AddEditCarrierComponent implements OnInit {
     this.masterPolicyNumber = this.carrier.masterPolicyNumber;
     this.adress1 = this.carrier.adress1;
     this.adress2 = this.carrier.adress2;
-    this.website = this.carrier.website;
+    this.webSite = this.carrier.webSite;
     this.phones = this.carrier.phones;
 
-    this.fileTypesList$ = this.fileTypesService.getFileTypesList();
+    this.fileTypesList$ = this.fileTypesService.getFileMimesList();
     this.filesList$ = this.fileService.getFilesList();
     this.feedsList$ = this.feedsService.getFeedsList();
     this.clientsList$ = this.clientsService.getClientsList();
@@ -70,7 +70,7 @@ export class AddEditCarrierComponent implements OnInit {
       masterPolicyNumber: this.masterPolicyNumber,
       adress1: this.adress1,
       adress2: this.adress2,
-      website: this.website,
+      webSite: this.webSite,
       phones: this.phones
     }
 
@@ -103,7 +103,7 @@ export class AddEditCarrierComponent implements OnInit {
       masterPolicyNumber: this.masterPolicyNumber,
       adress1: this.adress1,
       adress2: this.adress2,
-      webSite: this.website,
+      webSite: this.webSite,
       phones: this.phones
     }
     var id: number = this.carrierId;

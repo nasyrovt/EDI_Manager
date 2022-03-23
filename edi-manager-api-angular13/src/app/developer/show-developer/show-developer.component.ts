@@ -1,4 +1,4 @@
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Component, OnInit } from '@angular/core';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
@@ -17,7 +17,7 @@ export class ShowDeveloperComponent implements OnInit {
   developer: any;
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService,
     public filesService: FilesService) { }
 
@@ -25,18 +25,13 @@ export class ShowDeveloperComponent implements OnInit {
   }
 
   modalAdd() {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
 
     this.developer = {
       developerId: 0,
-      developerName: null,
-      developerSurName: null,
-      developerAge: null,
-      developerAdress: null,
-      hireDate: mm + '/' + dd + '/' + yyyy
+      developerFirstName: null,
+      developerLastName: null,
+      developerMail: null,
+      developerRole: null
     }
     this.modalTitle = "New Developer";
     this.activateAddEditDeveloperComponent = true;
@@ -50,7 +45,7 @@ export class ShowDeveloperComponent implements OnInit {
 
   deleteDeveloper(item: any) {
     if (confirm("Are you sure you want to delete this developer")) {
-      this.clientsService.deleteClient(item.developerId).subscribe(res => {
+      this.developersService.deleteDeveloper(item.developerId).subscribe(res => {
         var closeModalBtn = document.getElementById('add-edit-modal-close');
         if (closeModalBtn) {
           closeModalBtn.click();

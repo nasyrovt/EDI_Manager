@@ -1,6 +1,6 @@
 import { FtpserverApiService } from './../../services/ftpserver-api.service';
 import { ClientsApiService } from './../../services/clients-api.service';
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Input, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
@@ -24,7 +24,7 @@ export class AddEditAccountsComponent implements OnInit {
   accountsList$!: Observable<any[]>;
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService, public fileService: FilesService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService, public accountsService: FtpserverApiService) { }
 
 
@@ -46,7 +46,7 @@ export class AddEditAccountsComponent implements OnInit {
     this.ftpType = this.account.ftpType;
     this.ftpPort = this.account.masterPolicyNftpPortumber;
 
-    this.fileTypesList$ = this.fileTypesService.getFileTypesList();
+    this.fileTypesList$ = this.fileTypesService.getFileMimesList();
     this.filesList$ = this.fileService.getFilesList();
     this.feedsList$ = this.feedsService.getFeedsList();
     this.clientsList$ = this.clientsService.getClientsList();

@@ -40,10 +40,10 @@ export class DevelopersApiService {
   }
 
   updateDeveloper(id: number | string, data: any) {
-    return this.http.put(this.APIUrl + "/developers/$(id)", data);
+    return this.http.put(this.APIUrl + "/developers/" + id, data);
   }
 
   deleteDeveloper(id: number | string) {
-    return this.http.delete(this.APIUrl + "/developers/$(id)");
+    return this.http.delete(this.APIUrl + "/developers/" + id);
   }
 }

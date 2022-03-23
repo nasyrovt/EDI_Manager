@@ -8,8 +8,8 @@ namespace EDI_Manager
 
         [StringLength(20)]
         public string FileName { get; set; } = string.Empty;
-        public int FileTypeId { get; set; }
-        public FileType? FileType { get; set; }
+        public int FileMimeId { get; set; }
+        public FileMime? FileMime { get; set; }
         public int Size { get; set; }
     }
 }

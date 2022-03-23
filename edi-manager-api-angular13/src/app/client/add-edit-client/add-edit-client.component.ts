@@ -1,5 +1,5 @@
 import { ClientsApiService } from './../../services/clients-api.service';
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Input, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
@@ -22,27 +22,27 @@ export class AddEditClientComponent implements OnInit {
   clientsList$!: Observable<any[]>;
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService, public fileService: FilesService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService) { }
 
 
   @Input() client: any;
   clientId: number = 0;
   clientName: string = "";
-  clientSurName: string = "";
-  clientAge!: number;
-  clientAdress: string = "";
-  profileCreationDate: string = "";
+  clientTaxId!: number;
+  contactName: string = "";
+  contactMails: string = "";
+  contactPhoneNumbers: string = "";
 
   ngOnInit(): void {
     this.clientId = this.client.clientId;
     this.clientName = this.client.clientName;
-    this.clientSurName = this.client.clientSurName;
-    this.clientAge = this.client.clientAge;
-    this.clientAdress = this.client.clientAdress;
-    this.profileCreationDate = this.client.profileCreationDate;
+    this.clientTaxId = this.client.clientTaxId;
+    this.contactName = this.client.contactName;
+    this.contactMails = this.client.contactMails;
+    this.contactPhoneNumbers = this.client.contactPhoneNumbers;
 
-    this.fileTypesList$ = this.fileTypesService.getFileTypesList();
+    this.fileTypesList$ = this.fileTypesService.getFileMimesList();
     this.filesList$ = this.fileService.getFilesList();
     this.feedsList$ = this.feedsService.getFeedsList();
     this.clientsList$ = this.clientsService.getClientsList();
@@ -52,10 +52,10 @@ export class AddEditClientComponent implements OnInit {
   addClient() {
     var client = {
       clientName: this.clientName,
-      clientSurName: this.clientSurName,
-      clientAge: this.clientAge,
-      clientAdress: this.clientAdress,
-      profileCreationDate: this.profileCreationDate
+      clientTaxId: this.clientTaxId,
+      contactName: this.contactName,
+      contactMails: this.contactMails,
+      contactPhoneNumbers: this.contactPhoneNumbers
     }
 
     this.clientsService.addClient(client).subscribe(res => {
@@ -80,10 +80,10 @@ export class AddEditClientComponent implements OnInit {
     var client = {
       clientId: this.clientId,
       clientName: this.clientName,
-      clientSurName: this.clientSurName,
-      clientAge: this.clientAge,
-      clientAdress: this.clientAdress,
-      profileCreationDate: this.profileCreationDate
+      clientTaxId: this.clientTaxId,
+      contactName: this.contactName,
+      contactMails: this.contactMails,
+      contactPhoneNumbers: this.contactPhoneNumbers
     }
     var id: number = this.clientId;
 

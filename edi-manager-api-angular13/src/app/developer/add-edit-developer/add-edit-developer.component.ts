@@ -1,5 +1,5 @@
 import { ClientsApiService } from './../../services/clients-api.service';
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Input, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
@@ -21,27 +21,25 @@ export class AddEditDeveloperComponent implements OnInit {
   clientsList$!: Observable<any[]>;
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService, public fileService: FilesService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService, public fileService: FilesService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService) { }
 
 
   @Input() developer: any;
   developerId: number = 0;
-  developerName: string = "";
-  developerSurName: string = "";
-  developerAge!: number;
-  developerAdress: string = "";
-  hireDate: string = "";
+  developerFirstName: string = "";
+  developerLastName: string = "";
+  developerMail: string = "";
+  developerRole: string = "";
 
   ngOnInit(): void {
     this.developerId = this.developer.developerId;
-    this.developerName = this.developer.developerName;
-    this.developerSurName = this.developer.developerSurName;
-    this.developerAge = this.developer.developerAge;
-    this.developerAdress = this.developer.developerAdress;
-    this.hireDate = this.developer.hireDate;
+    this.developerFirstName = this.developer.developerFirstName;
+    this.developerLastName = this.developer.developerLastName;
+    this.developerMail = this.developer.developerMail;
+    this.developerRole = this.developer.developerRole;
 
-    this.fileTypesList$ = this.fileTypesService.getFileTypesList();
+    this.fileTypesList$ = this.fileTypesService.getFileMimesList();
     this.filesList$ = this.fileService.getFilesList();
     this.feedsList$ = this.feedsService.getFeedsList();
     this.clientsList$ = this.clientsService.getClientsList();
@@ -50,11 +48,10 @@ export class AddEditDeveloperComponent implements OnInit {
 
   addDeveloper() {
     var developer = {
-      developerName: this.developerName,
-      developerSurName: this.developerSurName,
-      developerAge: this.developerAge,
-      developerAdress: this.developerAdress,
-      hireDate: this.hireDate
+      developerFirstName: this.developerFirstName,
+      developerLastName: this.developerLastName,
+      developerMail: this.developerMail,
+      developerRole: this.developerRole
     }
 
     this.developersService.addDeveloper(developer).subscribe(res => {
@@ -78,11 +75,10 @@ export class AddEditDeveloperComponent implements OnInit {
   updateDeveloper() {
     var developer = {
       developerId: this.developerId,
-      developerName: this.developerName,
-      developerSurName: this.developerSurName,
-      developerAge: this.developerAge,
-      developerAdress: this.developerAdress,
-      hireDate: this.hireDate
+      developerFirstName: this.developerFirstName,
+      developerLastName: this.developerLastName,
+      developerMail: this.developerMail,
+      developerRole: this.developerRole,
     }
     var id: number = this.developerId;
 

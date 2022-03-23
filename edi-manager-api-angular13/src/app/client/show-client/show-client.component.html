@@ -9,20 +9,20 @@
     <thead >
         <th>Id</th>
         <th>Name</th>
-        <th>Surname</th>
-        <th>Age</th>
-        <th>Adress</th>
-        <th>Profile Creation Date</th>
+        <th>Tax Id</th>
+        <th>Contact Name</th>
+        <th>Contact E-Mails</th>
+        <th>Contact Phone Numbers</th>
         <th>Options</th>
     </thead>
     <tbody>
         <tr *ngFor="let client of clientsService.clientsList$|async">
             <td>{{client.clientId}}</td>
             <td>{{client.clientName}}</td>
-            <td>{{client.clientSurName}}</td>
-            <td>{{client.clientAge}}</td>
-            <td>{{client.clientAdress}}</td>
-            <td>{{client.profileCreationDate}}</td>
+            <td>{{client.clientTaxId}}</td>
+            <td>{{client.contactName}}</td>
+            <td>{{client.contactMails}}</td>
+            <td>{{client.contactPhoneNumbers}}</td>
             <td>
               <!-- Edit Button -->
               <button class="btn btn-outline-primary me-2 mb-1"

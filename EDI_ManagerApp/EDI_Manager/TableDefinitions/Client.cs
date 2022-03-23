@@ -6,18 +6,18 @@ namespace EDI_Manager
     {
         public int ClientId { get; set; }
 
-        [StringLength(20)]
-        public string ClientName { get; set; }
-
-        [StringLength(20)]
-        public string ClientSurName { get; set; }
-        public int ClientAge { get; set; }
+        [StringLength(50)]
+        public string ClientName { get; set; } = string.Empty;
+        public int ClientTaxId { get; set; }
 
         [StringLength(200)]
-        public string ClientAdress { get; set; }
+        public string ContactName { get; set; } = string.Empty;
 
-        [StringLength(10)]
-        public string ProfileCreationDate { get; set; }
+        [StringLength(100)]
+        public string ContactMails{ get; set; } = string.Empty;
+
+        [StringLength(100)]
+        public string ContactPhoneNumbers { get; set; } = string.Empty;
 
     }
 }

@@ -30,28 +30,28 @@ namespace EDI_Manager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"), 1L, 1);
 
-                    b.Property<string>("ClientAdress")
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ClientTaxId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactMails")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ContactName")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("ClientAge")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClientName")
+                    b.Property<string>("ContactPhoneNumbers")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("ClientSurName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("ProfileCreationDate")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ClientId");
 
@@ -66,28 +66,25 @@ namespace EDI_Manager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeveloperId"), 1L, 1);
 
-                    b.Property<string>("DeveloperAdress")
+                    b.Property<string>("DeveloperFirstName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("DeveloperLastName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("DeveloperMail")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("DeveloperAge")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeveloperName")
+                    b.Property<string>("DeveloperRole")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("DeveloperSurName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("HireDate")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("DeveloperId");
 
@@ -102,7 +99,7 @@ namespace EDI_Manager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedId"), 1L, 1);
 
-                    b.Property<int>("BusinessDayOfMonth")
+                    b.Property<int?>("BusinessDayOfMonth")
                         .HasColumnType("int");
 
                     b.Property<int>("CarrierId")
@@ -114,10 +111,10 @@ namespace EDI_Manager.Migrations
                     b.Property<int>("DeveloperId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FTPAccountId")
-                        .HasColumnType("int");
+                    b.Property<string>("EndDate")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FeedFileChangesId")
+                    b.Property<int>("FTPAccountId")
                         .HasColumnType("int");
 
                     b.Property<int>("FeedFrequencyId")
@@ -125,25 +122,39 @@ namespace EDI_Manager.Migrations
 
                     b.Property<string>("FeedName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("FeedSecurityTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FeedStatusId")
+                    b.Property<int?>("FrequencyTimes")
                         .HasColumnType("int");
 
-                    b.Property<int>("FrequencyTimes")
-                        .HasColumnType("int");
+                    b.Property<bool>("InProduction")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsChangesOnly")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PGPPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Series")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SourceFileId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TargetFileTypeId")
+                    b.Property<string>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TargetFileMimeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TargetFileTypeFileMimeId")
                         .HasColumnType("int");
 
                     b.Property<int>("WeeklyRecurDay")
@@ -162,17 +173,13 @@ namespace EDI_Manager.Migrations
 
                     b.HasIndex("FTPAccountId");
 
-                    b.HasIndex("FeedFileChangesId");
-
                     b.HasIndex("FeedFrequencyId");
 
                     b.HasIndex("FeedSecurityTypeId");
 
-                    b.HasIndex("FeedStatusId");
-
                     b.HasIndex("SourceFileId");
 
-                    b.HasIndex("TargetFileTypeId");
+                    b.HasIndex("TargetFileTypeFileMimeId");
 
                     b.ToTable("Feeds");
                 });
@@ -185,40 +192,40 @@ namespace EDI_Manager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileId"), 1L, 1);
 
+                    b.Property<int>("FileMimeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FileName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<int>("FileTypeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
                     b.HasKey("FileId");
 
-                    b.HasIndex("FileTypeId");
+                    b.HasIndex("FileMimeId");
 
                     b.ToTable("Files");
                 });
 
-            modelBuilder.Entity("EDI_Manager.FileType", b =>
+            modelBuilder.Entity("EDI_Manager.FileMime", b =>
                 {
-                    b.Property<int>("FileTypeId")
+                    b.Property<int>("FileMimeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileTypeId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileMimeId"), 1L, 1);
 
-                    b.Property<string>("FileTypeName")
+                    b.Property<string>("FileMimeName")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("FileTypeId");
+                    b.HasKey("FileMimeId");
 
-                    b.ToTable("FileTypes");
+                    b.ToTable("FileMimes");
                 });
 
             modelBuilder.Entity("EDI_Manager.SSHKey", b =>
@@ -307,23 +314,6 @@ namespace EDI_Manager.Migrations
                     b.ToTable("CarrierTypes");
                 });
 
-            modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedFileChanges", b =>
-                {
-                    b.Property<int>("FeedFileChangesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedFileChangesId"), 1L, 1);
-
-                    b.Property<string>("FeedFileChangesName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FeedFileChangesId");
-
-                    b.ToTable("FeedFileChanges");
-                });
-
             modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedFrequency", b =>
                 {
                     b.Property<int>("FeedFrequencyId")
@@ -356,23 +346,6 @@ namespace EDI_Manager.Migrations
                     b.HasKey("FeedSecurityTypeId");
 
                     b.ToTable("FeedSecurityType");
-                });
-
-            modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedStatus", b =>
-                {
-                    b.Property<int>("FeedStatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedStatusId"), 1L, 1);
-
-                    b.Property<string>("FeedStatusName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FeedStatusId");
-
-                    b.ToTable("FeedStatus");
                 });
 
             modelBuilder.Entity("EDI_Manager.TableDefinitions.FTPAccount", b =>
@@ -454,12 +427,6 @@ namespace EDI_Manager.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EDI_Manager.TableDefinitions.FeedFileChanges", "FeedFileChanges")
-                        .WithMany()
-                        .HasForeignKey("FeedFileChangesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("EDI_Manager.TableDefinitions.FeedFrequency", "FeedFrequency")
                         .WithMany()
                         .HasForeignKey("FeedFrequencyId")
@@ -472,23 +439,15 @@ namespace EDI_Manager.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EDI_Manager.TableDefinitions.FeedStatus", "FeedStatus")
-                        .WithMany()
-                        .HasForeignKey("FeedStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("EDI_Manager.File", "SourceFile")
                         .WithMany()
                         .HasForeignKey("SourceFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EDI_Manager.FileType", "TargetFileType")
+                    b.HasOne("EDI_Manager.FileMime", "TargetFileType")
                         .WithMany()
-                        .HasForeignKey("TargetFileTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TargetFileTypeFileMimeId");
 
                     b.Navigation("Carrier");
 
@@ -498,13 +457,9 @@ namespace EDI_Manager.Migrations
 
                     b.Navigation("FTPAccount");
 
-                    b.Navigation("FeedFileChanges");
-
                     b.Navigation("FeedFrequency");
 
                     b.Navigation("FeedSecurityType");
-
-                    b.Navigation("FeedStatus");
 
                     b.Navigation("SourceFile");
 
@@ -513,13 +468,13 @@ namespace EDI_Manager.Migrations
 
             modelBuilder.Entity("EDI_Manager.File", b =>
                 {
-                    b.HasOne("EDI_Manager.FileType", "FileType")
+                    b.HasOne("EDI_Manager.FileMime", "FileMime")
                         .WithMany()
-                        .HasForeignKey("FileTypeId")
+                        .HasForeignKey("FileMimeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FileType");
+                    b.Navigation("FileMime");
                 });
 
             modelBuilder.Entity("EDI_Manager.TableDefinitions.Carrier", b =>

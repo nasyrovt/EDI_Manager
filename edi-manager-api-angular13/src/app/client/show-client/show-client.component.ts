@@ -1,4 +1,4 @@
-import { FileTypesApiService } from './../../services/file-types-api.service';
+import { FileMimesApiService } from '../../services/file-mimes-api.service';
 import { Component, OnInit } from '@angular/core';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
@@ -17,7 +17,7 @@ export class ShowClientComponent implements OnInit {
   client: any;
 
 
-  constructor(public feedsService: FeedsApiService, public fileTypesService: FileTypesApiService,
+  constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService,
     public clientsService: ClientsApiService, public developersService: DevelopersApiService,
     public filesService: FilesService) { }
 
@@ -25,18 +25,13 @@ export class ShowClientComponent implements OnInit {
   }
 
   modalAdd() {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
     this.client = {
       clientId: 0,
       clientName: null,
-      clientSurName: null,
-      clientAge: null,
-      clientAdress: null,
-      profileCreationDate: mm + '/' + dd + '/' + yyyy
+      clientTaxId: null,
+      contactName: null,
+      contactMails: null,
+      contactPhoneNumbers: null
     }
     this.modalTitle = "New Client";
     this.activateAddEditClientComponent = true;

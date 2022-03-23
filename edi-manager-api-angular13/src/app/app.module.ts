@@ -11,7 +11,7 @@ import { AddEditFeedComponent } from './feed/add-edit-feed/add-edit-feed.compone
 
 import { FeedsApiService } from './services/feeds-api.service';
 import { DevelopersApiService } from 'src/app/services/developers-api.service';
-import { FileTypesApiService } from 'src/app/services/file-types-api.service';
+import { FileMimesApiService } from 'src/app/services/file-mimes-api.service';
 import { ClientsApiService } from 'src/app/services/clients-api.service';
 import { FilesService } from 'src/app/services/files-api.service';
 
@@ -32,6 +32,10 @@ import { AddEditDeveloperComponent } from './developer/add-edit-developer/add-ed
 import { AccountsComponent } from './accounts/accounts.component';
 import { ShowAccountsComponent } from './accounts/show-accounts/show-accounts.component';
 import { AddEditAccountsComponent } from './accounts/add-edit-accounts/add-edit-accounts.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +55,8 @@ import { AddEditAccountsComponent } from './accounts/add-edit-accounts/add-edit-
     AddEditDeveloperComponent,
     AccountsComponent,
     ShowAccountsComponent,
-    AddEditAccountsComponent
+    AddEditAccountsComponent,
+    UploadFileComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +67,11 @@ import { AddEditAccountsComponent } from './accounts/add-edit-accounts/add-edit-
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatDatepickerModule
   ],
-  providers: [FeedsApiService, FilesService, ClientsApiService, FileTypesApiService, DevelopersApiService],
+  providers: [FeedsApiService, FilesService, ClientsApiService, FileMimesApiService, DevelopersApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

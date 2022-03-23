@@ -1,4 +1,4 @@
-import { FileTypesApiService } from './file-types-api.service';
+import { FileMimesApiService } from './file-mimes-api.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -11,55 +11,50 @@ export class FeedsApiService {
   feedsList$!: Observable<any[]>;
   carriersList$!: Observable<any[]>;
   carrierTypesList$!: Observable<any[]>;
-  fileChangesList$!: Observable<any[]>;
+  // fileChangesList$!: Observable<any[]>;
   frequenciesList$!: Observable<any[]>;
   securityTypesList$!: Observable<any[]>;
-  statusesList$!: Observable<any[]>;
+  // statusesList$!: Observable<any[]>;
 
   carriersList: any = [];
   carriersMap: Map<number, string> = new Map();
   carrierTypesList: any = [];
   carrierTypesMap: Map<number, string> = new Map();
-  fileChangesList: any = [];
-  fileChangesMap: Map<number, string> = new Map();
+  // fileChangesList: any = [];
+  // fileChangesMap: Map<number, string> = new Map();
   frequenciesList: any = [];
   frequenciesMap: Map<number, string> = new Map();
   securityTypesList: any = [];
   securityTypesMap: Map<number, string> = new Map();
-  statusesList: any = [];
-  statusesMap: Map<number, string> = new Map();
+  // statusesList: any = [];
+  // statusesMap: Map<number, string> = new Map();
 
   readonly feedsAPIUrl = "https://localhost:7255/api";
 
-  constructor(private http: HttpClient, private fileTypesService: FileTypesApiService) {
+  constructor(private http: HttpClient, private fileTypesService: FileMimesApiService) {
     this.feedsList$ = this.getFeedsList();
     this.carriersList$ = this.getCarriersList();
-    this.fileChangesList$ = this.getFileChangesList();
+    // this.fileChangesList$ = this.getFileChangesList();
     this.frequenciesList$ = this.getFrequenciesList();
     this.securityTypesList$ = this.getSecurityTypesList();
-    this.statusesList$ = this.getStatusesList();
+    // this.statusesList$ = this.getStatusesList();
     this.carrierTypesList$ = this.getCarrierTypesList();
     this.refreshAllMaps();
   }
 
   private refreshAllMaps() {
     this.refreshCarriersMap();
-    this.refreshFileChangesMap();
+    // this.refreshFileChangesMap();
     this.refreshFrequenciesMap();
     this.refreshSecurTypesMap();
-    this.refreshStatusesMap();
+    // this.refreshStatusesMap();
     this.refreshCarrierTypesMap();
   }
 
-  refreshStatusesMap() {
-    this.getStatusesList().subscribe(data => {
-      this.statusesList = data;
-
-      for (let i = 0; i < data.length; i++) {
-        this.statusesMap.set(this.statusesList[i].feedStatusId, this.statusesList[i].feedStatusName);
-      }
-    });
-  }
+  // refreshStatusesMap() {
+  //   this.statusesMap.set(0, "TEST");
+  //   this.statusesMap.set(1, "PROD");
+  // }
 
   refreshSecurTypesMap() {
     this.getSecurityTypesList().subscribe(data => {
@@ -81,15 +76,15 @@ export class FeedsApiService {
     });
   }
 
-  refreshFileChangesMap() {
-    this.getFileChangesList().subscribe(data => {
-      this.fileChangesList = data;
+  // refreshFileChangesMap() {
+  //   this.getFileChangesList().subscribe(data => {
+  //     this.fileChangesList = data;
 
-      for (let i = 0; i < data.length; i++) {
-        this.fileChangesMap.set(this.fileChangesList[i].feedFileChangesId, this.fileChangesList[i].feedFileChangesName);
-      }
-    });
-  }
+  //     for (let i = 0; i < data.length; i++) {
+  //       this.fileChangesMap.set(this.fileChangesList[i].feedFileChangesId, this.fileChangesList[i].feedFileChangesName);
+  //     }
+  //   });
+  // }
 
   refreshCarriersMap() {
     this.getCarriersList().subscribe(data => {
