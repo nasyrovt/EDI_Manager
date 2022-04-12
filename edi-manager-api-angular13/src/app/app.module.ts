@@ -35,6 +35,9 @@ import { AddEditAccountsComponent } from './accounts/add-edit-accounts/add-edit-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { PlatformsComponent } from './platforms/platforms.component';
+import { ShowPlatformComponent } from './platforms/show-platform/show-platform.component';
+import { AddEditPlatformComponent } from './platforms/add-edit-platform/add-edit-platform.component';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
     AccountsComponent,
     ShowAccountsComponent,
     AddEditAccountsComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    PlatformsComponent,
+    ShowPlatformComponent,
+    AddEditPlatformComponent
   ],
   imports: [
     BrowserModule,

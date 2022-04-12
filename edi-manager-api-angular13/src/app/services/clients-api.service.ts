@@ -23,7 +23,7 @@ export class ClientsApiService {
       this.clientsList = data;
 
       for (let i = 0; i < data.length; i++) {
-        this.clientsMap.set(this.clientsList[i].clientId, this.clientsList[i].clientName + " " + this.clientsList[i].clientSurName);
+        this.clientsMap.set(this.clientsList[i].clientId, this.clientsList[i].clientName);
       }
     });
   }

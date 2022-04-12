@@ -131,17 +131,16 @@ namespace EDI_Manager.Migrations
                     b.Property<int?>("FrequencyTimes")
                         .HasColumnType("int");
 
-                    b.Property<bool>("InProduction")
-                        .HasColumnType("bit");
+                    b.Property<int>("InProduction")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsChangesOnly")
-                        .HasColumnType("bit");
+                    b.Property<int>("IsChangesOnly")
+                        .HasColumnType("int");
 
                     b.Property<string>("PGPPassword")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Series")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SourceFileId")
@@ -157,7 +156,7 @@ namespace EDI_Manager.Migrations
                     b.Property<int?>("TargetFileTypeFileMimeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("WeeklyRecurDay")
+                    b.Property<int?>("WeeklyRecurDay")
                         .HasColumnType("int");
 
                     b.Property<string>("ZipPassword")
@@ -274,18 +273,9 @@ namespace EDI_Manager.Migrations
                     b.Property<int>("CarrierTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MasterPolicyNumber")
-                        .HasColumnType("int");
-
                     b.Property<string>("Phones")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SubGroupId")
-                        .HasColumnType("int");
 
                     b.Property<string>("WebSite")
                         .HasColumnType("nvarchar(max)");

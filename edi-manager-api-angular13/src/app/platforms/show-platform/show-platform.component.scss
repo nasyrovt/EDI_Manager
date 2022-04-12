@@ -1,0 +1,40 @@
+#add-platform-success-alert,
+#update-platform-success-alert,
+#delete-platform-success-alert {
+  display: none;
+}
+
+#add-platform-success-alert,
+#update-platform-success-alert,
+#delete-platform-success-alert {
+  animation-name: fadeInAndOut;
+  animation-duration: 4s;
+}
+
+@-webkit-keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

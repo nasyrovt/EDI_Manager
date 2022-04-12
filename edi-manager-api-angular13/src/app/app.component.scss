@@ -1,0 +1,43 @@
+.nav[role=tablist],
+.nav[role=tablist]+.tab-content {
+  margin-left: -0.75rem;
+  width: calc(100% + 1.5rem);
+}
+
+.tab-content {
+  height: 100%;
+}
+
+.tab-pane {
+  padding: 0 0.5rem;
+}
+
+#admin-tab,
+#dev-tab{
+  .nav-item.nav-link {
+    color: #0d6efd;
+    background: transparent;
+  }
+
+  .nav-item.nav-link.active{
+    color: black;
+    background: #6c757d;
+  }
+}
+
+#adminSideBar,
+#devSideBar {
+  .nav-link {
+    color: black;
+    background: transparent;
+  }
+
+  .nav-link.active {
+    color: white;
+    background: #0d6efd; // bootstrap primary color
+  }
+
+  li {
+    width: 100%;
+  }
+}

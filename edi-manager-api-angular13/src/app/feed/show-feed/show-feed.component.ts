@@ -49,7 +49,7 @@ export class ShowFeedComponent implements OnInit {
       ftpAccountId: null,
       developerId: null
     }
-    this.modalTitle = "New Feed";
+    this.modalTitle = "EDI Manager > Feeds > Add New Feed";
     this.activateAddEditFeedComponent = true;
   }
 

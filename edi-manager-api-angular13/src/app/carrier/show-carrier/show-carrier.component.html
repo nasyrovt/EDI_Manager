@@ -1,19 +1,18 @@
-<!-- Button feed trigger modal -->
-<button type="button" class="btn btn-primary float-end m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-(click) =modalAdd()>
-  Add Carrier
-</button>
+<div class="d-flex justify-content-end">
+  <!-- Button feed trigger modal -->
+  <button type="button" class="btn btn-primary float-end m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+  (click) =modalAdd()>
+    Add Carrier
+  </button>
+</div>
 
-
-<table class="table">
+<div class="table-responsive">
+<table class="table table-hover">
     <thead >
         <th>Id</th>
         <th>Name</th>
         <th>Carrier Type</th>
         <th>Tax Id</th>
-        <th>Group Id</th>
-        <th>Subgroup Id</th>
-        <th>Master Policy Number</th>
         <th>Adresse 1</th>
         <th>Adresse 2</th>
         <th>Website</th>
@@ -25,9 +24,6 @@
             <td>{{carrier.carrierName}}</td>
             <td>{{feedsService.carrierTypesMap.get(carrier.carrierTypeId)}}</td>
             <td>{{carrier.carrierTaxId}}</td>
-            <td>{{carrier.groupId}}</td>
-            <td>{{carrier.subGroupId}}</td>
-            <td>{{carrier.masterPolicyNumber}}</td>
             <td>{{carrier.adress1}}</td>
             <td>{{carrier.adress2}}</td>
             <td>{{carrier.webSite}}</td>
@@ -54,6 +50,8 @@
         </tr>
     </tbody>
 </table>
+</div>
+
 
 <!-- Add or edit carrier modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

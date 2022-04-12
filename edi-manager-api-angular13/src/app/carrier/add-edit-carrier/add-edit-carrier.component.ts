@@ -31,9 +31,6 @@ export class AddEditCarrierComponent implements OnInit {
   carrierName: string = "";
   carrierTypeId!: number;
   carrierTaxId!: number;
-  groupId!: number;
-  subGroupId!: number;
-  masterPolicyNumber!: number;
   adress1: string = "";
   adress2: string = "";
   webSite: string = "";
@@ -44,9 +41,6 @@ export class AddEditCarrierComponent implements OnInit {
     this.carrierName = this.carrier.carrierName;
     this.carrierTypeId = this.carrier.carrierTypeId;
     this.carrierTaxId = this.carrier.carrierTaxId;
-    this.groupId = this.carrier.groupId;
-    this.subGroupId = this.carrier.subGroupId;
-    this.masterPolicyNumber = this.carrier.masterPolicyNumber;
     this.adress1 = this.carrier.adress1;
     this.adress2 = this.carrier.adress2;
     this.webSite = this.carrier.webSite;
@@ -65,9 +59,6 @@ export class AddEditCarrierComponent implements OnInit {
       carrierName: this.carrierName,
       carrierTypeId: this.carrierTypeId,
       carrierTaxId: this.carrierTaxId,
-      groupId: this.groupId,
-      subGroupId: this.subGroupId,
-      masterPolicyNumber: this.masterPolicyNumber,
       adress1: this.adress1,
       adress2: this.adress2,
       webSite: this.webSite,
@@ -98,9 +89,6 @@ export class AddEditCarrierComponent implements OnInit {
       carrierName: this.carrierName,
       carrierTypeId: this.carrierTypeId,
       carrierTaxId: this.carrierTaxId,
-      groupId: this.groupId,
-      subGroupId: this.subGroupId,
-      masterPolicyNumber: this.masterPolicyNumber,
       adress1: this.adress1,
       adress2: this.adress2,
       webSite: this.webSite,

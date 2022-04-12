@@ -71,6 +71,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "WinSCP": {
+              "target": "Package",
+              "version": "[5.19.6, )"
             }
           },
           "imports": [

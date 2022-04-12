@@ -23,8 +23,12 @@ namespace EDI_Manager
 
         public FileMime? TargetFileType { get; set; }
 
-        public bool InProduction { get; set; } = false;
-        public bool IsChangesOnly { get; set; } = false;
+        [Range(0,2)]
+        public int InProduction { get; set; }
+
+        [Range(0, 2)]
+        public int IsChangesOnly { get; set; }
+        
 
 
         //Frequency related properties
@@ -36,10 +40,10 @@ namespace EDI_Manager
 
         [Range(1, 13)]
         public int? FrequencyTimes { get; set; }
-        public string Series { get; set; } = string.Empty;
+        public string? Series { get; set; } = string.Empty;
 
         [Range(1, 8)]
-        public int WeeklyRecurDay { get; set; }
+        public int? WeeklyRecurDay { get; set; }
         public string StartDate { get; set; } = string.Empty;
         public string? EndDate { get; set; } = string.Empty;
 

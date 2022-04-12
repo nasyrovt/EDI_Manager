@@ -534,3 +534,5 @@ E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\obj\Debug\net6.0\refint\EDI_Ma
 E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\obj\Debug\net6.0\EDI_Manager.pdb
 E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\obj\Debug\net6.0\EDI_Manager.genruntimeconfig.cache
 E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\obj\Debug\net6.0\ref\EDI_Manager.dll
+E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\bin\Debug\net6.0\WinSCP.exe
+E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\bin\Debug\net6.0\WinSCPnet.dll

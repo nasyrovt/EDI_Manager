@@ -1,0 +1,11 @@
+<form>
+    <!-- platform name input -->
+    <div class="mb-3">
+        <label for="platformName" class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="platformName" name="platformName">
+    </div>
+
+    <button (click) ="addPlatform()" *ngIf="platform.platformId==0" class="btn btn-primary">Add</button>
+    <button (click) ="updatePlatform()" *ngIf="platform.platformId!=0" class="btn btn-primary">Update</button>
+
+</form>

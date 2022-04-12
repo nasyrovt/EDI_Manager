@@ -14,7 +14,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.2",
-          "Swashbuckle.AspNetCore": "6.2.3"
+          "Swashbuckle.AspNetCore": "6.2.3",
+          "WinSCP": "5.19.6"
         },
         "runtime": {
           "EDI_Manager.dll": {}
@@ -2310,6 +2311,14 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
+      },
+      "WinSCP/5.19.6": {
+        "runtime": {
+          "lib/netstandard2.0/WinSCPnet.dll": {
+            "assemblyVersion": "1.8.3.12002",
+            "fileVersion": "1.8.3.12002"
+          }
+        }
       }
     }
   },
@@ -3592,6 +3601,13 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "WinSCP/5.19.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WqzIKFjPTAfDw/L2N7nfZ7584v9/1KslTgfqqksRjBhw81KOtOHMtsiBO7CLLF6CxDz0MZ9g2v2cWijcFrFr7A==",
+      "path": "winscp/5.19.6",
+      "hashPath": "winscp.5.19.6.nupkg.sha512"
     }
   }
 }

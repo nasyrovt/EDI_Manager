@@ -76,3 +76,13 @@
   outline: none;
 }
 
+.no-border-right {
+  border-right: 0;
+  box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+
+.no-border-left {
+  border-left: 0;
+  box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+  background: none;
+}

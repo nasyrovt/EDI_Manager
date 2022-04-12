@@ -34,27 +34,18 @@ export class FeedsApiService {
   constructor(private http: HttpClient, private fileTypesService: FileMimesApiService) {
     this.feedsList$ = this.getFeedsList();
     this.carriersList$ = this.getCarriersList();
-    // this.fileChangesList$ = this.getFileChangesList();
     this.frequenciesList$ = this.getFrequenciesList();
     this.securityTypesList$ = this.getSecurityTypesList();
-    // this.statusesList$ = this.getStatusesList();
     this.carrierTypesList$ = this.getCarrierTypesList();
     this.refreshAllMaps();
   }
 
   private refreshAllMaps() {
     this.refreshCarriersMap();
-    // this.refreshFileChangesMap();
     this.refreshFrequenciesMap();
     this.refreshSecurTypesMap();
-    // this.refreshStatusesMap();
     this.refreshCarrierTypesMap();
   }
-
-  // refreshStatusesMap() {
-  //   this.statusesMap.set(0, "TEST");
-  //   this.statusesMap.set(1, "PROD");
-  // }
 
   refreshSecurTypesMap() {
     this.getSecurityTypesList().subscribe(data => {
@@ -75,16 +66,6 @@ export class FeedsApiService {
       }
     });
   }
-
-  // refreshFileChangesMap() {
-  //   this.getFileChangesList().subscribe(data => {
-  //     this.fileChangesList = data;
-
-  //     for (let i = 0; i < data.length; i++) {
-  //       this.fileChangesMap.set(this.fileChangesList[i].feedFileChangesId, this.fileChangesList[i].feedFileChangesName);
-  //     }
-  //   });
-  // }
 
   refreshCarriersMap() {
     this.getCarriersList().subscribe(data => {
@@ -140,7 +121,8 @@ export class FeedsApiService {
   }
 
   updateCarrier(id: number | string, data: any) {
-    return this.http.put(this.feedsAPIUrl + "/carriers/" + id, data);
+    const response = this.http.put(this.feedsAPIUrl + "/carriers/" + id, data);
+    return response;
   }
 
   deleteCarrier(id: number | string) {

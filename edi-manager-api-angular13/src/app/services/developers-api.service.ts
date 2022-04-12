@@ -24,7 +24,7 @@ export class DevelopersApiService {
 
       for (let i = 0; i < data.length; i++) {
         this.developerMap.set(this.devsList[i].developerId,
-          this.devsList[i].developerName + " " + this.devsList[i].developerSurName);
+          this.devsList[i].developerFirstName + " " + this.devsList[i].developerLastName);
       }
     }
     );

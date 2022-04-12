@@ -1,3 +1,4 @@
+import { SftpService } from './../../services/sftp.service';
 import { FtpserverApiService } from './../../services/ftpserver-api.service';
 import { ClientsApiService } from './../../services/clients-api.service';
 import { FileMimesApiService } from '../../services/file-mimes-api.service';
@@ -39,35 +40,16 @@ export class AddEditFeedComponent implements OnInit {
 
 
   constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService, public fileService: FilesService,
-    public clientsService: ClientsApiService, public developersService: DevelopersApiService, public serversService: FtpserverApiService) { }
+    public clientsService: ClientsApiService, public developersService: DevelopersApiService, public serversService: FtpserverApiService, public sftp: SftpService) { }
 
-  // id: 0,
-  // feedName: null,
-  // sourceFileId: null,
-  // targetFileMimeId: null,
-  // inProduction: null,
-  // isChangesOnly: null,
-  // feedFrequencyId: null,
-  // businessDayOfMonth: null,
-  // frequencyTimes: null,
-  // series: null,
-  // weeklyRecurDay: null,
-  // startDate: null,
-  // endDate: null,
-  // feedSecurityTypeId: null,
-  // zipPassword: null,
-  // pgpPassword: null,
-  // clientId: null,
-  // carrierId: null,
-  // ftpAccountId: null,
-  // developerId: null
+
   @Input() feed: any;
   id: number = 0;
   feedName: string = "";
   sourceFileId!: number;
   targetFileMimeId!: number;
-  inProduction!: boolean;
-  isChangesOnly!: boolean;
+  inProduction!: number;
+  isChangesOnly!: number;
   feedFrequencyId!: number;
   businessDayOfMonth!: number;
   frequencyTimes!: number;
@@ -212,5 +194,9 @@ export class AddEditFeedComponent implements OnInit {
 
   toggleZipPassword() {
     this.showZipPass = !this.showZipPass;
+  }
+
+  testConn() {
+    this.sftp.testConnection();
   }
 }
