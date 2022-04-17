@@ -1,0 +1,81 @@
+.parent {
+    margin: 1rem;
+    padding: 0.4rem 0.4rem;
+  }
+  .child {
+    display: inline-block;
+    padding: 0.2rem 0.2rem;
+    vertical-align: middle;
+  }
+  
+  #connecting-spinner,
+  #test-error-alert,
+  #test-success-alert {
+    display: none;
+    width: 15vw;
+  }
+  
+  #test-error-alert{
+    animation-name: errorFadeInAndOut;
+    animation-duration: 5s;
+  }
+  #test-success-alert {
+    animation-name: successFadeInAndOut;
+    animation-duration: 4s;
+  }
+  
+  @-webkit-keyframes successFadeInAndOut {
+    0% {
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes successFadeInAndOut {
+    0% {
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @-webkit-keyframes errorFadeInAndOut {
+    0% {
+      opacity: 0;
+    }
+  
+    10% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes errorFadeInAndOut {
+    0% {
+      opacity: 0;
+    }
+  
+    10% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }

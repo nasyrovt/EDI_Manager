@@ -34,16 +34,10 @@ namespace EDI_Manager
 
                     TransferOperationResult transferResult;
                     transferResult =
-                                    session.PutFiles(@"d:\toupload\*", "/home/user/", false, transferOptions);
+                                    session.GetFiles(@"/public/", @"E:\Courses\EDI_Manager\FilesForTesting", false, transferOptions);
 
                     // Throw on any error
                     transferResult.Check();
-
-                    // Print results
-                    foreach (TransferEventArgs transfer in transferResult.Transfers)
-                    {
-                        Console.WriteLine("Upload of {0} succeeded", transfer.FileName);
-                    }
                 }
 
                 return 0;

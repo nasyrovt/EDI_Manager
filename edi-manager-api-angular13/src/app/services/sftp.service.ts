@@ -11,7 +11,10 @@ export class SftpService {
 
   constructor(private http: HttpClient) { }
 
-  testConnection(): Observable<any[]> {
-    return this.http.get<any>(this.APIUrl + "/connection");
+  testConnection(id: number): Observable<string> {
+    return this.http.get(this.APIUrl + "/connection/" + id, { responseType: 'text' });
   }
+
+  
+
 }

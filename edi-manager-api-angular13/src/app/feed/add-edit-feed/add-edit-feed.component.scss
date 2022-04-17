@@ -11,6 +11,8 @@
   overflow: auto;
 }
 
+
+
 .emails.emails-input .email-chip {
   box-sizing: border-box;
   position: relative;
@@ -86,3 +88,92 @@
   box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
   background: none;
 }
+
+.parent {
+  margin: 1rem;
+  padding: 0.4rem 0.4rem;
+}
+.child {
+  display: inline-block;
+  padding: 0.2rem 0.2rem;
+  vertical-align: middle;
+}
+
+.mat-radio-button {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+#connecting-spinner,
+#test-error-alert,
+#test-success-alert {
+  display: none;
+  width: 15vw;
+}
+
+#test-error-alert{
+  animation-name: errorFadeInAndOut;
+  animation-duration: 60s;
+}
+
+#test-success-alert {
+  animation-name: fadeInAndOut;
+  animation-duration: 4s;
+}
+
+@-webkit-keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes errorFadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes errorFadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+

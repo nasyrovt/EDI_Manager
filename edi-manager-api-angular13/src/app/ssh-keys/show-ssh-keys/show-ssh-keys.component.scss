@@ -1,0 +1,40 @@
+#add-key-success-alert,
+#update-key-success-alert,
+#delete-key-success-alert {
+  display: none;
+}
+
+#add-key-success-alert,
+#update-key-success-alert,
+#delete-key-success-alert {
+  animation-name: fadeInAndOut;
+  animation-duration: 4s;
+}
+
+@-webkit-keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

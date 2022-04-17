@@ -1,0 +1,28 @@
+<mat-form-field>
+    <mat-chip-list #chipList aria-label="Choose a date" (click)="picker.open()">
+      <mat-chip
+        *ngFor="let value of model"
+        [selectable]="false"
+        [removable]="true"
+        (removed)="remove(value)"
+      >
+        {{ value | date }}
+        <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+      </mat-chip>
+      <input
+        [value]="resetModel"
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a date"
+        (dateChange)="dateChanged($event)"
+        [matChipInputFor]="chipList"
+        hidden
+      />
+    </mat-chip-list>
+    <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker
+      #picker
+      [startAt]="init"
+      [dateClass]="dateClass"
+    ></mat-datepicker>
+  </mat-form-field>

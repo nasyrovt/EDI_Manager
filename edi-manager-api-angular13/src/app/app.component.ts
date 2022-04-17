@@ -19,7 +19,8 @@ export class AppComponent {
     [3, false], //activateDevelopers
     [4, false], //activateCarriers
     [5, false], //activateFTPAccounts
-    [6, false]  //activatePlatforms
+    [6, false],  //activatePlatforms
+    [7, false]  //activateSSHKeys
   ]);
 
   public setAllFalse() {

@@ -38,6 +38,15 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 import { PlatformsComponent } from './platforms/platforms.component';
 import { ShowPlatformComponent } from './platforms/show-platform/show-platform.component';
 import { AddEditPlatformComponent } from './platforms/add-edit-platform/add-edit-platform.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { SeriesDatePickerComponent } from './series-date-picker/series-date-picker.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { SshKeysComponent } from './ssh-keys/ssh-keys.component';
+import { ShowSshKeysComponent } from './ssh-keys/show-ssh-keys/show-ssh-keys.component';
+import { AddEditSshKeysComponent } from './ssh-keys/add-edit-ssh-keys/add-edit-ssh-keys.component';
+
 
 
 @NgModule({
@@ -62,7 +71,11 @@ import { AddEditPlatformComponent } from './platforms/add-edit-platform/add-edit
     UploadFileComponent,
     PlatformsComponent,
     ShowPlatformComponent,
-    AddEditPlatformComponent
+    AddEditPlatformComponent,
+    SeriesDatePickerComponent,
+    SshKeysComponent,
+    ShowSshKeysComponent,
+    AddEditSshKeysComponent
   ],
   imports: [
     BrowserModule,
@@ -73,9 +86,13 @@ import { AddEditPlatformComponent } from './platforms/add-edit-platform/add-edit
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatChipsModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
     MatIconModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [FeedsApiService, FilesService, ClientsApiService, FileMimesApiService, DevelopersApiService],
   bootstrap: [AppComponent]

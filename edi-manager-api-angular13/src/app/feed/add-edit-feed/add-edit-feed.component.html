@@ -3,6 +3,13 @@
         <div class="row">
             <h4>Feed Informations</h4>
             <div class="col">
+                <div calss ="row">
+                    <!-- Feed name input -->
+                    <div class="mb-3">
+                        <label for="feedName" class="form-label">Feed Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="feedName" name="feedName">
+                    </div>
+                </div>
                 <div class="row">
                     <!-- Client input -->
                     <div class="mb-3">
@@ -12,7 +19,19 @@
                         </select>
                     </div>
                 </div>
-
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="sourceFileId" class="form-label">Source File</label>
+                        <select class="form-select" name="sourceFile" id="sourceFile"
+                        [(ngModel)] = "sourceFileId">
+                            <option *ngFor="let file of filesList$|async" [value]="file.fileId">
+                                {{file.fileName +"."+ fileTypesService.fileMimesMap.get(file.fileMimeId)}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
                 <div class="row">
                     <!-- Carrier input -->
                     <div class="mb-3">
@@ -37,26 +56,28 @@
                         </select>
                     </div>
                 </div>
-
-                <div calss ="row">
-                    <!-- Feed name input -->
-                    <div class="mb-3">
-                        <label for="feedName" class="form-label">Feed Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="feedName" name="feedName">
+                <div calss="row">
+                    <div>
+                        <div>
+                            <mat-radio-group aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="isChangesOnly" name="isChangesOnly" id="isChangesOnly" color="primary">
+                                <mat-radio-button [value]="0">{{"Full"}}</mat-radio-button>
+                                <mat-radio-button [value]="1">{{"Changes Only"}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div>
+                            <mat-radio-group aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="inProduction" name="inProduction" id="inProduction" color="warn">
+                                <mat-radio-button [value]="0">{{"Test"}}</mat-radio-button>
+                                <mat-radio-button [value]="1">{{"Production"}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="row">
-                    <div class="mb-3">
-                        <label for="isChangesOnly" class="form-label">Changes Records</label>
-                        <select class="form-select" [(ngModel)] = "isChangesOnly" name="isChangesOnly" id="isChangesOnly">
-                            <option [value]="1">{{"ChangesOnly"}}</option>
-                            <option [value]="0">{{"Full"}}</option>
-                        </select>
-                    </div>
-                </div>
-
+            <!-- <div class="col">
                 <div class="row">
                     <div class="mb-3">
                         <label for="inProduction" class="form-label">Test/Production</label>
@@ -66,20 +87,8 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <div class="mb-3">
-                        <label for="sourceFileId" class="form-label">Source File</label>
-                        <select class="form-select" name="sourceFile" id="sourceFile"
-                        [(ngModel)] = "sourceFileId">
-                            <option *ngFor="let file of filesList$|async" [value]="file.fileId">
-                                {{file.fileName +"."+ fileTypesService.fileMimesMap.get(file.fileMimeId)}}
-                            </option>
-                        </select>
-                    </div>
-                </div>   
-            </div>
+            </div> -->
+            
             <div class="row">
                 <h4>Delivery Informations</h4>
             </div> 
@@ -93,7 +102,6 @@
                         </select>
                     </div>
                 </div>
-                
                     <div class="col-3">
                         <div class="mb-3">
                             <label for="startDate" class="form-label">Start Date</label>
@@ -131,6 +139,7 @@
                     <label for="series" class="form-label">Series</label>
                     <input type="text" class="form-control" [(ngModel)]="series" name="series">
                 </div>
+                
 
                 <!-- Weekly Recur Day input -->
                 <div class="mb-3" *ngIf="feedFrequencyId == 1">
@@ -203,7 +212,7 @@
                                 {{server.ftpHost}}
                             </option>
                         </select>
-                        <button class="btn btn-outline-primary" type="button" id="button-addon2" onclick="testConn()">Test</button>
+                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="testConn()">Test</button>
                     </div>
                 </div>
                 <div class="col-2">
@@ -217,13 +226,20 @@
                     </div>
                 </div>
             </div>
+            <div class="parent" id="connecting-spinner">
+                <div class="child"><mat-progress-spinner mode="indeterminate" color="warn" diameter="25"></mat-progress-spinner></div>
+                <div class="child"><label class="form-label">Connecting...</label></div>
+            </div>
+            <div class="alert alert-success" role="alert" id="test-success-alert">
+                {{messageConnectionTest}}
+            </div>
+            <div class="alert alert-danger" role="alert" id="test-error-alert">
+                {{messageConnectionTest}}
+            </div>
         </div>
 
         <button (click) ="addFeed()" *ngIf="feed.id==0" class="btn btn-primary">Add</button>
         <button (click) ="updateFeed()" *ngIf="feed.id!=0" class="btn btn-primary">Update</button>
     </div>
-
-    
-
 </form>
 

@@ -1,0 +1,17 @@
+<form>
+    <!-- platform name input -->
+    <div class="mb-3">
+        <label for="ftpHost" class="form-label">Host</label>
+        <input type="text" class="form-control" [(ngModel)]="ftpHost" name="ftpHost">
+    </div>
+
+    <div class="mb-3">
+        <label for="key" class="form-label">Key</label>
+        <input type="text" class="form-control" [(ngModel)]="key" name="key">
+    </div>
+
+    <button (click) ="addKey()" *ngIf="ssh.sshKeyId==0" class="btn btn-primary">Add</button>
+    <button (click) ="updateKey()" *ngIf="ssh.sshKeyId!=0" class="btn btn-primary">Update</button>
+
+</form>
+

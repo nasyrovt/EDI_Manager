@@ -8,6 +8,7 @@ import { FeedsApiService } from 'src/app/services/feeds-api.service';
 import { DevelopersApiService } from 'src/app/services/developers-api.service';
 import { FilesService } from 'src/app/services/files-api.service';
 import { EmailsChipComponent } from 'src/app/emails-chip/emails-chip.component';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class AddEditFeedComponent implements OnInit {
 
   showPGPPass = false;
   showZipPass = false;
+
+  messageConnectionTest = "";
 
   days: number[] = new Array(31).fill(1).map((x, i) => i + 1)
   recurDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -48,8 +51,8 @@ export class AddEditFeedComponent implements OnInit {
   feedName: string = "";
   sourceFileId!: number;
   targetFileMimeId!: number;
-  inProduction!: number;
-  isChangesOnly!: number;
+  inProduction: number = 0;
+  isChangesOnly: number = 1;
   feedFrequencyId!: number;
   businessDayOfMonth!: number;
   frequencyTimes!: number;
@@ -196,7 +199,57 @@ export class AddEditFeedComponent implements OnInit {
     this.showZipPass = !this.showZipPass;
   }
 
+  setFCO(checked: boolean) {
+    if (checked)
+      this.isChangesOnly = 0
+    else
+      this.isChangesOnly = 1
+  }
+
+  setProdTest(checked: boolean) {
+    if (checked)
+      this.inProduction = 1
+    else
+      this.inProduction = 0
+  }
+
   testConn() {
-    this.sftp.testConnection();
+    if (!this.ftpAccountId) return;
+    var connectingSpinner = document.getElementById('connecting-spinner');
+    if (connectingSpinner) {
+      connectingSpinner.style.display = "block";
+    }
+    this.sftp.testConnection(this.ftpAccountId).subscribe(res => {
+      this.messageConnectionTest = res;
+      if (res === "Successfully connected!") {        
+        var sftpTestSuccess = document.getElementById('test-success-alert');
+        if (sftpTestSuccess) {
+          if (connectingSpinner) {
+            connectingSpinner.style.display = "none";
+          }
+          sftpTestSuccess.style.display = "block";
+        }
+        setTimeout(function () {
+          if (sftpTestSuccess) {
+            sftpTestSuccess.style.display = "none";
+          }
+        }, 4000);
+      }
+      else {
+        var sftpTestError = document.getElementById('test-error-alert');
+        
+        if (sftpTestError) {
+          if (connectingSpinner) {
+            connectingSpinner.style.display = "none";
+          }
+          sftpTestError.style.display = "block";
+        }
+        setTimeout(function () {
+          if (sftpTestError) {
+            sftpTestError.style.display = "none";
+          }
+        }, 60000);
+      }
+    })
   }
 }

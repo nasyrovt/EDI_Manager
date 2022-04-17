@@ -1,3 +1,4 @@
+import { SftpService } from './../../services/sftp.service';
 import { FtpserverApiService } from './../../services/ftpserver-api.service';
 import { ClientsApiService } from './../../services/clients-api.service';
 import { FileMimesApiService } from '../../services/file-mimes-api.service';
@@ -23,9 +24,11 @@ export class AddEditAccountsComponent implements OnInit {
   carrierTypesList$!: Observable<any[]>;
   accountsList$!: Observable<any[]>;
 
+  messageConnectionTest = "";
+
 
   constructor(public feedsService: FeedsApiService, public fileTypesService: FileMimesApiService, public fileService: FilesService,
-    public clientsService: ClientsApiService, public developersService: DevelopersApiService, public accountsService: FtpserverApiService) { }
+    public clientsService: ClientsApiService, public developersService: DevelopersApiService, public accountsService: FtpserverApiService, public sftp: SftpService) { }
 
 
   @Input() account: any;
@@ -113,12 +116,62 @@ export class AddEditAccountsComponent implements OnInit {
     })
   }
 
+  testConn() {
+    if (!this.ftpAccountId) return;
+    var connectingSpinner = document.getElementById('connecting-spinner');
+    if (connectingSpinner) { connectingSpinner.style.display = "block"; }
+
+    this.sftp.testConnection(this.ftpAccountId).subscribe(res => {
+      this.messageConnectionTest = res;
+
+      if (res === "Successfully connected!") {
+        var sftpTestSuccess = document.getElementById('test-success-alert');
+        if (sftpTestSuccess) {
+          if (connectingSpinner) {
+            connectingSpinner.style.display = "none";
+          }
+          sftpTestSuccess.style.display = "block";
+        }
+        setTimeout(function () {
+          if (sftpTestSuccess) {
+            sftpTestSuccess.style.display = "none";
+          }
+        }, 4000);
+      }
+      else if (this.messageConnectionTest.indexOf('Host key fingerprint is ssh-rsa 2048 ') !== -1) {
+        if (connectingSpinner) {
+          connectingSpinner.style.display = "none";
+        }
+        var serverSshKey = this.messageConnectionTest.substring(this.messageConnectionTest.indexOf("is"), this.messageConnectionTest.length - 1);
+        serverSshKey = serverSshKey.substring(serverSshKey.indexOf("8 ") + 2, serverSshKey.indexOf("."));
+        if (confirm(res + "\nWould you like to save this key to database?")) {
+          var ssh = {
+            ftpHost: this.ftpHost,
+            key: serverSshKey
+          }
+          this.accountsService.addSshKey(ssh).subscribe()
+        }
+      }
+      else {
+        var sftpTestError = document.getElementById('test-error-alert');
+        if (sftpTestError) {
+          if (connectingSpinner) {
+            connectingSpinner.style.display = "none";
+          }
+          sftpTestError.style.display = "block";
+        }
+        setTimeout(function () {
+          if (sftpTestError) {
+            sftpTestError.style.display = "none";
+          }
+        }, 5000);
+      }
+    })
+
+  }
+
   //For chips
   // addPhone(phone: string) {
   //   this.phonesList.push(phone);
   // }
 }
-
-
-
-

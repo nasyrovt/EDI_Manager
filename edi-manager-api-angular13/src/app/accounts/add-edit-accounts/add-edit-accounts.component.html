@@ -34,8 +34,26 @@
         <label for="ftpPort" class="form-label">Port</label>
         <input type="number" class="form-control" [(ngModel)]="ftpPort" name="ftpPort">
     </div>
-
-    <button (click) ="addAccount()" *ngIf="account.ftpAccountId==0" class="btn btn-primary">Add</button>
-    <button (click) ="updateAccount()" *ngIf="account.ftpAccountId!=0" class="btn btn-primary">Update</button>
+    <div>
+        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="testConn()">Test</button>
+        <div class="parent" id="connecting-spinner">
+            <div class="child"><mat-progress-spinner mode="indeterminate" color="warn" diameter="25"></mat-progress-spinner></div>
+            <div class="child"><label class="form-label">Connecting...</label></div>
+        </div>
+    </div>
+    <div>
+        <div class="alert alert-success" role="alert" id="test-success-alert">
+            {{messageConnectionTest}}
+        </div>
+        <div class="alert alert-danger" role="alert" id="test-error-alert">
+            {{messageConnectionTest}}
+        </div>
+    </div>
+    
+    <div>
+        <button (click) ="addAccount()" *ngIf="account.ftpAccountId==0" class="btn btn-primary">Add</button>
+        <button (click) ="updateAccount()" *ngIf="account.ftpAccountId!=0" class="btn btn-primary">Update</button>
+    </div>
+    
 
 </form>
