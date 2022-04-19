@@ -536,3 +536,4 @@ E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\obj\Debug\net6.0\EDI_Manager.g
 E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\obj\Debug\net6.0\ref\EDI_Manager.dll
 E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\bin\Debug\net6.0\WinSCP.exe
 E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\bin\Debug\net6.0\WinSCPnet.dll
+E:\Courses\EDI_Manager\EDI_ManagerApp\EDI_Manager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

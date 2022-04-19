@@ -138,6 +138,7 @@ export class AddEditAccountsComponent implements OnInit {
           }
         }, 4000);
       }
+
       else if (this.messageConnectionTest.indexOf('Host key fingerprint is ssh-rsa 2048 ') !== -1) {
         if (connectingSpinner) {
           connectingSpinner.style.display = "none";
@@ -152,6 +153,7 @@ export class AddEditAccountsComponent implements OnInit {
           this.accountsService.addSshKey(ssh).subscribe()
         }
       }
+
       else {
         var sftpTestError = document.getElementById('test-error-alert');
         if (sftpTestError) {

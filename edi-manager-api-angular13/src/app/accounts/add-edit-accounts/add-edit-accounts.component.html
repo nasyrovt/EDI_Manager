@@ -26,14 +26,24 @@
     <!-- ftpType input -->
     <div class="mb-3">
         <label for="ftpType" class="form-label">Type</label>
-        <input type="text" class="form-control" [(ngModel)]="ftpType" name="ftpType">
+        <!-- <input type="text" class="form-control" [(ngModel)]="ftpType" name="ftpType"> -->
+        <select class="form-select" [(ngModel)]="ftpType" name="ftpType" id="ftpType">
+            <option value="ftp">{{"ftp"}}</option>
+            <option value="sftp">{{"sftp"}}</option>
+            <option value="ftps-implicit">{{"ftps-implicit"}}</option>
+            <option value="ftps-explicit">{{"ftps-explicit"}}</option>
+            <option value="scp">{{"scp"}}</option>
+            <option value="webdav">{{"webdav"}}</option>
+            <option value="s3">{{"Amazon-s3"}}</option>
+        </select>
     </div>
 
     <!-- ftpPort input -->
     <div class="mb-3">
         <label for="ftpPort" class="form-label">Port</label>
-        <input type="number" class="form-control" [(ngModel)]="ftpPort" name="ftpPort">
+        <input type="text" class="form-control" [(ngModel)]="ftpPort" name="ftpPort">
     </div>
+
     <div>
         <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="testConn()">Test</button>
         <div class="parent" id="connecting-spinner">
@@ -41,6 +51,7 @@
             <div class="child"><label class="form-label">Connecting...</label></div>
         </div>
     </div>
+
     <div>
         <div class="alert alert-success" role="alert" id="test-success-alert">
             {{messageConnectionTest}}

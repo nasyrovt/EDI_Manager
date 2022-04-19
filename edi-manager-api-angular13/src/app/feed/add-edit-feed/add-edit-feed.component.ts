@@ -7,9 +7,6 @@ import { Observable, range } from 'rxjs';
 import { FeedsApiService } from 'src/app/services/feeds-api.service';
 import { DevelopersApiService } from 'src/app/services/developers-api.service';
 import { FilesService } from 'src/app/services/files-api.service';
-import { EmailsChipComponent } from 'src/app/emails-chip/emails-chip.component';
-import { ThisReceiver } from '@angular/compiler';
-
 
 @Component({
   selector: 'app-add-edit-feed',
@@ -221,7 +218,7 @@ export class AddEditFeedComponent implements OnInit {
     }
     this.sftp.testConnection(this.ftpAccountId).subscribe(res => {
       this.messageConnectionTest = res;
-      if (res === "Successfully connected!") {        
+      if (res === "Successfully connected!") {
         var sftpTestSuccess = document.getElementById('test-success-alert');
         if (sftpTestSuccess) {
           if (connectingSpinner) {
@@ -237,7 +234,7 @@ export class AddEditFeedComponent implements OnInit {
       }
       else {
         var sftpTestError = document.getElementById('test-error-alert');
-        
+
         if (sftpTestError) {
           if (connectingSpinner) {
             connectingSpinner.style.display = "none";

@@ -77,18 +77,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col">
-                <div class="row">
-                    <div class="mb-3">
-                        <label for="inProduction" class="form-label">Test/Production</label>
-                        <select class="form-select" [(ngModel)] = "inProduction" name="inProduction" id="inProduction">
-                            <option [value]="1">{{"PROD"}}</option>
-                            <option [value]="0">{{"TEST"}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div> -->
-            
             <div class="row">
                 <h4>Delivery Informations</h4>
             </div> 
@@ -102,18 +90,26 @@
                         </select>
                     </div>
                 </div>
-                    <div class="col-3">
-                        <div class="mb-3">
+                <!-- Start date-->
+                    <div class="col-3" *ngIf="feedFrequencyId != 6">
+                        <div>
                             <label for="startDate" class="form-label">Start Date</label>
-                            <input type="text" class="form-control" [(ngModel)]="startDate" name="startDate">
+                            <input id="startDate" class="form-control" type="date" [(ngModel)]="startDate" name="startDate"/>
                         </div>
                     </div>
+
                     <!-- End date-->
-                    <div class="col-3" *ngIf="feedFrequencyId != 3">
+                    <div class="col-3" *ngIf="feedFrequencyId != 3 && feedFrequencyId != 6">
                         <div class="mb-3">
                             <label for="endDate" class="form-label">End Date</label>
-                            <input type="text" class="form-control" [(ngModel)]="endDate" name="endDate">
+                            <input type="date" class="form-control" [(ngModel)]="endDate" name="endDate" id="endDate">
                         </div>
+                    </div>
+                
+                    <!-- Series-->
+                    <div class="col-3"  *ngIf="feedFrequencyId == 6">
+                        <label for="series" class="form-label">Series</label>
+                        <input type="text" class="form-control" data-date-format="dd/mm/yyyy" [(ngModel)]="series" name="series" id="series-dates" bsDatepicker>
                     </div>
             </div>
             <!-- Start date-->
@@ -133,13 +129,6 @@
                         <option *ngFor="let time of freqTimes" [value]="time">{{time}}</option>
                     </select>
                 </div>
-
-                <!-- Series-->
-                <div class="mb-3"  *ngIf="feedFrequencyId == 6">
-                    <label for="series" class="form-label">Series</label>
-                    <input type="text" class="form-control" [(ngModel)]="series" name="series">
-                </div>
-                
 
                 <!-- Weekly Recur Day input -->
                 <div class="mb-3" *ngIf="feedFrequencyId == 1">

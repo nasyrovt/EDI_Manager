@@ -33,6 +33,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { ShowAccountsComponent } from './accounts/show-accounts/show-accounts.component';
 import { AddEditAccountsComponent } from './accounts/add-edit-accounts/add-edit-accounts.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { PlatformsComponent } from './platforms/platforms.component';
@@ -46,8 +47,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SshKeysComponent } from './ssh-keys/ssh-keys.component';
 import { ShowSshKeysComponent } from './ssh-keys/show-ssh-keys/show-ssh-keys.component';
 import { AddEditSshKeysComponent } from './ssh-keys/add-edit-ssh-keys/add-edit-ssh-keys.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
+import { HomePageComponent } from './home-page/home-page.component';
 
-
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -75,7 +83,9 @@ import { AddEditSshKeysComponent } from './ssh-keys/add-edit-ssh-keys/add-edit-s
     SeriesDatePickerComponent,
     SshKeysComponent,
     ShowSshKeysComponent,
-    AddEditSshKeysComponent
+    AddEditSshKeysComponent,
+    LoginComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -91,8 +101,21 @@ import { AddEditSshKeysComponent } from './ssh-keys/add-edit-ssh-keys/add-edit-s
     MatIconModule,
     MatInputModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    BsDatepickerModule.forRoot(),
+    RouterModule.forRoot([
+      { path: '', component: HomePageComponent },
+      { path: 'login', component: LoginComponent },
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:7255"],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [FeedsApiService, FilesService, ClientsApiService, FileMimesApiService, DevelopersApiService],
   bootstrap: [AppComponent]

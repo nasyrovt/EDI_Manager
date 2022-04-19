@@ -28,3 +28,13 @@ $theme: mat.define-light-theme((color: (primary: $theme-primary,
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($theme);
+
+.cdk-overlay-container {
+  // To be above Bootstrap's modal z-index
+  z-index: 1061;
+}
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
