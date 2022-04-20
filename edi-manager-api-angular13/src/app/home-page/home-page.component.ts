@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
@@ -7,10 +7,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
 
   devTabActive = false;
   adminTabActive = false;
+  currentUser: string | null = "";
 
   activators: Map<number, boolean> = new Map([
     [1, false], //activateFeeds
@@ -23,6 +24,10 @@ export class HomePageComponent {
   ]);
 
   constructor(private router: Router, private jwtHelper: JwtHelperService) { }
+
+  ngOnInit(): void {
+    this.currentUser = localStorage.getItem("CurrentUser");
+  }
 
   public setAllFalse() {
     this.activators.forEach(
@@ -53,6 +58,13 @@ export class HomePageComponent {
   }
   public setDevTabActivate(value: boolean): void {
     this.devTabActive = value;
+  }
+
+  logout() {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('CurrentUserRole');
+    localStorage.removeItem('CurrentUser');
+    this.router.navigate(['login']);
   }
 
 

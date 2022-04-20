@@ -1,14 +1,68 @@
-<form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-    <div class="container-fluid">
-      <h2 class="form-signin-heading">Login</h2>
-      <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
-      <br/>
-      <label for="username" class="sr-only">Email address</label>
-      <input type="email" id="username" name="username" ngModel class="form-control" placeholder="User Name" required autofocus>
-      <br/>
-      <label for="password" class="sr-only">Password</label>
-      <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required>
-      <br/>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+<h1>TODO: Redesign this page</h1>
+<form class="form-signin" #loginForm="ngForm" style="background-color:black">
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel">EDI Manager</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container-lg">
+            <div>
+              <h2 class="form-signin-heading">Log in</h2>
+            </div>
+            <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+            <br/>
+            <div>
+              <label for="username" class="sr-only">User Name</label>
+              <input type="email" id="username" name="username" ngModel class="form-control" placeholder="Email address" required autofocus>
+            </div>
+            <br/>
+            <div>
+              <label for="password" class="sr-only">Password</label>
+              <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div><button class="btn btn-lg btn-primary btn-block" type="button" (click)="login(loginForm)">Log in</button></div>
+          <div><button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Sign in</button></div>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">EDI Manager</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container-lg">
+            <div>
+              <h2 class="form-signin-heading">Sign in</h2>
+            </div>
+            <div>
+              <label for="usernameSign" class="sr-only">User Name</label>
+              <input type="email" id="usernameSign" name="usernameSign" ngModel class="form-control" placeholder="Email address" required autofocus>
+            </div>
+            <br/>
+            <div>
+              <label for="passwordSign" class="sr-only">Password</label>
+              <input type="password" id="passwordSign" name="passwordSign" ngModel class="form-control" placeholder="Password" required>
+            </div>
+            <br/>
+            <div>
+              <label for="role" class="sr-only">Role</label>
+              <input type="text" id="role" name="role" ngModel class="form-control" placeholder="Developer/Administrator" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="createNewUser(loginForm)">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button" style="position:fixed;right:2vw;top:2vw;">Log in</a>
+</form>

@@ -29,17 +29,23 @@ namespace EDI_Manager.Controllers
 
             var userInDb = (from usersIter in _context.Users
                       where usersIter.UserName == user.UserName && usersIter.Password == user.Password
-                      select usersIter.Id);
+                      select usersIter.UserId);
             if (userInDb.Any())
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Role, user.Role),
+                };
+
                 var tokenOptions = new JwtSecurityToken(
                     issuer: "https://localhost:7255",
                     audience: "https://localhost:7255",
-                    claims: new List<Claim>(),
-                    expires: DateTime.Now.AddDays(1),
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(60),
                     signingCredentials: signingCredentials
                 );
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);

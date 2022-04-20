@@ -52,6 +52,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -106,8 +107,8 @@ export function tokenGetter() {
     MatRadioModule,
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomePageComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'home', component: HomePageComponent, canActivate: [AuthGuard] }
     ]),
     JwtModule.forRoot({
       config: {

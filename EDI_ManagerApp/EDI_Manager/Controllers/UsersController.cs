@@ -8,54 +8,52 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EDI_Manager.Data;
 using EDI_Manager.TableDefinitions;
-using Microsoft.AspNetCore.Authorization;
 
 namespace EDI_Manager.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
-    [Authorize(Roles="Administrator")]
-    public class CarriersController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public CarriersController(DataContext context)
+        public UsersController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Carriers
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Carrier>>> GetCarriers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Carriers.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Carriers/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Carrier>> GetCarrier(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            var carrier = await _context.Carriers.FindAsync(id);
+            var user= await _context.Users.FindAsync(id);
 
-            if (carrier == null)
+            if (user== null)
             {
                 return NotFound();
             }
 
-            return carrier;
+            return user;
         }
 
-        // PUT: api/Carriers/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCarrier(int id, Carrier carrier)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != carrier.CarrierId)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(carrier).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +61,7 @@ namespace EDI_Manager.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarrierExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -76,36 +74,37 @@ namespace EDI_Manager.Controllers
             return NoContent();
         }
 
-        // POST: api/Carriers
+
+        // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Carrier>> PostCarrier(Carrier carrier)
+        public async Task<ActionResult<User>> PostPlatform(User user)
         {
-            _context.Carriers.Add(carrier);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCarrier", new { id = carrier.CarrierId }, carrier);
+            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
-        // DELETE: api/Carriers/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCarrier(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            var carrier = await _context.Carriers.FindAsync(id);
-            if (carrier == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Carriers.Remove(carrier);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CarrierExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Carriers.Any(e => e.CarrierId == id);
+            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }

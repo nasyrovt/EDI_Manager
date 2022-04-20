@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EDI_Manager.Data;
 using EDI_Manager.TableDefinitions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EDI_Manager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Developer, Administrator")]
     public class FTPAccountsController : ControllerBase
     {
         private readonly DataContext _context;

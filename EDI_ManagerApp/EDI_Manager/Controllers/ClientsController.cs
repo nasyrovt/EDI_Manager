@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EDI_Manager;
 using EDI_Manager.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EDI_Manager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Administrator")]
     public class ClientsController : ControllerBase
     {
         private readonly DataContext _context;

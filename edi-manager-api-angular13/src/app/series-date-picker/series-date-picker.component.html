@@ -7,7 +7,7 @@
         (removed)="remove(value)"
       >
         {{ value | date }}
-        <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+        <mat-icon matChipRemove svgIcon="delete" aria-hidden="false" style="margin-bottom: 5px"></mat-icon>
       </mat-chip>
       <input
         [value]="resetModel"

@@ -12,6 +12,16 @@
   padding: 0 0.5rem;
 }
 
+.logout{
+  position: fixed;
+  bottom: 2vw;
+  left: 15px
+}
+
+.userName{
+  color: #000000;
+}
+
 #admin-tab,
 #dev-tab{
   .nav-item.nav-link {
