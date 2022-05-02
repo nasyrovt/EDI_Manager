@@ -38,3 +38,6 @@ $theme: mat.define-light-theme((color: (primary: $theme-primary,
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

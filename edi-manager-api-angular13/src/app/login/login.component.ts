@@ -23,7 +23,6 @@ export class LoginComponent {
       'password': form.value.password,
       'role': this.users.usersMap.get(form.value.username)
     }
-    console.log(this.users.usersMap.get(form.value.username))
 
     this.http.post("https://localhost:7255/api/auth/login", credentials)
       .subscribe(response => {
@@ -34,8 +33,11 @@ export class LoginComponent {
           localStorage.setItem("CurrentUserRole", credentials.role);
         }
         this.invalidLogin = false;
-        this.router.navigate(["/home"]);
 
+        // TODO: fix typing & use variable
+        ($('#exampleModalToggle') as any).modal('hide');
+
+        this.router.navigate(["/home"]);
       }, err => {
         this.invalidLogin = true;
       })

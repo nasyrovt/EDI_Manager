@@ -26,8 +26,7 @@ export class DevelopersApiService {
         this.developerMap.set(this.devsList[i].developerId,
           this.devsList[i].developerFirstName + " " + this.devsList[i].developerLastName);
       }
-    }
-    );
+    });
   }
 
   //Developers

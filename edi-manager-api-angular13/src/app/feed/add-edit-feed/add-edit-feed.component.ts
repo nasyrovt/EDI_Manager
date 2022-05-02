@@ -249,4 +249,12 @@ export class AddEditFeedComponent implements OnInit {
       }
     })
   }
+
+  modalClose() {
+    var closeModalBtn = document.getElementById('add-edit-modal-close');
+    if (closeModalBtn) {
+      closeModalBtn.click();
+    }
+    this.feedsService.feedsList$ = this.feedsService.getFeedsList();
+  }
 }

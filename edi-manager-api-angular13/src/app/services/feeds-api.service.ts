@@ -11,23 +11,18 @@ export class FeedsApiService {
   feedsList$!: Observable<any[]>;
   carriersList$!: Observable<any[]>;
   carrierTypesList$!: Observable<any[]>;
-  // fileChangesList$!: Observable<any[]>;
   frequenciesList$!: Observable<any[]>;
   securityTypesList$!: Observable<any[]>;
-  // statusesList$!: Observable<any[]>;
+  
 
   carriersList: any = [];
   carriersMap: Map<number, string> = new Map();
   carrierTypesList: any = [];
   carrierTypesMap: Map<number, string> = new Map();
-  // fileChangesList: any = [];
-  // fileChangesMap: Map<number, string> = new Map();
   frequenciesList: any = [];
   frequenciesMap: Map<number, string> = new Map();
   securityTypesList: any = [];
   securityTypesMap: Map<number, string> = new Map();
-  // statusesList: any = [];
-  // statusesMap: Map<number, string> = new Map();
 
   readonly feedsAPIUrl = "https://localhost:7255/api";
 

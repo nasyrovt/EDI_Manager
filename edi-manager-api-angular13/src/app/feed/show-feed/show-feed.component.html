@@ -1,5 +1,5 @@
 <!-- Button feed trigger modal -->
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-start" style="padding-top: 1rem;">
   <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
   (click) =modalAdd()>
     Add New Feed
@@ -28,50 +28,58 @@
       </div>
     </div>
 </div>
-<div class="table-responsive">
-<table class="table table-hover">
-    <thead >
-        <th>Id</th>
-        <th>Feed Name</th>
-        <th>Changes Records</th>
-        <th>Frequency</th>
-        <th>Feed Security Type</th>
-        <th>Client</th>
-        <th>Carrier</th>       
-        <th>Options</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let feed of feedsService.feedsList$|async">
-            <td>{{feed.feedId}}</td>
-            <td>{{feed.feedName}}</td>
-            <td>{{feed.isChangesOnly? "COF" : "FF"}}</td>
-            <td>{{feedsService.frequenciesMap.get(feed.feedFrequencyId)}}</td>
-            <td>{{feedsService.securityTypesMap.get(feed.feedSecurityTypeId)}}</td>
-            <td>{{clientsService.clientsMap.get(feed.clientId)}}</td>
-            <td>{{feedsService.carriersMap.get(feed.carrierId)}}</td>           
-            <td>
-              <!-- Edit Button -->
-              <button class="btn btn-outline-primary me-2 mb-1"
-              (click) = "modalEdit(feed)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                </svg>
-              </button>
-              <!-- Delete Button -->
-              <button class="btn btn-outline-danger me-2 mb-1"
-              (click) = "deleteFeed(feed)"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                </svg>
-              </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div>
+  <div class="input-group mb-3 " style="padding-left: 1rem; padding-top: 1rem; width: 30%;">
+    <span for="table-filtering-search" class="input-group-text" id="feedSearchAddon">Search:</span>
+    <input id="feed-table-filtering-search" class="form-control" type="text" [formControl]="filter" aria-describedby="feedSearchAddon">
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover table-primary table-bordered border-primary">
+        <thead class="table-dark border-primary" style="background:black" >
+            <th>ID</th>
+            <th (click)="sort('feedName')">Feed Name<i class="fa fa-sort"></i></th>
+            <th (click)="sort('isChangesOnly')">Changes Records<i class="fa fa-sort"></i></th>
+            <th (click)="sort('feedFrequencyId')">Frequency<i class="fa fa-sort"></i></th>
+            <th (click)="sort('feedSecurityTypeId')">Feed Security Type<i class="fa fa-sort"></i></th>
+            <th (click)="sort('clientId')">Client<i class="fa fa-sort"></i></th>
+            <th (click)="sort('carrierId')">Carrier<i class="fa fa-sort"></i></th>       
+            <th>Options</th>
+        </thead>
+        <tbody> 
+            <tr *ngFor="let feed of feeds$|async 
+                  | orderBy: orderHeader: isDescOrder">
+                <td>{{feed.feedId}}</td>
+                <td><ngb-highlight [result]="feed.feedName" [term]="filter.value"></ngb-highlight></td>
+                <td>{{feed.isChangesOnly? "COF" : "FF"}}</td>
+                <td><ngb-highlight [result]="feedsService.frequenciesMap.get(feed.feedFrequencyId)" [term]="filter.value"></ngb-highlight></td>
+                <td><ngb-highlight [result]="feedsService.securityTypesMap.get(feed.feedSecurityTypeId)" [term]="filter.value"></ngb-highlight></td>
+                <td><ngb-highlight [result]="clientsService.clientsMap.get(feed.clientId)" [term]="filter.value"></ngb-highlight></td>
+                <td><ngb-highlight [result]="feedsService.carriersMap.get(feed.carrierId)" [term]="filter.value"></ngb-highlight></td>           
+                <td>
+                  <!-- Edit Button -->
+                  <button class="btn btn-outline-primary me-2 mb-1"
+                  (click) = "modalEdit(feed)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                  </button>
+                  <!-- Delete Button -->
+                  <button class="btn btn-outline-danger me-2 mb-1"
+                  (click) = "deleteFeed(feed)"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                      <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
 </div>
+
 <!-- Add or edit Feed Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
@@ -79,7 +87,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-        (click)="modalClose()" id ="add-edit-modal-close"
+        (click)="modalClose()" id ="add-edit-modal-close" style="background:transparent; border:none; color:transparent;"
         ></button>
       </div>
       <div class="modal-body">
@@ -98,3 +106,9 @@
 <div class="alert alert-success" role="alert" id="delete-success-alert">
   Feed successfully deleted!
 </div>
+<script>
+  $('#feedsTable').ready(function () {
+  $('#dtBasicExample').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>

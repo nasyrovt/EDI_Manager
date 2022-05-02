@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HtLFQScQvK3eR4ty3pFHihYPwkmATuWSO0CKOsEvqogJ/0ztl7OpSGSjvfWrx3s4a2XVkhad1Ho8sFgPN8QLMg==",
+  "dgSpecHash": "p+FD7A6b1cqDULFXM/ydycgXzNYUlE5kc0LwGuUlZGwBeX1CkrBY1Qk1Xpn4fCThBBpx+gIhTsLzD9EW1tda+w==",
   "success": true,
   "projectFilePath": "E:\\Courses\\EDI_Manager\\EDI_ManagerApp\\EDI_Manager\\EDI_Manager.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

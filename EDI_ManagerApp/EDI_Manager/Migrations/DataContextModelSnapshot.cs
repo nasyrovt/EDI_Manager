@@ -304,6 +304,452 @@ namespace EDI_Manager.Migrations
                     b.ToTable("CarrierTypes");
                 });
 
+            modelBuilder.Entity("EDI_Manager.TableDefinitions.Child", b =>
+                {
+                    b.Property<int>("ChildId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChildId"), 1L, 1);
+
+                    b.Property<float>("BenefitSalary")
+                        .HasColumnType("real");
+
+                    b.Property<string>("BusinessTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cell")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Division")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EligibilityPeriodEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EligibilityPeriodStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EmploymentStatusEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EmploymentStatusStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnrollmentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HomePhone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoursPerWeek")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsCertified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTestEmployee")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTobaccoUser")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVoluntaryTermination")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemberAddress1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberAddress2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MemberBirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberCountry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberFirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MemberGender")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("MemberHireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberMiddleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberSsn")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MemberState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MemberTerminationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberTerminationReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberZip")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OriginalHireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PayRate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PayType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PayrollSchedule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreferredLanguage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QMCSO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecordType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Relationship")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ssn")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StatusChangedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StatusEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StatusStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SubscriberID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TerminationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TerminationReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Union")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("VerificationExpiresOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ChildId");
+
+                    b.ToTable("Children");
+                });
+
+            modelBuilder.Entity("EDI_Manager.TableDefinitions.Employee", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
+
+                    b.Property<float>("BenefitSalary")
+                        .HasColumnType("real");
+
+                    b.Property<string>("BusinessTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cell")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Division")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EligibilityPeriodEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EligibilityPeriodStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EmploymentStatusEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EmploymentStatusStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnrollmentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HomePhone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoursPerWeek")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsCertified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTestEmployee")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTobaccoUser")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVoluntaryTermination")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemberAddress1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberAddress2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MemberBirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberCountry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberFirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MemberGender")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("MemberHireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberMiddleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberSsn")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MemberState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MemberTerminationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberTerminationReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberZip")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OriginalHireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PayRate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PayType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PayrollSchedule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreferredLanguage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QMCSO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecordType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Relationship")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ssn")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StatusChangedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StatusEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StatusStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SubscriberID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TerminationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TerminationReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Union")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("VerificationExpiresOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("Employees");
+                });
+
             modelBuilder.Entity("EDI_Manager.TableDefinitions.FeedFrequency", b =>
                 {
                     b.Property<int>("FeedFrequencyId")
@@ -389,6 +835,229 @@ namespace EDI_Manager.Migrations
                     b.HasKey("PlatformId");
 
                     b.ToTable("Platforms");
+                });
+
+            modelBuilder.Entity("EDI_Manager.TableDefinitions.Spouse", b =>
+                {
+                    b.Property<int>("SpouseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SpouseId"), 1L, 1);
+
+                    b.Property<float>("BenefitSalary")
+                        .HasColumnType("real");
+
+                    b.Property<string>("BusinessTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cell")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Division")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EligibilityPeriodEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EligibilityPeriodStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmploymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EmploymentStatusEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EmploymentStatusStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnrollmentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HomePhone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoursPerWeek")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsCertified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTestEmployee")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTobaccoUser")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVoluntaryTermination")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MaritalStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemberAddress1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberAddress2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MemberBirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberCountry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberFirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MemberGender")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("MemberHireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberMiddleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberSsn")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MemberState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MemberTerminationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MemberTerminationReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberZip")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OriginalHireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PayRate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PayType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PayrollSchedule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreferredLanguage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QMCSO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecordType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Relationship")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ssn")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StatusChangedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StatusEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StatusStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SubscriberID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TerminationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TerminationReason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Union")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("VerificationExpiresOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("SpouseId");
+
+                    b.ToTable("Spouses");
                 });
 
             modelBuilder.Entity("EDI_Manager.TableDefinitions.User", b =>

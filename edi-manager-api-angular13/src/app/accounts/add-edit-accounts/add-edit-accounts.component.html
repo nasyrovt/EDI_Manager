@@ -33,8 +33,8 @@
             <option value="ftps-implicit">{{"ftps-implicit"}}</option>
             <option value="ftps-explicit">{{"ftps-explicit"}}</option>
             <option value="scp">{{"scp"}}</option>
-            <option value="webdav">{{"webdav"}}</option>
-            <option value="s3">{{"Amazon-s3"}}</option>
+            <option value="webdav" disabled>{{"webdav (comming soon)"}}</option>
+            <option value="s3" disabled>{{"Amazon-s3 (comming soon"}}</option>
         </select>
     </div>
 
@@ -61,10 +61,11 @@
         </div>
     </div>
     
-    <div>
+    <div style="padding-top: 2rem;">
         <button (click) ="addAccount()" *ngIf="account.ftpAccountId==0" class="btn btn-primary">Add</button>
         <button (click) ="updateAccount()" *ngIf="account.ftpAccountId!=0" class="btn btn-primary">Update</button>
     </div>
+    
     
 
 </form>

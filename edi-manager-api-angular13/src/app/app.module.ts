@@ -53,6 +53,9 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderModule } from 'ngx-order-pipe';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -93,6 +96,8 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    OrderModule,
+    FilterPipeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -104,6 +109,7 @@ export function tokenGetter() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    NgbModule,
     MatRadioModule,
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot([
@@ -116,7 +122,8 @@ export function tokenGetter() {
         allowedDomains: ["localhost:7255"],
         disallowedRoutes: []
       }
-    })
+    }),
+    NgbModule
   ],
   providers: [FeedsApiService, FilesService, ClientsApiService, FileMimesApiService, DevelopersApiService],
   bootstrap: [AppComponent]

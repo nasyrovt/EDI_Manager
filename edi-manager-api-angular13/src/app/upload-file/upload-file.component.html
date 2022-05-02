@@ -1,13 +1,18 @@
-<div class="row" style="margin-bottom:15px;">
-    <div class="col-md-3">
-      <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files); " style="display:none;">
-      <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-    </div>
-    <div class="col-md-4">
-      <span class="upload" *ngIf="progress && progress > 0">
+<div class="row" style="margin-bottom:15px; width: 30rem;">
+    <div class="input-group mb-3">
+      <input class="form-control" type="file" #file (change)="uploadFile(file.files); ">
+      <span class="input-group-text in-progress" *ngIf="progress && progress > 0 && progress != 100">
         {{progress}}%
       </span>
-      <span class="upload" *ngIf="message">
+      <span class="input-group-text upload" *ngIf="progress && progress == 100">
+        Done!
+      </span>
+    </div>
+    <div class="col-md-4">
+      <span class="upload" *ngIf="message && message==file.innerText">
+        {{message}}
+      </span>
+      <span class="upload-error" *ngIf="message && message!=file.innerText">
         {{message}}
       </span>
     </div>

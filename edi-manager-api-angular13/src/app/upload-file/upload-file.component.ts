@@ -31,7 +31,7 @@ export class UploadFileComponent implements OnInit {
     var fileMimeIndex = this.getByValue(this.fileMimesService.fileMimesMap, fileToUpload.type.split("/")[1]);
     //If file mime is not accepted
     if (fileMimeIndex == -1) {
-      this.message = "Can't upload file with this mime:" + fileToUpload.type.split("/")[1];
+      this.message = "Can't upload file with this mime: " + fileToUpload.type.split("/")[1];
       this.progress = 0;
       return;
     }
@@ -49,7 +49,7 @@ export class UploadFileComponent implements OnInit {
         if (event.type === HttpEventType.UploadProgress && event.total)
           this.progress = Math.round(100 * event.loaded / event.total);
         else if (event.type === HttpEventType.Response) {
-          this.message = fileToUpload.name;
+          this.message = fileToUpload.name + " is successfully uploaded!";
           this.onUploadFinished.emit(event.body);
         }
       });

@@ -20,6 +20,8 @@ namespace EDI_Manager.Data
         public DbSet<FeedFrequency> FeedFrequency { get; set; }
         public DbSet<FeedSecurityType> FeedSecurityType { get; set; }
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Spouse> Spouses { get; set; }
+        public DbSet<Child> Children { get; set; }
     }
 }

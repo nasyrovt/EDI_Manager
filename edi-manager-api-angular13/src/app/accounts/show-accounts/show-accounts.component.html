@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-start" style="padding-top: 1rem;">
   <!-- Button feed trigger modal -->
   <button type="button" class="btn btn-primary float-end m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
   (click) =modalAdd()>
@@ -6,27 +6,32 @@
   </button>
 </div>
 
+<div class="input-group mb-3 " style="padding-left: 1rem; padding-top: 1rem; width: 30%;">
+  <span for="table-filtering-search" class="input-group-text" id="basic-addon1">Search:</span>
+  <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" aria-describedby="basic-addon1">
+</div>
 <div class="table-responsive">
-<table class="table table-hover">
-    <thead >
+  <table class="table table-hover table-primary table-bordered border-primary">
+    <thead class="table-dark border-primary" style="background:black" >
         <th>Id</th>
-        <th>Host</th>
-        <th>User</th>
-        <th>Password</th>
-        <th>Directory</th>
-        <th>Type</th>
-        <th>Port</th>
+        <th (click)="sort('ftpHost')">Host<i class="fa fa-sort"></i></th>
+        <th (click)="sort('ftpUser')">User<i class="fa fa-sort"></i></th>
+        <th (click)="sort('ftpPassword')">Password<i class="fa fa-sort"></i></th>
+        <th (click)="sort('ftpDirectory')">Directory<i class="fa fa-sort"></i></th>
+        <th (click)="sort('ftpType')">Type<i class="fa fa-sort"></i></th>
+        <th (click)="sort('ftpPort')">Port<i class="fa fa-sort"></i></th>
         <th>Options</th>
     </thead>
     <tbody>
-        <tr *ngFor="let account of accountsService.serversList$|async">
+        <tr *ngFor="let account of accounts$|async
+            | orderBy: orderHeader: isDescOrder">
             <td>{{account.ftpAccountId}}</td>
-            <td>{{account.ftpHost}}</td>
-            <td>{{account.ftpUser}}</td>
+            <td><ngb-highlight [result]="account.ftpHost" [term]="filter.value"></ngb-highlight></td>
+            <td><ngb-highlight [result]="account.ftpUser" [term]="filter.value"></ngb-highlight></td>
             <td>{{account.ftpPassword}}</td>
             <td>{{account.ftpDirectory}}</td>
-            <td>{{account.ftpType}}</td>
-            <td>{{account.ftpPort}}</td>
+            <td><ngb-highlight [result]="account.ftpType" [term]="filter.value"></ngb-highlight></td>
+            <td><ngb-highlight [result]="account.ftpPort" [term]="filter.value"></ngb-highlight></td>
             <td>
               <!-- Edit Button -->
               <button class="btn btn-outline-primary me-2 mb-1"
