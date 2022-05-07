@@ -4,6 +4,7 @@ using EDI_Manager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDI_Manager.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220503001326_Nullables")]
+    partial class Nullables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -435,8 +437,8 @@ namespace EDI_Manager.Migrations
                     b.Property<string>("MemberTerminationReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberZip")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("MemberZip")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("OriginalHireDate")
                         .HasColumnType("datetime2");
@@ -460,10 +462,6 @@ namespace EDI_Manager.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Relationship")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SourceFilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("Ssn")
@@ -632,8 +630,8 @@ namespace EDI_Manager.Migrations
                     b.Property<string>("MemberTerminationReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberZip")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("MemberZip")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("OriginalHireDate")
                         .HasColumnType("datetime2");
@@ -657,10 +655,6 @@ namespace EDI_Manager.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Relationship")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SourceFilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("Ssn")
@@ -916,8 +910,8 @@ namespace EDI_Manager.Migrations
                     b.Property<string>("MemberTerminationReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberZip")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("MemberZip")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("OriginalHireDate")
                         .HasColumnType("datetime2");
@@ -941,10 +935,6 @@ namespace EDI_Manager.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Relationship")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SourceFilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("Ssn")
@@ -1005,184 +995,6 @@ namespace EDI_Manager.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("EDI_Manager.Utilities.Election", b =>
-                {
-                    b.Property<string>("ElectionId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SourceFilePath")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Benefit")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("BillingFee")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("BillingFee2")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("BillingPremium")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Carrier")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CarrierEffectiveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ChangeEffectiveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CobraMappingCode")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CoverageTerminationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CoverageTerminationReason")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateMode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DemographicEffectiveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DomesticPartnerOrgPremiumAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DomesticPartnerSubscriberPremiumAmount")
-                        .HasColumnType("int");
-
-                    b.Property<float?>("EEPostaxPremium")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("EEPremium")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("EEPretaxPremium")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("ERPremium")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("EffectiveDateForOrganizationYTD")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("EffectiveDateForSubscriberYTD")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ElectionEffectiveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("EmployerAnnualAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployerMonthlyAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ExportMappingCode")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GroupNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("HSAContributionEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("HSAERLumpSum")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("HSALumpSumPayDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float?>("ImputedIncome")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("IncrementsOrPercentage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Level")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MaximumVolumeAllowedAmount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OrganizationYTD")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("OriginalEffectiveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("PayrollMappingCode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Plan")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PriorCarrierName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("PriorEffectiveDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("PriorGroupNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PriorMemberId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("PriorTerminationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RequestedEmployerAnnualAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RequestedEmployerMonthlyAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RequestedIncrementsOrPercentage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RequestedLevel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RequestedPlan")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("RequestedSubscriberAnnual")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RequestedSubscriberMonthly")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RequestedVolume")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("SignatureDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SubscriberAnnual")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SubscriberMonthly")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SubscriberYTD")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Volume")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("WaivePlanTerminationDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ElectionId", "SourceFilePath");
-
-                    b.ToTable("Elections");
                 });
 
             modelBuilder.Entity("EDI_Manager.Feed", b =>

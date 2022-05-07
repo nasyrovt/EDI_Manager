@@ -4,6 +4,7 @@ using EDI_Manager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDI_Manager.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220503220105_ElectionsSourceFilePath")]
+    partial class ElectionsSourceFilePath
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -435,8 +437,8 @@ namespace EDI_Manager.Migrations
                     b.Property<string>("MemberTerminationReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberZip")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("MemberZip")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("OriginalHireDate")
                         .HasColumnType("datetime2");
@@ -632,8 +634,8 @@ namespace EDI_Manager.Migrations
                     b.Property<string>("MemberTerminationReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberZip")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("MemberZip")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("OriginalHireDate")
                         .HasColumnType("datetime2");
@@ -916,8 +918,8 @@ namespace EDI_Manager.Migrations
                     b.Property<string>("MemberTerminationReason")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberZip")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("MemberZip")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("OriginalHireDate")
                         .HasColumnType("datetime2");
@@ -1010,9 +1012,6 @@ namespace EDI_Manager.Migrations
             modelBuilder.Entity("EDI_Manager.Utilities.Election", b =>
                 {
                     b.Property<string>("ElectionId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SourceFilePath")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Benefit")
@@ -1165,6 +1164,9 @@ namespace EDI_Manager.Migrations
                     b.Property<DateTime?>("SignatureDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SourceFilePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("SubscriberAnnual")
                         .HasColumnType("int");
 
@@ -1180,7 +1182,7 @@ namespace EDI_Manager.Migrations
                     b.Property<DateTime?>("WaivePlanTerminationDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ElectionId", "SourceFilePath");
+                    b.HasKey("ElectionId");
 
                     b.ToTable("Elections");
                 });

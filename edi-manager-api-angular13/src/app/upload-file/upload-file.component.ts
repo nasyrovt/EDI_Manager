@@ -40,9 +40,9 @@ export class UploadFileComponent implements OnInit {
       fileMimeId: fileMimeIndex,
       size: fileToUpload.size
     };
-    this.filesService.addFile(file).subscribe(() => {
-      this.filesService.refreshFilesMap()
-    })
+    if (!this.filesService.filesList.includes(file)) {
+      this.filesService.addFile(file);
+    }
 
     this.http.post('https://localhost:7255/api/upload', formData, { reportProgress: true, observe: 'events' })
       .subscribe(event => {

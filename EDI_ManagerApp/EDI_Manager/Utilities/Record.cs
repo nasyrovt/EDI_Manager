@@ -8,12 +8,12 @@ namespace EDI_Manager.TableDefinitions
         public string? CompanyName  { get; set; }
         public string? RecordType { get; set; }
         public string? EnrollmentMethod { get; set; }
-        public int? MemberSsn { get; set; }
+        public long? MemberSsn { get; set; }
         public string? Relationship { get; set; } 
         public string? MemberLastName { get; set; }
         public string? MemberFirstName { get; set; }
         public string? MemberMiddleName { get; set; }
-        public int? Ssn { get; set; }
+        public long? Ssn { get; set; }
         public string? MemberGender { get; set; }
         public string? MaritalStatus { get; set; }
         public DateTime? MemberBirthDate { get; set; }
@@ -50,12 +50,12 @@ namespace EDI_Manager.TableDefinitions
         public string? MemberAddress2 { get; set; }
         public string? MemberCity { get; set; }
         public string? MemberState { get; set; }
-        public int? MemberZip { get; set; }
+        public string? MemberZip { get; set; } = string.Empty;
         public string? Cell { get; set; }
         public string? Email { get; set; }
         public string? BusinessTitle { get; set; } 
         public string? Union { get; set; }
-        public int? HomePhone { get; set; }
+        public long? HomePhone { get; set; }
         public int? HoursPerWeek { get; set; }
         public string? PreferredLanguage { get; set; }
         public bool? IsTestEmployee { get; set; }
@@ -65,6 +65,8 @@ namespace EDI_Manager.TableDefinitions
         public DateTime? VerificationExpiresOn { get; set; }
         public bool? IsVerified { get; set; }
         public string? MemberCountry { get; set; }
+
+
         public string? Benefit { get; set; }
         public string? Plan { get; set; }
         public string? Level { get; set; }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { FileMimesApiService } from './file-mimes-api.service';
 
 @Injectable({
@@ -36,6 +36,7 @@ export class FilesService {
   }
 
   addFile(data: any) {
+    this.filesList.push(data);
     return this.http.post(this.APIUrl + "/files", data);
   }
 

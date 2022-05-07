@@ -26,7 +26,7 @@
                         <label for="sourceFileId" class="form-label">Source File</label>
                         <select class="form-select" name="sourceFile" id="sourceFile"
                         [(ngModel)] = "sourceFileId">
-                            <option *ngFor="let file of filesList$|async" [value]="file.fileId">
+                            <option *ngFor="let file of fileService.filesList" [value]="file.fileId">
                                 {{file.fileName +"."+ fileTypesService.fileMimesMap.get(file.fileMimeId)}}
                             </option>
                         </select>

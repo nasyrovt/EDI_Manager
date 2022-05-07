@@ -14,7 +14,7 @@ namespace EDI_Manager.Utilities
             _dateFormat = dateFormat;
         }
 
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        public object? ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
             if (!string.IsNullOrEmpty(text))
             {
